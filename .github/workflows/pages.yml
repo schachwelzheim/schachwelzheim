@@ -45,6 +45,8 @@ jobs:
                               title = clean_line[2:].strip()
                               continue
                           if title and clean_line and not clean_line.startswith("#"):
+                              if re.match(r"^\d+\.", clean_line):
+                                  continue
                               words = re.findall(r"\b\w+\b", clean_line)
                               teaser_words.extend(words)
                               if len(teaser_words) >= 10:
@@ -57,32 +59,71 @@ jobs:
 
           news_items = []
           if os.path.exists(aktuelles_dir):
+              # Alle .md-Dateien finden (außer index.md)
               md_files = sorted([f for f in os.listdir(aktuelles_dir) if f.endswith(".md") and f != "index.md"], reverse=True)
               
               for filename in md_files:
                   file_path = os.path.join(aktuelles_dir, filename)
-                  default_title = os.path.splitext(filename)[0]
+                  base_name = os.path.splitext(filename)[0]
+                  default_title = base_name
                   
                   title, teaser = parse_markdown_file(file_path)
                   if not title:
                       title = default_title.replace("-", " ").capitalize()
                   
-                  date_match = re.match(r"(\d{4})-(\d{2})-(\d{2})", filename)
+                  date_match = re.match(r"(\d{4})-(\d{2})-(\d{2})", base_name)
                   if date_match:
                       year, month, day = date_match.groups()
                       formatted_date = f"{day}.{month}.{year}"
                   else:
                       formatted_date = ""
 
+                  # Prüfen, ob es einen gleichnamigen Bilder-Ordner gibt (z. B. docs/aktuelles/2026-07-14/)
+                  img_folder = os.path.join(aktuelles_dir, base_name)
+                  images = []
+                  if os.path.exists(img_folder) and os.path.isdir(img_folder):
+                      valid_exts = (".png", ".jpg", ".jpeg", ".gif", ".webp")
+                      images = sorted([img for img in os.listdir(img_folder) if img.lower().endswith(valid_exts)])
+
                   news_items.append({
                       "filename": filename,
+                      "base_name": base_name,
                       "title": title,
                       "teaser": teaser,
-                      "date": formatted_date
+                      "date": formatted_date,
+                      "images": images
                   })
 
-              index_content = "# Aktuelles\n\n"
-              index_content += "Hier findest du alle Aktivitäten, Spielberichte, Ankündigungen und Neuigkeiten rund um Schach in Welzheim.\n\n"
+              # 1. Die einzelnen Beitrags-Dateien temporär/dauerhaft mit der Galerie anreichern
+              for item in news_items:
+                  file_path = os.path.join(aktuelles_dir, item["filename"])
+                  
+                  # Originalen Inhalt der .md-Datei einlesen (ohne eventuell früher angehängte Galerien)
+                  with open(file_path, "r", encoding="utf-8") as f:
+                      content = f.read()
+                  
+                  # Falls am Ende schon eine Galerie dran war, diese vor dem Update abschneiden
+                  if "\n\n## Bilder zum Beitrag\n" in content:
+                      content = content.split("\n\n## Bilder zum Beitrag\n")[0]
+
+                  # Wenn Bilder im Ordner liegen, Galerie anhängen
+                  if item["images"]:
+                      content += "\n\n## Bilder zum Beitrag\n\n"
+                      # HTML-Grid für eine schicke Galerie (Bilder nebeneinander mit automatischem Umbruch)
+                      content += "<div class=\"grid cards\" markdown>\n\n"
+                      for img in item["images"]:
+                          # Pfad relativ zum Beitrag (der Ordner heißt wie die Basis der Datei)
+                          img_path = f"{item['base_name']}/{img}"
+                          content += f"-   ![{img}]({img_path})\n"
+                      content += "\n</div>\n"
+
+                  # Datei zurückschreiben (inklusive automatischer Galerie)
+                  with open(file_path, "w", encoding="utf-8") as f:
+                      f.write(content)
+
+              # 2. Die Übersichtsseite (docs/aktuelles/index.md) generieren
+              index_content = "# Aktuelles aus der Schachabteilung\n\n"
+              index_content += "Hier findest du alle Spielberichte, Ankündigungen und Neuigkeiten rund um die Schachabteilung der TSF Welzheim.\n\n"
               index_content += "## Beiträge\n\n"
               
               for item in news_items:
@@ -91,7 +132,7 @@ jobs:
 
               with open(os.path.join(aktuelles_dir, "index.md"), "w", encoding="utf-8") as f:
                   f.write(index_content)
-              print("docs/aktuelles/index.md erfolgreich automatisch aktualisiert!")
+              print("docs/aktuelles/index.md und Beitrags-Galerien erfolgreich aktualisiert!")
 
           def scan_folder(path):
               items = []
@@ -100,24 +141,40 @@ jobs:
                   full_path = os.path.join(path, entry)
                   rel_path = os.path.relpath(full_path, docs_dir)
                   if os.path.isdir(full_path):
+                      # Überspringe gleichnamige Bild-Ordner in der Navigation
+                      if any(item["base_name"] == entry for item in news_items):
+                          continue
                       sub_items = scan_folder(full_path)
                       if sub_items:
-                          folder_title = entry.replace("_", " ").capitalize()
-                          items.append({folder_title: sub_items})
+                          sub_folder_name = entry.replace("_", " ").capitalize()
+                          items.append({sub_folder_name: sub_items})
                   elif entry.endswith(".md"):
-                      if entry == "index.md" and path == docs_dir:
+                      if entry == "index.md":
                           continue
                       name_without_ext = os.path.splitext(entry)[0]
                       default_title = name_without_ext.replace("-", " ").capitalize()
                       title, _ = parse_markdown_file(full_path)
                       if not title:
-                          title = default_title
+                        title = default_title
                       items.append({title: rel_path.replace(os.sep, "/")})
               return items
 
           if os.path.exists(os.path.join(docs_dir, "index.md")):
               nav.append({"Startseite": "index.md"})
-          nav.extend(scan_folder(docs_dir))
+          
+          aktuelles_items = scan_folder(aktuelles_dir)
+          if aktuelles_items:
+              akt_title, _ = parse_markdown_file(os.path.join(aktuelles_dir, "index.md"))
+              if not akt_title:
+                  akt_title = "Aktuelles"
+              nav.append({akt_title: aktuelles_items})
+
+          for entry in sorted(os.listdir(docs_dir)):
+              full_path = os.path.join(docs_dir, entry)
+              if os.path.isdir(full_path) and entry != "aktuelles":
+                  sub_items = scan_folder(full_path)
+                  if sub_items:
+                      nav.append({entry.replace("_", " ").capitalize(): sub_items})
 
           with open("mkdocs.yml", "r", encoding="utf-8") as f:
               config = yaml.safe_load(f)
