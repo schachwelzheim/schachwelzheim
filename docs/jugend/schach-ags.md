@@ -10,7 +10,7 @@ Zurzeit gibt es an drei Schulen aktive Schach-AGs.
   An der Bürgfeld-Gemeinschaftsschule findet wöchentlich eine [Schach-AG](https://buergfeld-gms.de/schach-ag/) statt. Neben dem klassischen Spiel am Brett oder auf dem Outdoor-Schachfeld wird hier auch digital trainiert (z. B. über Lichess oder den Brackeler Schachlehrgang vom Bauern- bis zum Läuferdiplom). Ein echtes Highlight: Seit Oktober 2024 ist die Schule offizielle, zertifizierte **„Deutsche Schachschule“ (Stufe Bronze)**. Geleitet wird das Angebot von Vereinsvorstand Eberhard Fink und Anke Werner.
 
 * **[Limes-Gymnasium Welzheim](https://www.limes-gymnasium-welzheim.de/schach-ag/)**  
-  Das Limes-Gymnasium verfügt ebenfalls über eine engagierte Schach-AG. Geleitet wird die AG von Kai Müller, Lehrkraft am LGW.
+  Das Limes-Gymnasium verfügt ebenfalls über eine engagierte Schach-AG.
 
 * **[Hofgarten-Grundschule](https://www.hofgartengrundschule.de/nachmittagsangebot)**  
   Lange Tradition hat die Schulschach-AG für die Hofgarten-Grundschüler in den Räumlichkeiten des TSF.
