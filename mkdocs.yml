@@ -1,0 +1,34 @@
+site_name: Schach in Welzheim
+site_description: Schachaktivitäten in Welzheim, im Verein, in Schulen, ...
+site_author: Schach in Welzheim
+
+# Design & Theme
+theme:
+  name: material
+  language: de
+  palette:
+    scheme: default
+    primary: indigo
+    accent: blue
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - search.highlight
+
+# Plugins (z.B. für Suche)
+plugins:
+  - search
+
+# Die Navigationsstruktur (Menu) – spiegelt deine Ordnerstruktur wider
+nav:
+  - Startseite: index.md
+  - Aktuelles:
+      - Übersicht: aktuelles/index.md
+      - Sieg und Niederlage zum Saisonstart: aktuelles/2026-10-02-sieg-und-niederlage.md
+  - Verein:
+      - Mannschaften: verein/mannschaften.md
+      - Training: verein/training.md
+  - Jugend & AGs:
+      - Schulschach-AG: jugend-und-ags/schulschach-ag.md
+      - Jugendtraining: jugend-und-ags/jugendtraining.md
+  - Spiellokal: orte/spiellokal.md
