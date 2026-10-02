@@ -16,7 +16,7 @@ Zurzeit gibt es an drei Schulen aktive Schach-AGs.
   Lange Tradition hat die Schulschach-AG für die Hofgarten-Grundschüler in den Räumlichkeiten des TSF.
 
 * **[Kastell-Realschule](https://krswelzheim.de/index.php/11433/1-platz-bei-der-schulschachmeisterschaft-2026/)**  
-  Die Kastell-Realschule hat keine offizielle Schach-AG. Da jedoch ehemalige Grundschüler aus der Bürgfeld-Gemeinsschaftsschule und aus der Hofgarten-Grundschule
+  Die Kastell-Realschule hat keine offizielle Schach-AG. Da jedoch ehemalige Grundschüler aus der Bürgfeld-Gemeinsschaftsschule und aus der Hofgarten-Grundschule bereits erfolgreich spielen, geht auch ein Team der Kastell-Realschule mit auf Bezirksturnier und das erfolgreich.
 
 ---
 
