@@ -137,14 +137,17 @@ jobs:
                           continue
                       sub_items = scan_folder(full_path)
                       if sub_items:
-                          # Versuche den Titel aus der index.md des Unterordners zu lesen
                           sub_index = os.path.join(full_path, "index.md")
                           folder_title = ""
                           if os.path.exists(sub_index):
                               folder_title, _ = parse_markdown_file(sub_index)
                           if not folder_title:
                               folder_title = entry.replace("_", " ").replace("-", " ").capitalize()
-                          items.append({folder_title: sub_items})
+                          
+                          # Unterordner ebenfalls mit klickbarer Übersicht versehen
+                          sub_index_rel = os.path.relpath(sub_index, docs_dir).replace(os.sep, "/")
+                          sub_nav_list = [{"Übersicht": sub_index_rel}] + [item for item in sub_items if list(item.values())[0] != sub_index_rel]
+                          items.append({folder_title: sub_nav_list})
                   elif entry.endswith(".md"):
                       if entry == "index.md":
                           continue
@@ -159,13 +162,16 @@ jobs:
           if os.path.exists(os.path.join(docs_dir, "index.md")):
               nav.append({"Startseite": "index.md"})
           
+          # Aktuelles als klickbarer Hauptmenüpunkt
           aktuelles_items = scan_folder(aktuelles_dir)
           if aktuelles_items:
               akt_title, _ = parse_markdown_file(os.path.join(aktuelles_dir, "index.md"))
               if not akt_title:
                   akt_title = "Aktuelles"
-              nav.append({akt_title: aktuelles_items})
+              aktuelles_nav_list = [{"Übersicht": "aktuelles/index.md"}] + [item for item in aktuelles_items if list(item.values())[0] != "aktuelles/index.md"]
+              nav.append({akt_title: aktuelles_nav_list})
 
+          # Alle anderen Ordner (z. B. Jugend) klickbar machen
           for entry in sorted(os.listdir(docs_dir)):
               full_path = os.path.join(docs_dir, entry)
               if os.path.isdir(full_path) and entry != "aktuelles":
@@ -173,11 +179,14 @@ jobs:
                   if sub_items:
                       sub_index = os.path.join(full_path, "index.md")
                       folder_title = ""
+                      sub_index_rel = f"{entry}/index.md"
                       if os.path.exists(sub_index):
                           folder_title, _ = parse_markdown_file(sub_index)
                       if not folder_title:
                           folder_title = entry.replace("_", " ").replace("-", " ").capitalize()
-                      nav.append({folder_title: sub_items})
+                      
+                      folder_nav_list = [{"Übersicht": sub_index_rel}] + [item for item in sub_items if list(item.values())[0] != sub_index_rel]
+                      nav.append({folder_title: folder_nav_list})
 
           with open("mkdocs.yml", "r", encoding="utf-8") as f:
               config = yaml.safe_load(f)
