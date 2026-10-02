@@ -25,4 +25,4 @@ Alle vier Schulen nehmen regelmäßig an den Schulschach-Bezirksmeisterschaften 
 ---
 
 ## Mitmachen & Kontakt
-Interesse an der Schach-AG oder Fragen zum Ablauf an den jeweiligen Schulen? Kommt direkt im Training vorbei oder meldet euch bei der [Schachabteilung der TSF Welzheim](https://www.tsfwelzheim.de/abteilungen/schach/).
+Interesse an der Schach-AG oder Fragen zum Ablauf an den jeweiligen Schulen? Meldet Euch bei [Eberhard Fink](mailto:schach@tsfwelzheim.de) oder [Anke Werner](mailto:Anke.Werner@svw.info).
