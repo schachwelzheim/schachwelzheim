@@ -3,7 +3,7 @@ name: Deploy MkDocs to GitHub Pages
 on:
   push:
     branches:
-      - main  # Oder 'master', je nachdem wie dein Haupt-Branch heißt
+      - main
 
 permissions:
   contents: write
@@ -23,37 +23,94 @@ jobs:
         run: |
           pip install mkdocs-material pyyaml
 
-      - name: Auto-generate navigation & Build
+      - name: Auto-generate navigation, News-Index & Build
         run: |
           python -c '
           import os
           import yaml
           import re
+          from datetime import datetime
 
           docs_dir = "docs"
+          aktuelles_dir = os.path.join(docs_dir, "aktuelles")
           nav = []
 
-          # Funktion zum Auslesen der ersten Markdown-Überschrift (# Titel)
-          def get_markdown_title(file_path, default_title):
+          # Funktion zum Auslesen von Titel und ersten Wörtern als Teaser
+          def parse_markdown_file(file_path):
+              title = ""
+              teaser_words = []
               try:
                   with open(file_path, "r", encoding="utf-8") as f:
                       for line in f:
-                          match = re.match(r"^#\s+(.+)", line.strip())
-                          if match:
-                              return match.group(1)
+                          clean_line = line.strip()
+                          # Erste Überschrift finden
+                          if not title and clean_line.startswith("# "):
+                              title = clean_line[2:].strip()
+                              continue
+                          # Text für den Teaser sammeln (überspringt Überschriften und leere Zeilen)
+                          if title and clean_line and not clean_line.startswith("#"):
+                              # Reine Textwörter extrahieren (ohne Markdown-Zeichen)
+                              words = re.findall(r"\b\w+\b", clean_line)
+                              teaser_words.extend(words)
+                              if len(teaser_words) >= 10:
+                                  break
               except Exception:
                   pass
-              return default_title
+              
+              # Teaser auf 10 Wörter kürzen
+              teaser = " ".join(teaser_words[:10]) + "..." if teaser_words else "Keine Vorschau verfügbar..."
+              return title, teaser
 
+          # 1. Automatisches Generieren von docs/aktuelles/index.md
+          news_items = []
+          if os.path.exists(aktuelles_dir):
+              # Alle .md Dateien außer der index.md finden, nach Datum sortiert (neueste zuerst)
+              md_files = sorted([f for f in os.listdir(aktuelles_dir) if f.endswith(".md") and f != "index.md"], reverse=True)
+              
+              for filename in md_files:
+                  file_path = os.path.join(aktuelles_dir, filename)
+                  default_title = os.path.splitext(filename)[0]
+                  
+                  # Titel und Teaser auslesen
+                  title, teaser = parse_markdown_file(file_path)
+                  if not title:
+                      title = default_title.replace("-", " ").capitalize()
+                  
+                  # Datum aus Dateinamen extrahieren (Format: yyyy-mm-tt.md)
+                  date_match = re.match(r"(\d{4})-(\d{2})-(\d{2})", filename)
+                  if date_match:
+                      year, month, day = date_match.groups()
+                      formatted_date = f"{day}.{month}.{year}" # Schönes deutsches Format: TT.MM.JJJJ
+                  else:
+                      formatted_date = ""
+
+                  news_items.append({
+                      "filename": filename,
+                      "title": title,
+                      "teaser": teaser,
+                      "date": formatted_date
+                  })
+
+              # Inhalt für die aktuelle index.md zusammenbauen
+              index_content = "# Aktuelles aus der Schachabteilung\n\n"
+              index_content += "Hier findest du alle Spielberichte, Ankündigungen und Neuigkeiten rund um die Schachabteilung der TSF Welzheim.\n\n"
+              index_content += "## Beiträge\n\n"
+              
+              for item in news_items:
+                  date_str = f"**[{item['date']}]** " if item['date'] else ""
+                  index_content += f"* {date_str}**[{item['title']}]({item['filename'])** – {item['teaser']} [weiterlesen]({item['filename']})\n"
+
+              with open(os.path.join(aktuelles_dir, "index.md"), "w", encoding="utf-8") as f:
+                  f.write(index_content)
+              print("docs/aktuelles/index.md erfolgreich automatisch aktualisiert!")
+
+          # 2. Navigation für die gesamte Seite dynamisch aufbauen
           def scan_folder(path):
               items = []
-              # Neueste Dateien (z.B. nach Datum benannt) zuerst sortieren
               entries = sorted(os.listdir(path), reverse=True)
-              
               for entry in entries:
                   full_path = os.path.join(path, entry)
                   rel_path = os.path.relpath(full_path, docs_dir)
-                  
                   if os.path.isdir(full_path):
                       sub_items = scan_folder(full_path)
                       if sub_items:
@@ -62,30 +119,23 @@ jobs:
                   elif entry.endswith(".md"):
                       if entry == "index.md" and path == docs_dir:
                           continue
-                      
                       name_without_ext = os.path.splitext(entry)[0]
                       default_title = name_without_ext.replace("-", " ").capitalize()
-                      
-                      # Titel aus der ersten Überschrift der Markdown-Datei holen
-                      title = get_markdown_title(full_path, default_title)
-                      
+                      title, _ = parse_markdown_file(full_path)
+                      if not title:
+                          title = default_title
                       items.append({title: rel_path.replace(os.sep, "/")})
               return items
 
           if os.path.exists(os.path.join(docs_dir, "index.md")):
               nav.append({"Startseite": "index.md"})
-
           nav.extend(scan_folder(docs_dir))
 
           with open("mkdocs.yml", "r", encoding="utf-8") as f:
               config = yaml.safe_load(f)
-
           config["nav"] = nav
-
           with open("mkdocs.yml", "w", encoding="utf-8") as f:
-            yaml.dump(config, f, allow_unicode=True, sort_keys=False)
-
-          print("Navigation erfolgreich und mit echten Überschriften generiert!")
+              yaml.dump(config, f, allow_unicode=True, sort_keys=False)
           '
 
       - name: Build and deploy
