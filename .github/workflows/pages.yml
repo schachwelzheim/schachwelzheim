@@ -160,7 +160,11 @@ jobs:
               return items
 
           if os.path.exists(os.path.join(docs_dir, "index.md")):
-              nav.append({"Startseite": "index.md"})
+              start_title, _ = parse_markdown_file(os.path.join(docs_dir, "index.md"))
+              if not start_title:
+                  start_title = "Startseite"
+              nav.append({start_title: "index.md"})
+
           
           # Aktuelles als klickbarer Hauptmenüpunkt
           aktuelles_items = scan_folder(aktuelles_dir)
