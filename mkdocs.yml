@@ -30,7 +30,10 @@ extra_css:
 # Plugins (z.B. für Suche)
 plugins:
   - search
-
+  
+markdown_extensions:
+  - attr_list
+  
 # Die Navigationsstruktur (Menu) – spiegelt deine Ordnerstruktur wider
 nav:
   - Startseite: index.md
