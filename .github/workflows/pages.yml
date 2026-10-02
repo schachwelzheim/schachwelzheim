@@ -25,7 +25,7 @@ jobs:
 
       - name: Auto-generate navigation, News-Index & Build
         run: |
-          python -c '
+          python3 - << 'EOF'
           import os
           import yaml
           import re
@@ -86,8 +86,8 @@ jobs:
               index_content += "## Beiträge\n\n"
               
               for item in news_items:
-                  d_str = f\"**[{item[\"date\"]}]** \" if item[\"date\"] else \"\"
-                  index_content += f\"* {d_str}**[{item[\"title\"]}]({item[\"filename\"]})** – {item[\"teaser\"]} [weiterlesen]({item[\"filename\"]})\n\"
+                  d_str = f"**[{item['date']}]** " if item['date'] else ""
+                  index_content += f"* {d_str}**[{item['title']}]({item['filename']})** – {item['teaser']} [weiterlesen]({item['filename']})\n"
 
               with open(os.path.join(aktuelles_dir, "index.md"), "w", encoding="utf-8") as f:
                   f.write(index_content)
@@ -124,7 +124,7 @@ jobs:
           config["nav"] = nav
           with open("mkdocs.yml", "w", encoding="utf-8") as f:
               yaml.dump(config, f, allow_unicode=True, sort_keys=False)
-          '
+          EOF
 
       - name: Build and deploy
         run: |
