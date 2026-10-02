@@ -101,13 +101,13 @@ jobs:
                   if "\n\n## Bilder zum Beitrag\n" in content:
                       content = content.split("\n\n## Bilder zum Beitrag\n")[0]
 
-                  # Galerie mit echtem HTML-Grid für die Lightbox erzeugen
+                  # Galerie mit direktem Dateinamen im Grid-Layout erzeugen
                   if item["images"]:
                       content += "\n\n## Bilder zum Beitrag\n\n"
                       content += '<div class="grid cards" markdown>\n\n'
                       for img in item["images"]:
-                          img_path = f"{item['base_name']}/{img}"
-                          content += f'[<img src="{img_path}" width="100%"/>]({img_path})\n\n'
+                          # Nur der Dateiname, da die Seite im selben Ordner liegt
+                          content += f'-   [![]({img})]({img})\n\n'
                       content += "</div>\n"
 
                   with open(file_path, "w", encoding="utf-8") as f:
