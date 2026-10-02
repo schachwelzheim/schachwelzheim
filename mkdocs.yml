@@ -5,6 +5,9 @@ site_author: Schach in Welzheim
 # Design & Theme
 theme:
   name: material
+  # Falls ein Logo oder Titel gesetzt ist:
+  features:
+    - navigation.instant
   language: de
   logo: assets/images/logo.png  # Pfad zu deinem runden Logo
   favicon: assets/images/logo.png # Optional: Das kleine Icon im Browser-Tab
