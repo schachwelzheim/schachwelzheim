@@ -1,6 +1,5 @@
 ---
-hide:
-  - title
+title: ""
 ---
 
 <div align="center" markdown>
