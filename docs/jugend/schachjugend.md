@@ -1,15 +1,23 @@
 # Schachjugend der TSF Welzheim
 
-Die Jugendförderung hat in der Schachabteilung des TSF Welzheim einen hohen Stellenwert. Egal ob erste Schritte auf dem Brett oder fortgeschrittene Schachtaktiken – bei uns sind Kinder und Jugendliche herzlich willkommen, die Spaß am königlichen Spiel haben.
+Die Jugendförderung hat in der Schachabteilung des TSF Welzheim einen hohen Stellenwert. Egal ob erste Schritte auf dem Brett oder fortgeschrittene Schachtaktiken – hier sind Kinder und Jugendliche herzlich willkommen, die Spaß am königlichen Spiel haben.
 
-Unser wöchentlicher Trainingsbetrieb ist in zwei Leistungsgruppen unterteilt, um.gezielter fördern zu können:
+Der wöchentlicher Trainingsbetrieb ist in zwei Leistungsgruppen unterteilt, um gezielter fördern zu können:
 
-## Unsere Trainingszeiten
+## Trainingszeiten
 
 * **Anfängertraining:** Mittwochs von 15:00 bis 16:00 Uhr.  
   *Hier lernen die Kinder spielerisch die Regeln, die Gangart der Figuren und erste grundlegende Mattmotive.*
 * **Fortgeschrittenentraining:** Donnerstags von 17:00 bis 18:00 Uhr.  
   *Für alle, die bereits sicher spielen und ihre Taktik, Eröffnungs- und Endspielkenntnisse vertiefen möchten.*
+
+## Trainingsort
+
+* **Ort:** TSF-Geschäftsstelle / Spielräume
+* **Anschrift:** Burgstraße 39, 73642 Welzheim
+
+[👉 Route in Google Maps öffnen](https://maps.google.com/?q=Burgstraße+39,+73642+Welzheim){ .md-button .md-button--primary }
+
 
 ---
 
