@@ -14,3 +14,11 @@
 .md-content__inner > h1:first-child {
   display: none;
 }
+/* Macht den Titel in der Kopfzeile auf allen Geräten sicher klickbar */
+.md-header__title {
+  cursor: pointer;
+}
+.md-header__title a {
+  color: inherit;
+  text-decoration: none;
+}
