@@ -3,7 +3,7 @@ name: Deploy MkDocs to GitHub Pages
 on:
   push:
     branches:
-      - main  # Oder 'master'
+      - main  # Oder 'master', je nachdem wie dein Haupt-Branch heißt
 
 permissions:
   contents: write
@@ -28,56 +28,64 @@ jobs:
           python -c '
           import os
           import yaml
+          import re
 
           docs_dir = "docs"
           nav = []
 
-          # Hilfsfunktion, um Ordner/Dateien rekursiv einzulesen
+          # Funktion zum Auslesen der ersten Markdown-Überschrift (# Titel)
+          def get_markdown_title(file_path, default_title):
+              try:
+                  with open(file_path, "r", encoding="utf-8") as f:
+                      for line in f:
+                          match = re.match(r"^#\s+(.+)", line.strip())
+                          if match:
+                              return match.group(1)
+              except Exception:
+                  pass
+              return default_title
+
           def scan_folder(path):
               items = []
-              # Ordner zuerst, dann Dateien (sortiert)
-              entries = sorted(os.listdir(path))
+              # Neueste Dateien (z.B. nach Datum benannt) zuerst sortieren
+              entries = sorted(os.listdir(path), reverse=True)
               
               for entry in entries:
                   full_path = os.path.join(path, entry)
                   rel_path = os.path.relpath(full_path, docs_dir)
                   
                   if os.path.isdir(full_path):
-                      # Unterordner ignorieren, wenn keine .md Dateien drin sind
                       sub_items = scan_folder(full_path)
                       if sub_items:
-                          # Ordnername schön formatieren (Unterstriche zu Leerzeichen, Großschreiben)
                           folder_title = entry.replace("_", " ").capitalize()
                           items.append({folder_title: sub_items})
                   elif entry.endswith(".md"):
-                      # index.md als Startseite handhaben oder überspringen, wenn auf Wurmebene
                       if entry == "index.md" and path == docs_dir:
                           continue
                       
-                      # Dateiname als Titel nutzen
                       name_without_ext = os.path.splitext(entry)[0]
-                      # Datumsmuster (z.B. 2026-10-02-) etwas kaschieren oder so lassen
-                      title = name_without_ext.replace("-", " ").capitalize()
+                      default_title = name_without_ext.replace("-", " ").capitalize()
+                      
+                      # Titel aus der ersten Überschrift der Markdown-Datei holen
+                      title = get_markdown_title(full_path, default_title)
+                      
                       items.append({title: rel_path.replace(os.sep, "/")})
               return items
 
-          # Startseite ganz nach oben
           if os.path.exists(os.path.join(docs_dir, "index.md")):
               nav.append({"Startseite": "index.md"})
 
-          # Restlichen Docs-Ordner scannen
           nav.extend(scan_folder(docs_dir))
 
-          # mkdocs.yml einlesen, nav-Block ersetzen und speichern
           with open("mkdocs.yml", "r", encoding="utf-8") as f:
               config = yaml.safe_load(f)
 
           config["nav"] = nav
 
           with open("mkdocs.yml", "w", encoding="utf-8") as f:
-              yaml.dump(config, f, allow_unicode=True, sort_keys=False)
+            yaml.dump(config, f, allow_unicode=True, sort_keys=False)
 
-          print("Navigationsstruktur erfolgreich aus dem docs/-Ordner generiert!")
+          print("Navigation erfolgreich und mit echten Überschriften generiert!")
           '
 
       - name: Build and deploy
@@ -85,3 +93,4 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           mkdocs gh-deploy --force
+          
