@@ -1,0 +1,13 @@
+# Corona-Shutdown - Schachbetrieb ruht bis auf weiteres
+
+Leider ist auch die Schachabteilung der TSF Welzheim von dem neuerlichen Lockdown betroffen,d.h. alle Schachveranstaltungen (Jugendschach, Trainingsbetrieb der Aktiven, Schach für alle, Verbandsspiele)ruhen ab 2. November bis auf weiteres.
+
+Für Interessierte (auch Nichtmitglieder) bieten wir wieder jeden Dienstag 19:30 ein Schnellschachturnier(Bedenkzeit 15 Minuten/Spieler) im Internet bei Lichess.org an.
+
+Voraussetzung: Registrierung bei Lichess und beim Lichess-Team TSF-Welzheim (beides ist kostenfrei).
+
+Wichtig: Teamfunktionen sind nur über Web-browser verfügbar (nicht über die Lichess-App!)
+
+Registrierung Lichess:https://lichess.org/signupRegistrierung TSF Welzheim:https://lichess.org/team/tsf-welzheim
+
+Direkte Anmeldung (für schon registrierte Teilnehmer) zum Turnier am 3.11:https://lichess.org/swiss/iNw3JQue

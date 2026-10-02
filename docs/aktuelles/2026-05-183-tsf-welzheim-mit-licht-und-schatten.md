@@ -1,0 +1,11 @@
+# TSF Welzheim mit Licht und Schatten
+
+Zu einer nicht nichtalltäglichen sportlichen Auseinandersetzung – eine Art Städtekampf - trafen am Wochenende die Schachmannschaften aus Welzheim und Waldstetten aufeinander. Zeitgleich zum Duell der beiden ersten Mannschaften in Welzheim kämpften in Waldstetten die zweiten Mannschaften beider Vereine um Punkte, wobei das jeweilige Ergebnis für beide Seiten unterschiedlicher nicht hätte sein können.
+
+Doch bis es soweit war, sahen sich zunächst einige Spieler von Waldstetten I vor ein ungeahntes Orientierungsproblem gestellt: Nur mit Mühe fanden sie gerade noch rechtzeitig den Weg ins Spiellokal in Welzheim, während Welzheim II – bei gleicher Entfernung – pünktlich zum Spielbeginn in Waldstetten eintraf. Und während Welzheim II dort vollzählig erschien, musste Waldstetten I gleich zwei Bretter unbesetzt lassen und die Punkte kampflos an Eberhard Fink und Frederik Göhring, und damit an Welzheim I, überlassen.
+
+So bereits zu Beginn mit einer komfortablen 2:0-Führung ausgestattet, zeigten sich die Welzheimer Spieler fest entschlossen, im weiteren Verlauf der Begegnung keine Zweifel mehr daran aufkommen zu lassen, wer als Sieger aus dem wichtigen Kampf um den Klassenerhalt hervorgehen würde.Das Vorhaben gelang eindrucksvoll: Nach einem Remis von Daniel Seibold folgten durch Wolfgang Göhringer und Peter Eggert zwei Siege, mit denen nach nur rund zwei Stunden Spielzeit bereits der Gesamtsieg für Welzheim feststand. Emil Schäfer, Michael Wohlfahrt und Björn Lang, der sogar eine Zeit lang Gewinnhoffnungen hegen durfte, machten mit ihren jeweiligen Unentschieden den ungefährdeten 6:2-Erfolg für die TSF Welzheim I vollends perfekt.
+
+Im Gegensatz dazu herrschte auf Seiten von den TSF Welzheim II eher Katerstimmung. Waldstetten ließ zwar auch hier ein Brett unbesetzt, bot jedoch ansonsten eine spielstarke Mannschaft auf, aus der einige Spieler durchaus die geschwächte erste Besetzung hätten vervollständigen können.
+
+So ging zwar der eine Punkt kampflos an das Welzheimer Nachwuchstalent Arseni Baskov, und Hans Latzel konnte am Spitzenbrett mit seinem Remis wenigstens einen Teilerfolg verbuchen, doch in allen anderen Partien gab es nichts zu gewinnen. Welzheim II unterlag mit 1,5:4,5-Punkten.

@@ -1,0 +1,31 @@
+# Bericht zur DSOL 3. Runde
+
+In der 3. Runde empfing Welzheim I den Allersberger SC. Allersberg liegt in Franken im Landkreis Roth südlich von Nürnberg.
+
+Welzheim 2 empfing mit dem SV Werder Bremen IV, den vom Fußball wohlbekannten Verein. Nicht so bekannt ist, dass der SV Werder Bremen in der 1. Bundesliga spielt … ich spreche hier vom Schach, im Fußball sind sie derzeit nur in Liga 2.
+
+Ergebnisse:
+
+Liga 6D:
+
+TSF Welzheim I – Allersberger SC 3:1
+
+Liga 10A:
+
+TSF Welzheim II – SV Werder Bremen IV 1:3
+
+Die erste Mannschaft konnte nach den Niederlagen in den ersten beiden Spielen, nun das erste Spiel gewinnen. Jeweils den vollen Punkt holten Erhard Kuhn und Eberhard Fink, Daniel Seibold und Frederik Göhring spielten remis zum Endstand von 3:1 für Welzheim.
+
+Tabellen und die Ergebnisse im Detail Liga 6D
+
+Die 2. Mannschaft kämpfte gegen Bremen, musste aber trotzdem die Punkte abgeben.
+
+Jonas Mettler konnte zwar gewinnen, da Frederik Göhring, Bjoern Lang Und Yan-Christopher Hamm sich leider geschlagen geben mussten, endete das Spiel 1:3.
+
+Tabellen und die Ergebnisse im Detail Liga 10a
+
+Ausblick:
+
+Nächsten Mittwoch (9.3) spielt Welzheim I beim SV Worms
+
+und am Freitag (11.3) Welzheim II gegen SF München V.

@@ -1,0 +1,7 @@
+# Welzheimer qualifizieren sich für Bezirksjugendeinzelmeisterschaft (BJEM)
+
+Am 16.11.2019 fand in Schwäbisch Gmünd die diesjährige Kreisjugendeinzelmeisterschaft (KJEM) im Schach statt.Leider fanden sich in diesem Jahr nur drei Schachkids, die den Weg auf sich nahmen um die Welzheimer "Schachelite" zu vertreten.Mit Laura Eisenmann, Jonas Mettler und Arseni Baskov waren jedoch aussichtsreiche Gehirnakrobaten am Start und man durfte gespannt sein, wie die Welzheimer abschneiden würden.Bei einem Starterfeld von 50 Kindern und Jugendlichen wurden in fünf verschiedenen Altersklassen die Besten gesucht.In der Klasse U12 erreichten Laura und Jonas mit jeweils 2,5 Punkten aus fünf Partien das "Klassenziel" und qualifizierten sich für die BJEM.Die Altersklassen U10/U8 wurden zusammengelegt, so dass Arseni (7 Jahre) auch älteren Schachspielern gegenüber saß.Das Alter aber kein Vorteil sein muss, bewies er eindrucksvoll. Mit fünf Punkten aus fünf Partien ließ er keine Zweifel aufkommen.Er erreichte den ersten Platz und damit auch die Qualifikation zur BJEM.
+
+Herzlichen Glückwunsch an alle und viel Erfolg bei der BJEM.
+
+Text: Peter Eggert - Jugendleiter

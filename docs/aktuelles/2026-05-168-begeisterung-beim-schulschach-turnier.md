@@ -1,0 +1,35 @@
+# Begeisterung beim Schulschach-Turnier
+
+Im Sommer vergangenen Jahres startete an der Bürgfeld-Gemeinschaftsschule ein nicht alltägliches Projekt: Auf Initiative und unter Leitung von Anke Werner wurde eine Schulschach-AG ins Leben gerufen mit dem Ziel, Kindern ab der dritten Klasse Freude am „königlichen Spiel“ zu vermitteln - und sie dafür vielleicht sogar zu begeistern.
+
+Seitdem finden immer donnerstags nachmittägliche Schachstunden für die Klassen 3-6 statt, an denen im Schnitt 15 Kinder regelmäßig teilnehmen. Dabei wird Anke Werner von Eberhard Fink, dem Leiter der Schachabteilung der TSF Welzheim, unterstützt.
+
+Mittlerweile sind die jungen Spielerinnen und Spieler mit Begeisterung bei der Sache. So beteiligte sich die Schulschachgruppe gleich an zwei Sporttagen und Ende Juni spielte eine Mannschaft beim Schulschach-Turnier in Täferrot mit. Außerdem ist ab Herbst 2024 eine Kooperation mit der Grundschulförderklasse geplant.
+
+Eine weitere Veranstaltung, so hofften die beiden Organisatoren Werner und Fink, sollte für die jungen Schachbegeisterten zu einem besonderen Ereignis werden: Ein Schulschach-Turnier, zum ersten Mal in seiner Art an der Bürgfeld-Gemeinschaftsschule ausgeschrieben, würde den Kindern und Jugendlichen die Gelegenheit geben, ihre spielerischen Kenntnisse in einem Wettkampf zu erproben.
+
+Dazu fanden sich kurz vor den Sommerferien tatsächlich nicht weniger als 44(!) Kinder und Jugendliche - 31 Jungen und 13 Mädchen – in den beiden zu Spielräumen umfunktionierten Klassenzimmern zusammen. Eine Teilnehmerzahl, die die kühnsten Erwartungen der Organisatoren übertraf und es sogar notwendig machte, bei einem befreundeten Schachverein zusätzliche Spielutensilien (Figuren, Bretter und Schachuhren) auszuleihen.
+
+Unter der Leitung des turniererfahrenen Eberhard Fink, wiederum unterstützt von moderner Schach-Software, kämpften die Mädchen und Jungen in sechs Runden, mit jeweils 15 Minuten Bedenkzeit für jeden Spieler und jede Spielerin, um die ausgelobten Siegerpokale und Trostpreise.
+
+Dabei ging es meist hoch her: Die jungen Spielerinnen und Spieler stritten sportlich, ebenso begeistert wie leidenschaftlich, um Sieg und Punkte. Bisweilen beharrlich und unverdrossen weiterspielend, denn sie ließen sich, wie außenstehende Spielbeobachter feststellen konnten, selbst in manchen aussichtslos erscheinenden Spielzuständen nicht entmutigen. Und geriet die Situation auf dem Brett einmal derart unübersichtlich, oder tauchten hinsichtlich des Regelwerks Unklarheiten auf – zum Beispiel: Darf man den König schlagen? Wie geht die Rochade? Wie zieht noch mal der Springer? –, so standen mehrere erfahrene und regelkundige Spieler der TSF-Schachabteilung als Schiedsrichter bereit, um den Sachverhalt zu klären.
+
+Um den durch das Stillsitzen auf einem Stuhl vielleicht etwas gehemmten körperlichen Bewegungsdrang zu kompensieren und um die während der Partie aufgebaute mentale Anspannung abzubauen, durften sich die daran interessierten Spieler in den Pausen zwischen den Spielrunden auf dem Pausenhof erholen und austoben. Selbst das leibliche Wohl der Teilnehmer wurde nicht vergessen. Zeitnah vor einer längeren Spiel- und Vesperpause lieferte ein Pizza-Service das beliebte italienische Backwerk in eindrucksvoll großen Kartons an. – Anschließend ging es, frisch gestärkt, weiter in die nächste Runde…
+
+Zuweilen erteilten Spielerinnen und Spieler, die ihre Partie bereits beendet hatten, gut gemeinte Ratschläge an ihre Nachbarn
+
+Dort ließen sich auf dem Schachbrett mitunter dramatische Szenen beobachten: Ein einsamer König sah sich einer erdrückenden Übermacht gegnerischer Figuren ausgesetzt. Doch irgendwie schafften es diese nicht, den alleinstehenden Monarchen in eine Ecke zu drängen und matt zu setzen. Woanders wiederum ignorierte ein Spieler souverän die Tatsache, dass sein König ständig einem Schachgebot ausgesetzt war – und verfolgte stattdessen seine eigenen, ihm näherliegenden Pläne.
+
+Und ein junger Spieler fasste – wohl mehr ahnungsvoll denn bewusst – ein grundsätzliches Dilemma gegenüber seinem Kontrahenten in Worte, das jedem Schachspieler irgendwann in seiner Laufbahn mehr oder weniger ausdrücklich in den Sinn kommt und umtreibt – und das da lautet: „Wie soll ich Dich mattsetzen, wenn Du immer weißt, was ich vorhabe?“
+
+Doch auch wenn manche Partie mit „Glück“, durch „Pech“ oder sogar „Zufall“ und weniger durch spielerisches Können und Geschick entschieden worden sein sollte – in Spielerkreisen wird immer wieder betont, dass es im Schach nur auf das Geschick des einzelnen Spielers ankomme, es somit „Zufall“ und „Glück“ nicht gäbe -, so gab es in den beiden, nach Schulklassen-Jahrgängen aufgeteilten Wertungsgruppen keineswegs zufällige, sondern verdiente Sieger und Pokalgewinner.
+
+GruppeKlasse 1-4: 1. Yaroslav Samoilov mit 5 Punkten, ganz knapp in der Feinwertung (22,0) vor Mateo Sollazzo mit ebenfalls 5 Punkten (21,5). Platz 3 ging an Husain Khan (4 Punkte).
+
+In der GruppeKlasse 5-9siegte Marlon Lindauer, ungeschlagen mit 6 Punkten, vor Josuah Müller (5 Punkte) und Jannik Lindemann (4,5 Punkte).
+
+Nebenbei bemerkt: Beide Sieger sind eifrige Besucher der Schulschach- und TSF-Jugendschach-Übungsstunden. Ein Umstand, der die dort engagierten Übungsleiter durchaus in ihrem Engagement bestätigt haben dürfte.
+
+Anke Werner, die Initiatorin der Schulschach-AG, mit Eberhard Fink (rechts) und den Turnierhelfern Emil Schäfer (links) und Wolfgang Göhringer entspannt nach getaner Arbeit
+
+Am Ende des ereignisreichen Nachmittags waren sich alle beteiligten Spielerinnen und Spieler in einem einig: Auf die abschließende Frage nämlich von Turnierleiter Fink, an alle gerichtet, ob denn der Wettkampf Spaß gemacht habe, ertönte ein vielstimmiges und lautstarkes: „Ja!“ – Womit den Organisatoren Anke Werner und Eberhard Fink ein bestechendes Argument für eine Neuauflage des Turniers geliefert wurde. Vielleicht im nächsten Jahr, wenn die Bürgfeldschule ihr sechzigjähriges Bestehen feiern kann.

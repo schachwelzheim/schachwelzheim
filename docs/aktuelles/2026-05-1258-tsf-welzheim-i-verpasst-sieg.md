@@ -1,0 +1,7 @@
+# TSF Welzheim I verpasst Sieg
+
+Ein spannendes Duell lieferten sich die TSF Welzheim I und die SF Waldstetten I. Vor allem für Welzheim ging es dabei darum, Punkte zu sammeln, um das noch nicht vollständig gebannte Abstiegsgespenst endgültig aus dem Blickfeld des Möglichen zu verdrängen.
+
+Welzheim begann überaus schwungvoll. Nach Unentschieden durch Michael Wohlfahrt und Heiko Bubeck sorgten Daniel Seibold, Eberhard Fink und Emil Schäfer nach nicht einmal drei Stunden Spielzeit mit ihren Siegen für eine klare 4:1-Führung.
+
+Doch auch diesmal – wie schon in der vorangegangenen Begegnung gegen Spraitbach - versäumten es die Welzheimer trotz der klaren Führung, den spielentscheidenden (halben) Punkt zu machen. Peter Eggert, Hans Latzel und schließlich in einem Zeitnot-Duell Wolfgang Göhringer mussten ihre Partien aufgeben. Endstand: 4:4 – ein Unentschieden, mit dem die TSF nach dem Spielverlauf nicht so recht zufrieden sein können. Andererseits vergrößert der gewonnene Punkt den Sicherheitsabstand zu den hinteren Tabellenplätzen.

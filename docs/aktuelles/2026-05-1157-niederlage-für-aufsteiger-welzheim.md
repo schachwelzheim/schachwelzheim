@@ -1,0 +1,11 @@
+# Niederlage für Aufsteiger Welzheim
+
+Gleich zum Auftakt in die neue Schachsaison hatten sich die TSF Welzheim als Aufsteiger in die Landesliga mit einem überaus spielstarken Gegner auseinanderzusetzen. Mit dem SC Grunbach II wartete nicht weniger als der Absteiger aus der Verbandsliga auf sie.
+
+Unabhängig davon war es für alle beteiligten Spieler eine besondere Situation, denn erstmals seit dem Frühjahr 2020, als die Spielrunden auf der Verbandsebene allesamt abgebrochen wurden, und der komplett gestrichenen Spielsaison 2020/21, konnten wieder Mannschaften gegeneinander antreten und sich die einzelnen Kontrahenten dabei – unter Einhaltung der üblichen Hygienevorschriften - wieder in die Augen blicken.
+
+Die Begegnung selbst verlief zunächst überraschend ausgeglichen. Mit zunehmender Spieldauer freilich verstanden es die Grunbacher immer besser, ihre größere Spielstärke zur Geltung zu bringen – und schließlich in zählbare Punkte umzusetzen. Umgekehrt versäumten es zuweilen Welzheimer Spieler, die ihnen dargebotenen Chancen konsequent auszunutzen und damit für ein erfreulicheres Resultat zu sorgen.
+
+Für Welzheim spielten Fink, Göhring und Latzel jeweils remis. Für Grunbach gewannen Bangert, Hetz, Adler Morlock und Rüdiger; jeweils ein Unentschieden steuerten Fischer, Graf und Hof bei. Endstand: 6,5:1,5 für den SC Grunbach.
+
+Text: Wolfgang Göhringer

@@ -1,0 +1,5 @@
+# Nachlese zum Spiel Welzheim 3 gegen Spraitbach 4
+
+Auch im zweiten Spiel der B-Klasse Gmünd konnten die Gehirnakrobaten der TSF Welzheim 3 eine Sieg verbuchen.Am Anfang jedoch, mussten alle erstmal tief durchatmen.Von den erwarteten sechs Jugendlichen waren lediglich drei anwesend. Zwei ließen sich kurzfristig „aktivieren“.Blieb noch die Frage wer als sechster die Mannschaft komplettieren könnte.Wie der Zufall es so will, war Laurenziu Eggert anwesend (eigentlich wollte er nur beim Aufbau mithelfen und den erfahreneren Spielern zuschauen und lernen) und einverstanden am sechsten Brett auszuhelfen.Er war es auch, der in seinem ersten Ligaspiel in einer von beiden Seiten sehr schnell geführten Partie den ersten Punkt für Welzheim holte.Ein schneller Damengewinn und mehrere errungene Figuren ließen seiner Gegnerin keine Chance. Ein Matt war die logische Konsequenz. Glückwunsch!
+
+Peter Eggert - Jugendleiter

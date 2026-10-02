@@ -1,0 +1,35 @@
+# Bericht zur DSOL 1. Und 2. Runde
+
+Seit Anfang Februar geht die DSOL (DeutscheSchachOnlineLiga) in die 3. Saison.
+
+Die DSOL wurde vom Deutschen Schachbund ins Leben gerufen, um in den von Corona verursachten Lockdown-Zeiten einen „normalen“ Spielbetrieb über das Internet zu ermöglichen. In der Saison 2022 beteiligen sich daran 320 Mannschaften aus ganz Deutschland. Welzheim ist dieses Mal mit 2 Mannschaften dabei, wobei die 2. Mannschaft eine Jugendmannschaft ist.
+
+Ergebnisse:
+
+Liga 6D:
+
+TSF Welzheim I – Hamburger SK VII 1:3Vohwinkler SC  - TSF Welzheim I 3:1
+
+Liga 10A:
+
+TSF Welzheim II – SV Heidenau V 2:2SF Spraitbach IV – Welzheim II 3:1
+
+Die erste Mannschaft konnte bis jetzt noch nicht überzeugen und hat bei im ersten Spiel gegen Hamburg durch W. Göhringer und im 2. Spiel gegen Vohwinkel  (einem  Stadtteil von Wuppertal) durch H. Bubeck jeweils nur einen Ehrenpunkt erzielt.
+
+Tabellen und die Ergebnisse im Detail Liga 6D
+
+Besser machte es die 2. Mannschaft.
+
+Im ersten Spiel gegen den SV Heidenau (liegt in Sachsen an der Elbe zwischen Dresden und Pirna) trennten sich die Youngsters 2:2 wobei F. Göhring und B. Lang ihre Partien gewinnen konnten.
+
+Im 2. Spiel gegen die Nachbarn aus Spraitbach verlor man etwas unglücklich 3:1. F. Göhring konnte seine Partie am Spitzenbrett gewinnen, die anderen Spiele gingen leider verloren, obwohl die Partien zeitweilig auf Gewinn standen, aber durch diverse Fehler leider trotzdem verloren gingen. Das ist allerdings nicht weiter schlimm, denn genau dies ist der Zweck dieses Turniers, zu spielen und dabei aus seinen Fehlern zu lernen.
+
+Tabellen und die Ergebnisse im Detail Liga 10a
+
+Ausblick:
+
+Nächsten Donnerstag (24.2) spielt Welzheim II gegen Werder Bremen IV
+
+Und am Freitag (25.2) Welzheim I gegen Allerberger SC .
+
+Zu Bremen muss man nichts weiter sagen und Allersberg liegt in Mittelfranken im Landkreis Roth südlich von Nürnberg.

@@ -1,0 +1,5 @@
+# Erneute Niederlage für TSF Welzheim II
+
+Weiterhin auf ein Erfolgserlebnis warten in der Bezirksklasse die TSF Welzheim II. Gegen den Tabellenzweiten SC Grunbach V lag Welzheim bereits mit dem Beginn der Begegnung 0:1 zurück, da ein Brett nicht besetzt werden konnte. Im weiteren Spielverlauf zeigte sich dann immer deutlicher, dass es für Aufsteiger Welzheim lediglich darum gehen konnte, gegen die spielerfahrenen Remstäler wenigstens ein achtbares Ergebnis zu erzielen. Doch auch dieses Vorhaben gelang trotz aller Anstrengungen auf Welzheimer Seite nur bedingt. Immerhin erreichten Timon Nonner am Spitzenbrett, Ekkehard Dietz und Arno Hupprich in ihren Partien ein Unentschieden. Nach der deutlichen 1,5:6,5-Niederlage gibt es für die TSF Welzheim kaum noch eine realistische Aussicht auf den Klassenerhalt.
+
+Text: Wolfgang Göhringer
