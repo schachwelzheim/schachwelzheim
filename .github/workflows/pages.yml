@@ -92,6 +92,7 @@ jobs:
                       "images": images
                   })
 
+              # 1. Galerien in den einzelnen Beiträgen aktualisieren
               for item in news_items:
                   file_path = os.path.join(aktuelles_dir, item["filename"])
                   
@@ -101,7 +102,6 @@ jobs:
                   if "\n\n## Bilder zum Beitrag\n" in content:
                       content = content.split("\n\n## Bilder zum Beitrag\n")[0]
 
-                  # Galerie als saubere HTML-Bildergallerie mit Lightbox
                   if item["images"]:
                       content += "\n\n## Bilder zum Beitrag\n\n"
                       content += '<div class="gallery" markdown>\n\n'
@@ -112,15 +112,28 @@ jobs:
                   with open(file_path, "w", encoding="utf-8") as f:
                       f.write(content)
 
-              index_content = "# Aktuelles aus der Schachabteilung\n\n"
-              index_content += "Hier findest du alle Spielberichte, Ankündigungen und Neuigkeiten rund um die Schachabteilung der TSF Welzheim.\n\n"
-              index_content += "## Beiträge\n\n"
+              # 2. Übersichtsseite (docs/aktuelles/index.md) beibehalten und Liste unten anfügen
+              index_path = os.path.join(aktuelles_dir, "index.md")
+              existing_index_content = ""
+              if os.path.exists(index_path):
+                  with open(index_path, "r", encoding="utf-8") as f:
+                      existing_index_content = f.read()
+                  # Falls dort schon eine automatisch angehängte Liste war, diese herausschneiden
+                  if "\n\n## Beiträge\n" in existing_index_content:
+                      existing_index_content = existing_index_content.split("\n\n## Beiträge\n")[0]
+                  elif "\n\n## Alle Beiträge\n" in existing_index_content:
+                      existing_index_content = existing_index_content.split("\n\n## Alle Beiträge\n")[0]
+
+              # Den originalen Inhalt der index.md verwenden (oder einen Standard, falls sie leer ist)
+              index_content = existing_index_content.strip() if existing_index_content.strip() else "# Aktuelles aus der Schachabteilung\n\nHier findest du alle Neuigkeiten."
               
+              # Die Beitragsliste unten anhängen
+              index_content += "\n\n## Beiträge\n\n"
               for item in news_items:
                   d_str = f"**[{item['date']}]** " if item['date'] else ""
                   index_content += f"* {d_str}**[{item['title']}]({item['filename']})** – {item['teaser']} [weiterlesen]({item['filename']})\n"
 
-              with open(os.path.join(aktuelles_dir, "index.md"), "w", encoding="utf-8") as f:
+              with open(index_path, "w", encoding="utf-8") as f:
                   f.write(index_content)
               print("docs/aktuelles/index.md und Galerien erfolgreich aktualisiert!")
 
