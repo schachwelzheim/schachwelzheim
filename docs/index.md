@@ -1,3 +1,8 @@
+---
+hide:
+  - title
+---
+
 <div align="center" markdown>
 
 <img src="assets/images/logo.png" width="120" alt="Schach Welzheim Logo" style="margin-bottom: 15px;" />
