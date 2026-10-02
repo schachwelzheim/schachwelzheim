@@ -1,0 +1,6 @@
+/* Schach Welzheim Farben */
+[data-md-color-primary="custom"] {
+  --md-primary-fg-color: #106933;
+  --md-primary-fg-color--light: #188a44;
+  --md-primary-fg-color--dark: #094721;
+}
