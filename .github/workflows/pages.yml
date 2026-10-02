@@ -101,14 +101,13 @@ jobs:
                   if "\n\n## Bilder zum Beitrag\n" in content:
                       content = content.split("\n\n## Bilder zum Beitrag\n")[0]
 
-                  # Galerie mit direktem Dateinamen im Grid-Layout erzeugen
+                  # Galerie als saubere HTML-Bildergallerie mit Lightbox
                   if item["images"]:
                       content += "\n\n## Bilder zum Beitrag\n\n"
-                      content += '<div class="grid cards" markdown>\n\n'
+                      content += '<div class="gallery" markdown>\n\n'
                       for img in item["images"]:
-                          # Nur der Dateiname, da die Seite im selben Ordner liegt
-                          content += f'-   [![]({img})]({img})\n\n'
-                      content += "</div>\n"
+                          content += f'<a class="glightbox" href="{img}"><img src="{img}" width="300" style="border-radius: 8px; margin: 8px;" /></a>\n'
+                      content += "\n</div>\n"
 
                   with open(file_path, "w", encoding="utf-8") as f:
                       f.write(content)
@@ -170,7 +169,7 @@ jobs:
               config = yaml.safe_load(f)
           config["nav"] = nav
           with open("mkdocs.yml", "w", encoding="utf-8") as f:
-              yaml.dump(config, f, allow_unicode=True, sort_keys=False)
+            yaml.dump(config, f, allow_unicode=True, sort_keys=False)
           EOF
 
       - name: Build and deploy
