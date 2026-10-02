@@ -10,7 +10,7 @@ Willkommen im Jugendbereich der Schachabteilung! Hier findest du alle Infos zu u
 
     Alle Informationen zu unseren Schul-AGs und Terminen.
 
--   **[Training & Zeiten](schachjugend.md)**
+-   **[Schachjugend](schachjugend.md)**
 
     ---
 
