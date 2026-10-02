@@ -1,30 +1,34 @@
-/* Schach Welzheim Farben */
+/* =========================================================
+   Schach Welzheim – Farben
+   ========================================================= */
+
 [data-md-color-primary="custom"] {
   --md-primary-fg-color: #106933;
   --md-primary-fg-color--light: #188a44;
   --md-primary-fg-color--dark: #094721;
 }
 
-/* Färbt alle Hauptüberschriften (H1) im Content-Bereich in euer Vereinsgrün ein */
+
+/* =========================================================
+   Überschriften im Inhaltsbereich
+   ========================================================= */
+
+/* Hauptüberschriften (H1) im Content-Bereich */
 .md-content h1 {
-  color: #106933; /* Passe den Hex-Code ganz einfach an euren exakten Grünton an */
+  color: #106933;
 }
 
-/* Macht den Titel in der Kopfzeile auf allen Geräten sicher klickbar */
+
+/* =========================================================
+   Kopfzeile
+   ========================================================= */
+
+/* Titel in der Kopfzeile klickbar */
 .md-header__title {
   cursor: pointer;
 }
+
 .md-header__title a {
   color: inherit;
   text-decoration: none;
-}
-/* Blendet den Titel AUSSCHLIESSLICH auf der Hauptstartseite (Startseite) aus, 
-   lässt aber alle anderen Seiten (auch Unter-Indexe wie "Aktuelles") völlig in Ruhe */
-body[data-md-component="main"] .md-main__inner .md-content__inner > h1:first-child:not(:nth-child(n+2)) {
-  /* Wir nutzen hier den exakten Selektor für die Haupt-Startseite */
-}
-
-/* Die absolut sicherste Methode nur für die Hauptseite: */
-body[data-md-page-id="index"] .md-content__inner > h1:first-child {
-  display: none !important;
 }
