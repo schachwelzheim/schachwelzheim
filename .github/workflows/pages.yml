@@ -81,8 +81,8 @@ jobs:
                       "date": formatted_date
                   })
 
-              index_content = "# Aktuelles aus der Schachabteilung\n\n"
-              index_content += "Hier findest du alle Spielberichte, Ankündigungen und Neuigkeiten rund um die Schachabteilung der TSF Welzheim.\n\n"
+              index_content = "# Aktuelles\n\n"
+              index_content += "Hier findest du alle Aktivitäten, Spielberichte, Ankündigungen und Neuigkeiten rund um Schach in Welzheim.\n\n"
               index_content += "## Beiträge\n\n"
               
               for item in news_items:
