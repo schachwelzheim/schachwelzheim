@@ -1,19 +1,11 @@
 # Jugend & Nachwuchs
 
-Willkommen im Jugendbereich der Schachabteilung! Hier findest du alle Infos zu unserem Training und unseren Gruppen.
+Kinder und Jugendliche können in Welzheim sowohl in Schulen als auch im Verein das Schachspiel kennenlernen und werden beim gemeinsamen Spielen und Üben unterstützt.
 
-<div class="grid cards" markdown>
-
--   **[Schach-AGs](schach-ags.md)**
-
-    ---
+* **[Schach-AGs](schach-ags.md)**
 
     Alle Informationen zu unseren Schul-AGs und Terminen.
 
--   **[Schachjugend](schachjugend.md)**
-
-    ---
+* **[Schachjugend](schachjugend.md)**
 
     Wann und wo unser Jugendtraining stattfindet.
-
-</div>
