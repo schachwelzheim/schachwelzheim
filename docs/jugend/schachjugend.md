@@ -18,7 +18,6 @@ Der wöchentlicher Trainingsbetrieb ist in zwei Leistungsgruppen unterteilt, um 
 
 [👉 Route in Google Maps öffnen](https://maps.google.com/?q=Burgstraße+39,+73642+Welzheim){ .md-button .md-button--primary }
 
-
 ---
 
 ## Mitmachen & Reinschnuppern
