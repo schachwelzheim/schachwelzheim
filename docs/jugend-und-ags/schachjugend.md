@@ -1,8 +1,8 @@
 # Schachjugend der TSF Welzheim
 
-Die Jugendförderung hat bei uns in der Schachabteilung der TSF Welzheim einen ganz hohen Stellenwert. Egal ob erste Schritte auf dem Brett oder fortgeschrittene Schachtaktiken – bei uns sind Kinder und Jugendliche herzlich willkommen, die Spaß am königlichen Spiel haben.
+Die Jugendförderung hat in der Schachabteilung des TSF Welzheim einen hohen Stellenwert. Egal ob erste Schritte auf dem Brett oder fortgeschrittene Schachtaktiken – bei uns sind Kinder und Jugendliche herzlich willkommen, die Spaß am königlichen Spiel haben.
 
-Unser wöchentlicher Trainingsbetrieb ist in verschiedene Leistungsgruppen unterteilt, damit jeder optimal gefördert wird:
+Unser wöchentlicher Trainingsbetrieb ist in zwei Leistungsgruppen unterteilt, um.gezielter fördern zu können:
 
 ## Unsere Trainingszeiten
 
