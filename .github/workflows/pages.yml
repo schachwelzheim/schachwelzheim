@@ -35,7 +35,6 @@ jobs:
           aktuelles_dir = os.path.join(docs_dir, "aktuelles")
           nav = []
 
-          # Funktion zum Auslesen von Titel und ersten Wörtern als Teaser
           def parse_markdown_file(file_path):
               title = ""
               teaser_words = []
@@ -43,13 +42,10 @@ jobs:
                   with open(file_path, "r", encoding="utf-8") as f:
                       for line in f:
                           clean_line = line.strip()
-                          # Erste Überschrift finden
                           if not title and clean_line.startswith("# "):
                               title = clean_line[2:].strip()
                               continue
-                          # Text für den Teaser sammeln (überspringt Überschriften und leere Zeilen)
                           if title and clean_line and not clean_line.startswith("#"):
-                              # Reine Textwörter extrahieren (ohne Markdown-Zeichen)
                               words = re.findall(r"\b\w+\b", clean_line)
                               teaser_words.extend(words)
                               if len(teaser_words) >= 10:
@@ -57,30 +53,25 @@ jobs:
               except Exception:
                   pass
               
-              # Teaser auf 10 Wörter kürzen
               teaser = " ".join(teaser_words[:10]) + "..." if teaser_words else "Keine Vorschau verfügbar..."
               return title, teaser
 
-          # 1. Automatisches Generieren von docs/aktuelles/index.md
           news_items = []
           if os.path.exists(aktuelles_dir):
-              # Alle .md Dateien außer der index.md finden, nach Datum sortiert (neueste zuerst)
               md_files = sorted([f for f in os.listdir(aktuelles_dir) if f.endswith(".md") and f != "index.md"], reverse=True)
               
               for filename in md_files:
                   file_path = os.path.join(aktuelles_dir, filename)
                   default_title = os.path.splitext(filename)[0]
                   
-                  # Titel und Teaser auslesen
                   title, teaser = parse_markdown_file(file_path)
                   if not title:
                       title = default_title.replace("-", " ").capitalize()
                   
-                  # Datum aus Dateinamen extrahieren (Format: yyyy-mm-tt.md)
                   date_match = re.match(r"(\d{4})-(\d{2})-(\d{2})", filename)
                   if date_match:
                       year, month, day = date_match.groups()
-                      formatted_date = f"{day}.{month}.{year}" # Schönes deutsches Format: TT.MM.JJJJ
+                      formatted_date = f"{day}.{month}.{year}"
                   else:
                       formatted_date = ""
 
@@ -91,20 +82,18 @@ jobs:
                       "date": formatted_date
                   })
 
-              # Inhalt für die aktuelle index.md zusammenbauen
               index_content = "# Aktuelles aus der Schachabteilung\n\n"
               index_content += "Hier findest du alle Spielberichte, Ankündigungen und Neuigkeiten rund um die Schachabteilung der TSF Welzheim.\n\n"
               index_content += "## Beiträge\n\n"
               
               for item in news_items:
-                  date_str = f"**[{item['date']}]** " if item['date'] else ""
-                  index_content += f"* {date_str}**[{item['title']}]({item['filename'])** – {item['teaser']} [weiterlesen]({item['filename']})\n"
+                  date_str = f\"**[{item['date']}]** \" if item['date'] else \"\"
+                  index_content += f\"* {date_str}**[{item['title']}]({item['filename']})** – {item['teaser']} [weiterlesen]({item['filename']})\n\"
 
               with open(os.path.join(aktuelles_dir, "index.md"), "w", encoding="utf-8") as f:
                   f.write(index_content)
               print("docs/aktuelles/index.md erfolgreich automatisch aktualisiert!")
 
-          # 2. Navigation für die gesamte Seite dynamisch aufbauen
           def scan_folder(path):
               items = []
               entries = sorted(os.listdir(path), reverse=True)
