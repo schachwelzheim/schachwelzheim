@@ -59,7 +59,6 @@ jobs:
 
           news_items = []
           if os.path.exists(aktuelles_dir):
-              # Alle .md-Dateien finden (außer index.md)
               md_files = sorted([f for f in os.listdir(aktuelles_dir) if f.endswith(".md") and f != "index.md"], reverse=True)
               
               for filename in md_files:
@@ -78,7 +77,6 @@ jobs:
                   else:
                       formatted_date = ""
 
-                  # Prüfen, ob es einen gleichnamigen Bilder-Ordner gibt (z. B. docs/aktuelles/2026-07-14/)
                   img_folder = os.path.join(aktuelles_dir, base_name)
                   images = []
                   if os.path.exists(img_folder) and os.path.isdir(img_folder):
@@ -94,34 +92,26 @@ jobs:
                       "images": images
                   })
 
-              # 1. Die einzelnen Beitrags-Dateien temporär/dauerhaft mit der Galerie anreichern
               for item in news_items:
                   file_path = os.path.join(aktuelles_dir, item["filename"])
                   
-                  # Originalen Inhalt der .md-Datei einlesen (ohne eventuell früher angehängte Galerien)
                   with open(file_path, "r", encoding="utf-8") as f:
                       content = f.read()
                   
-                  # Falls am Ende schon eine Galerie dran war, diese vor dem Update abschneiden
                   if "\n\n## Bilder zum Beitrag\n" in content:
                       content = content.split("\n\n## Bilder zum Beitrag\n")[0]
 
-                  # Wenn Bilder im Ordner liegen, Galerie anhängen
+                  # Galerie mit Lightbox-Unterstützung erzeugen
                   if item["images"]:
                       content += "\n\n## Bilder zum Beitrag\n\n"
-                      # HTML-Grid für eine schicke Galerie (Bilder nebeneinander mit automatischem Umbruch)
-                      content += "<div class=\"grid cards\" markdown>\n\n"
                       for img in item["images"]:
-                          # Pfad relativ zum Beitrag (der Ordner heißt wie die Basis der Datei)
                           img_path = f"{item['base_name']}/{img}"
-                          content += f"-   ![{img}]({img_path})\n"
-                      content += "\n</div>\n"
+                          # Durch die einfache Markdown-Syntax greift MkDocs Material automatisch mit der integrierten Lightbox
+                          content += f"![]({img_path})\n\n"
 
-                  # Datei zurückschreiben (inklusive automatischer Galerie)
                   with open(file_path, "w", encoding="utf-8") as f:
                       f.write(content)
 
-              # 2. Die Übersichtsseite (docs/aktuelles/index.md) generieren
               index_content = "# Aktuelles aus der Schachabteilung\n\n"
               index_content += "Hier findest du alle Spielberichte, Ankündigungen und Neuigkeiten rund um die Schachabteilung der TSF Welzheim.\n\n"
               index_content += "## Beiträge\n\n"
@@ -132,7 +122,7 @@ jobs:
 
               with open(os.path.join(aktuelles_dir, "index.md"), "w", encoding="utf-8") as f:
                   f.write(index_content)
-              print("docs/aktuelles/index.md und Beitrags-Galerien erfolgreich aktualisiert!")
+              print("docs/aktuelles/index.md und Galerien erfolgreich aktualisiert!")
 
           def scan_folder(path):
               items = []
@@ -141,7 +131,6 @@ jobs:
                   full_path = os.path.join(path, entry)
                   rel_path = os.path.relpath(full_path, docs_dir)
                   if os.path.isdir(full_path):
-                      # Überspringe gleichnamige Bild-Ordner in der Navigation
                       if any(item["base_name"] == entry for item in news_items):
                           continue
                       sub_items = scan_folder(full_path)
@@ -155,7 +144,7 @@ jobs:
                       default_title = name_without_ext.replace("-", " ").capitalize()
                       title, _ = parse_markdown_file(full_path)
                       if not title:
-                        title = default_title
+                          title = default_title
                       items.append({title: rel_path.replace(os.sep, "/")})
               return items
 
@@ -180,7 +169,7 @@ jobs:
               config = yaml.safe_load(f)
           config["nav"] = nav
           with open("mkdocs.yml", "w", encoding="utf-8") as f:
-              yaml.dump(config, f, allow_unicode=True, sort_keys=False)
+            yaml.dump(config, f, allow_unicode=True, sort_keys=False)
           EOF
 
       - name: Build and deploy
