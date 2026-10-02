@@ -2,7 +2,7 @@
 
 <img src="assets/images/logo.png" width="120" alt="Schach Welzheim Logo" style="margin-bottom: 15px;" />
 
-# Willkommen bei<br>Schach in Welzheim
+<H1>Willkommen bei<br>Schach in Welzheim</H1>
 
 </div>
 
