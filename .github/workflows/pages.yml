@@ -29,7 +29,6 @@ jobs:
           import os
           import yaml
           import re
-          from datetime import datetime
 
           docs_dir = "docs"
           aktuelles_dir = os.path.join(docs_dir, "aktuelles")
@@ -87,8 +86,8 @@ jobs:
               index_content += "## Beiträge\n\n"
               
               for item in news_items:
-                  date_str = f\"**[{item['date']}]** \" if item['date'] else \"\"
-                  index_content += f\"* {date_str}**[{item['title']}]({item['filename']})** – {item['teaser']} [weiterlesen]({item['filename']})\n\"
+                  d_str = f\"**[{item[\"date\"]}]** \" if item[\"date\"] else \"\"
+                  index_content += f\"* {d_str}**[{item[\"title\"]}]({item[\"filename\"]})** – {item[\"teaser\"]} [weiterlesen]({item[\"filename\"]})\n\"
 
               with open(os.path.join(aktuelles_dir, "index.md"), "w", encoding="utf-8") as f:
                   f.write(index_content)
