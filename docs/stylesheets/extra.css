@@ -18,3 +18,13 @@
   color: inherit;
   text-decoration: none;
 }
+/* Blendet den Titel AUSSCHLIESSLICH auf der Hauptstartseite (Startseite) aus, 
+   lässt aber alle anderen Seiten (auch Unter-Indexe wie "Aktuelles") völlig in Ruhe */
+body[data-md-component="main"] .md-main__inner .md-content__inner > h1:first-child:not(:nth-child(n+2)) {
+  /* Wir nutzen hier den exakten Selektor für die Haupt-Startseite */
+}
+
+/* Die absolut sicherste Methode nur für die Hauptseite: */
+body[data-md-page-id="index"] .md-content__inner > h1:first-child {
+  display: none !important;
+}
