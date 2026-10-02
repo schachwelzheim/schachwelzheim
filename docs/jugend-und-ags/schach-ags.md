@@ -16,11 +16,11 @@ Zurzeit gibt es an drei Schulen aktive Schach-AGs.
   Lange Tradition hat die Schulschach-AG für die Hofgarten-Grundschüler in den Räumlichkeiten des TSF.
 
 * **[Kastell-Realschule](https://krswelzheim.de/index.php/11433/1-platz-bei-der-schulschachmeisterschaft-2026/)**  
-  Die Kastell-Realschule hat keine offizielle Schach-AG. Da jedoch ehemalige Grundschüler aus der Bürgfeld-Gemeinsschaftsschule und aus der Hofgarten-Grundschule bereits erfolgreich spielen, geht auch ein Team der Kastell-Realschule mit auf Bezirksturnier und das erfolgreich.
+  Obwohl die Kastell-Realschule keine offizielle Schach-AG anbietet, sind Schachbegeisterte dort bestens aufgehoben: Da viele ehemalige Schülerinnen und Schüler bereits an der Bürgfeld-Gemeinschaftsschule oder der Hofgarten-Grundschule das Schachspiel gelernt haben und erfolgreich spielen, geht regelmäßig auch ein Team der Kastell-Realschule bei Bezirksturnieren an den Start – und das [mit großem Erfolg](https://krswelzheim.de/index.php/11433/1-platz-bei-der-schulschachmeisterschaft-2026/)!“
 
 ---
 
-Alle drei Schulen nehmen regelmäßig an den Schulschach-Bezirksmeisterschaften im Bezirk Ludwigsburg/Rems-Murr teil.
+Alle vier Schulen nehmen regelmäßig an den Schulschach-Bezirksmeisterschaften im Bezirk Ludwigsburg/Rems-Murr teil.
 
 ---
 
