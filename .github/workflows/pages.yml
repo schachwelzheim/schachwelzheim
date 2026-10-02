@@ -3,7 +3,7 @@ name: Deploy MkDocs to GitHub Pages
 on:
   push:
     branches:
-      - main  # Oder 'master', je nachdem wie dein Haupt-Branch heißt
+      - main  # Oder 'master'
 
 permissions:
   contents: write
@@ -21,7 +21,64 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install mkdocs-material
+          pip install mkdocs-material pyyaml
+
+      - name: Auto-generate navigation & Build
+        run: |
+          python -c '
+          import os
+          import yaml
+
+          docs_dir = "docs"
+          nav = []
+
+          # Hilfsfunktion, um Ordner/Dateien rekursiv einzulesen
+          def scan_folder(path):
+              items = []
+              # Ordner zuerst, dann Dateien (sortiert)
+              entries = sorted(os.listdir(path))
+              
+              for entry in entries:
+                  full_path = os.path.join(path, entry)
+                  rel_path = os.path.relpath(full_path, docs_dir)
+                  
+                  if os.path.isdir(full_path):
+                      # Unterordner ignorieren, wenn keine .md Dateien drin sind
+                      sub_items = scan_folder(full_path)
+                      if sub_items:
+                          # Ordnername schön formatieren (Unterstriche zu Leerzeichen, Großschreiben)
+                          folder_title = entry.replace("_", " ").capitalize()
+                          items.append({folder_title: sub_items})
+                  elif entry.endswith(".md"):
+                      # index.md als Startseite handhaben oder überspringen, wenn auf Wurmebene
+                      if entry == "index.md" and path == docs_dir:
+                          continue
+                      
+                      # Dateiname als Titel nutzen
+                      name_without_ext = os.path.splitext(entry)[0]
+                      # Datumsmuster (z.B. 2026-10-02-) etwas kaschieren oder so lassen
+                      title = name_without_ext.replace("-", " ").capitalize()
+                      items.append({title: rel_path.replace(os.sep, "/")})
+              return items
+
+          # Startseite ganz nach oben
+          if os.path.exists(os.path.join(docs_dir, "index.md")):
+              nav.append({"Startseite": "index.md"})
+
+          # Restlichen Docs-Ordner scannen
+          nav.extend(scan_folder(docs_dir))
+
+          # mkdocs.yml einlesen, nav-Block ersetzen und speichern
+          with open("mkdocs.yml", "r", encoding="utf-8") as f:
+              config = yaml.safe_load(f)
+
+          config["nav"] = nav
+
+          with open("mkdocs.yml", "w", encoding="utf-8") as f:
+              yaml.dump(config, f, allow_unicode=True, sort_keys=False)
+
+          print("Navigationsstruktur erfolgreich aus dem docs/-Ordner generiert!")
+          '
 
       - name: Build and deploy
         run: |
