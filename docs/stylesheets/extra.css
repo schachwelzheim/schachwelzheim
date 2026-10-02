@@ -10,10 +10,6 @@
   color: #106933; /* Passe den Hex-Code ganz einfach an euren exakten Grünton an */
 }
 
-/* Versteckt den automatischen Seitentitel (z.B. "Startseite") ganz oben im Inhalt */
-.md-content__inner > h1:first-child {
-  display: none;
-}
 /* Macht den Titel in der Kopfzeile auf allen Geräten sicher klickbar */
 .md-header__title {
   cursor: pointer;
