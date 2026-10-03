@@ -1,9 +1,0 @@
-# Knappe Niederlage TSF Welzheim I
-
-In der dritten Runde der laufenden Spielrunde trafen die TSF Welzheim I und der SC Leinzell I aufeinander. Die Gäste aus Leinzell gingen als Favoriten ins Rennen: Und dieser Rolle wurden sie zunächst durchaus gerecht, denn nach nur rund zweieinhalb Stunden Spielzeit lagen sie bereits mit zwei Punkten in Front. Nach einem Unentschieden durch Wolfgang Göhringer (ausgeglichenes Turmendspiel) mussten Eberhard Fink und Daniel Seibold ihre Partien aufgeben.
-
-Doch die Einheimischen vom Welzheimer Wald ließen sich nicht vorzeitig entmutigen. Mit Geduld, Kampfgeist und Mut zum Risiko arbeiteten sie sich wieder heran und schafften tatsächlich den 3:3-Ausgleich: Timon Nonner erreichte nach einem ebenso lebhaften wie wechselvollen Spielverlauf ein Remis; Heiko Bubeck, der ausdauernd die gegnerische Königsstellung belagerte, krönte sein geduldiges Bestreben mit einem unwiderstehlichen Mattangriff. Und schließlich gewann Emil Schäfer, nachdem er zeitweise mit einem Bauern weniger agiert hatte, nicht nur eine Figur, sondern auch die Partie.
-
-Freilich, der Hoffnungsschimmer auf ein Unentschieden wurde bald wieder eingetrübt. Björn Lang geriet frühzeitig in einen gegnerischen Angriff auf seinen König, dem er sich auf Dauer nicht mehr erwehren konnte. Michael Wohlfahrt wiederum hatte zwar im Mittelspiel einen Bauern eingebüßt, versuchte jedoch trotz alledem in einem komplizierten Turm-Läufer-Endspiel den vollen Punkt für Welzheim zu erobern. Doch sein Kontrahent wehrte alle Versuche Wohlfahrts erfolgreich ab. Nach fast fünf Stunden Spielzeit endete die Partie mit einem Unentschieden.
-
-Welzheim unterlag mit 3,5:4:5. Damit wird der nächste Spieltag gegen SF Waldstetten I darüber entscheiden, ob Welzheim ans Tabellenende abrutschen wird oder sich etwas Luft im Kampf um den Klassenerhalt verschaffen kann.

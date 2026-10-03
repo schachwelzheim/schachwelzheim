@@ -1,9 +1,0 @@
-# Enttäuschung für TSF Welzheim I
-
-Nach dem erfreulichen Unentschieden zum Saisonauftakt gegen den SC Grunbach sah sich am vergangenen Sonntag die erste Schachmannschaft der TSF Welzheim gefordert, gegen den Aufsteiger SK Sontheim IV – und damit gegen eine der vermeintlich schwächeren Mannschaften der Bezirksliga – zu punkten. Doch dieser ehrgeizige Vorsatz geriet schon vor dem ersten Schachzug ins Wanken, denn während der SK Sontheim mit seiner stärksten Besetzung ins Rennen gehen konnte, mussten auf Welzheimer Seite gleich drei Stammspieler ersetzt werden.
-
-Und so entwickelte sich der Spielverlauf fast so, wie zu befürchten war: Nachdem zunächst Ekkehard Dietz und Michael Wohlfahrt ihre Partien jeweils frühzeitig mit einem Unentschieden beendet hatten, diktierte in der Folge Sontheim das Geschehen – und das derart eindeutig, dass bereits nach nur insgesamt zweieinhalb Stunden Spielzeit die Entscheidung gegen Welzheim gefallen war. Lediglich Wolfgang Göhringer mit einem Remis und Daniel Seibold mit einem Sieg besserten das Punktekonto für Welzheim auf. Dabei bewies Seibold in einer komplizierten Stellung einen bemerkenswerten Überblick, indem er einen möglichen Damengewinn verschmähte und stattdessen seinen Gegner sogar in ein Mattnetz verstrickte.
-
-Am Ende hieß es 2,5:5:5 gegen Welzheim – ein Ergebnis, das die TSF dem angestrebten Saisonziel „Klassenerhalt“ nicht näher bringt.
-
-Text: Wolfgang Göhringer
