@@ -40,7 +40,7 @@ nav:
   - Startseite: index.md
   - Aktuelles:
       - Übersicht: aktuelles/index.md
-      - Sieg und Niederlage zum Saisonstart: aktuelles/2026-10-02-sieg-und-niederlage.md
+      - Themen: aktuelles/aktuelles-tags.md
   - Verein:
       - Mannschaften: verein/mannschaften.md
       - Training: verein/training.md
