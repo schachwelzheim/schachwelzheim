@@ -1,5 +1,3 @@
----
-title: Themen - Aktuelles
----
+# Themen - Aktuelles
 
 [TAGS]
