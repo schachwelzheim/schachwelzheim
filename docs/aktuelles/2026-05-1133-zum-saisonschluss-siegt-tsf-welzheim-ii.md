@@ -1,9 +1,0 @@
-# Zum Saisonschluss siegt TSF Welzheim II
-
-Einen versöhnlichen Saisonausklang konnte die zweite Mannschaft der TSF Welzheim feiern. In der letzten Runde trafen die TSF und die SF 90 Spraitbach IV aufeinander. Beide Mannschaften hatten während des bisherigen Saisonverlaufs eher mittelprächtig agiert und so ging es für beide Seiten nur noch darum, ein achtbares Ergebnis zu erzielen.
-
-Die Begegnung litt allerdings von Beginn darunter, dass auf jeder Seite gleich zwei der sechs Bretter unbesetzt blieben und somit die Punkte jeweils kampflos an den Gegner fielen. So wurde beim Stand von 2:2 nur an zwei Brettern tatsächlich um die Punkte gekämpft – und hier zeigten sich die Welzheimer überaus erfolgreich.
-
-Nachwuchstalent Arseni Baskov – im Juni wird er zehn Jahre alt – büßte zwar zunächst einen Läufer ein, konnte jedoch im weiteren Spielverlauf seine junge Gegnerin stark unter Druck setzen und die Partie schließlich sogar mit einem Matt beenden. Georg Joos gewann ebenfalls seine Partie, so dass die TSF Welzheim einen überraschend klaren 4:2-Erfolg feiern konnten und dadurch einen zufriedenstellenden 4. Platz im Mittelfeld der A-Klasse erreichten.
-
-Text: Wolfgang Göhringer

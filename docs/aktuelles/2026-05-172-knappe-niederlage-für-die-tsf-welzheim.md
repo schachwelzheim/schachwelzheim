@@ -1,7 +1,0 @@
-# Knappe Niederlage für die TSF Welzheim
-
-In der vorletzten Runde der diesjährigen Saison trafen in der Bezirksliga die Tabellennachbarn TSF Welzheim I und SC Tannhausen I aufeinander.Dabei befanden sich die Welzheimer in der etwas günstigeren Ausgangsposition, denn bereits ein Unentschieden hätte ihnen gereicht, um die letzten Abstiegsgefahren endgültig zu beseitigen.
-
-Doch die Gäste aus Tannhausen gingen frühzeitig in Führung und bestimmten auch in der Folge das Geschehen, während Welzheim auszugleichen versuchte. Zwar gewannen Peter Eggert und Emil Schäfer ihre Partien, jeweils ein Unentschieden steuerten Heiko Bubeck, Wolfgang Göhringer und Björn Lang bei, doch in der Endabrechnung reichte es nicht.
-
-Die TSF unterlagen knapp mit 3,5:4,5 und können deshalb noch nicht völlig entspannt dem letzten Spieltag entgegensehen.

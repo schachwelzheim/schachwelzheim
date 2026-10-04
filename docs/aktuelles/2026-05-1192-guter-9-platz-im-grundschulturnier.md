@@ -1,5 +1,0 @@
-# Guter 9. Platz im Grundschulturnier
-
-In Rommelshausen waren am Donnerstag den 13. Februar die Schulschach-Bezirksmeisterschaft 2020 im Bezirk Ludwigsburg/Rems-Murr-Kreis für die Grundschulen.
-
-Für die Hofgartenschule Welzheim waren 4 Jugendliche der Schachabteilung der TSF Welzheim am Start in der Wettkampfklasse WK GS (Grundschule Klasse 1-4).
