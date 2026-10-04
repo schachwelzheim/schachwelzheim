@@ -237,7 +237,13 @@ if aktuelles_items:
     akt_title, _, _ = parse_markdown_file(akt_index)
     if not akt_title:
       akt_title = "Aktuelles"
-    aktuelles_nav_list = [{"Übersicht": "aktuelles/index.md"}] + [i for i in aktuelles_items if list(i.values())[0] != "aktuelles/index.md"]
+      aktuelles_nav_list = [
+                  {"Übersicht": "aktuelles/index.md"},
+                  {"Nach Themen": "aktuelles/aktuelles-tags.md"}
+              ] + [
+                  i for i in aktuelles_items 
+                  if list(i.values())[0] not in ["aktuelles/index.md", "aktuelles/aktuelles-tags.md"]
+              ]
     nav.append({akt_title: aktuelles_nav_list})
 
 for entry in sorted(os.listdir(docs_dir)):
