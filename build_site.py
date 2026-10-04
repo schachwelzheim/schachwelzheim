@@ -53,15 +53,37 @@ news_items = []
 
 if os.path.exists(aktuelles_dir):
 
-    md_files = sorted(
-        [
-            f for f in os.listdir(aktuelles_dir)
-            if f.endswith(".md") and f != "index.md" and f != "aktuelles-tags.md"
-        ],
-        reverse=True
-    )
+    all_files = [
+        f for f in os.listdir(aktuelles_dir)
+        if f.endswith(".md") and f != "index.md" and f != "aktuelles-tags.md"
+    ]
 
-    for filename in md_files:
+    # Dateien trennen in "Datum" (YYYY-MM-DD) und "Nummer" (z.B. 00035)
+    date_files = []
+    number_files = []
+    other_files = []
+
+    for f in all_files:
+        base_name = os.path.splitext(f)[0]
+        if re.match(r"^\d{4}-\d{2}-\d{2}$", base_name):
+            date_files.append(f)
+        elif re.match(r"^\d+$", base_name):
+            number_files.append(f)
+        else:
+            other_files.append(f)
+
+    # Sortierung:
+    # 1. Datum-Dateien: von alt nach neu (aufsteigend) -> reverse=False
+    date_files.sort(reverse=False)
+    # 2. Nummern-Dateien: von klein nach groß (aufsteigend) -> key=int
+    number_files.sort(key=lambda x: int(os.path.splitext(x)[0]))
+    # 3. Rest alphabetisch
+    other_files.sort()
+
+    # Reihenfolge: Erst Datum (chronologisch), dann Nummern (aufsteigend)
+    sorted_files = date_files + number_files + other_files
+
+    for filename in sorted_files:
         file_path = os.path.join(aktuelles_dir, filename)
         base_name = os.path.splitext(filename)[0]
         default_title = base_name
@@ -173,7 +195,6 @@ def scan_folder(path):
                 items.append({folder_title: sub_nav_list})
 
         elif entry.endswith(".md"):
-            # index.md und aktuelles-tags.md werden separat gesteuert
             if entry in ["index.md", "aktuelles-tags.md"]:
                 continue
             name_without_ext = os.path.splitext(entry)[0]
@@ -199,7 +220,6 @@ if os.path.exists(aktuelles_dir):
     if not akt_title:
       akt_title = "Aktuelles"
     
-    # Hier wird die 'aktuelles-tags.md' sauber als Menüpunkt eingefügt
     aktuelles_nav_list = [
         {"Übersicht": "aktuelles/index.md"},
         {"Nach Themen": "aktuelles/aktuelles-tags.md"}
