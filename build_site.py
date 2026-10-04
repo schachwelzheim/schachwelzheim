@@ -9,41 +9,12 @@ nav = []
 def parse_markdown_file(file_path):
     title = ""
     teaser_words = []
-    tags = []
-    in_frontmatter = False
-    frontmatter_lines = []
 
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             lines = f.readlines()
             
-            # Frontmatter (YAML) parsen
-            if lines and lines[0].strip() == "---":
-                in_frontmatter = True
-                for line in lines[1:]:
-                    if line.strip() == "---":
-                        in_frontmatter = False
-                        break
-                    frontmatter_lines.append(line)
-            
-            # Tags aus Frontmatter extrahieren (unterstützt YAML-Listen)
-            fm_content = "".join(frontmatter_lines)
-            tag_match = re.search(r"tags:\s*\[(.*?)\]", fm_content)
-            if tag_match:
-                tags = [t.strip().strip("'\"") for t in tag_match.group(1).split(",")]
-            else:
-                is_tag_section = False
-                for line in frontmatter_lines:
-                    if line.strip().startswith("tags:"):
-                        is_tag_section = True
-                        continue
-                    if is_tag_section:
-                        if line.strip().startswith("- "):
-                            tags.append(line.strip()[2:].strip().strip("'\""))
-                        elif line.strip() and not line.startswith(" "):
-                            is_tag_section = False
-
-            # Restlicher Inhalt für Titel und Teaser
+            # Titel aus H1 oder HTML-H1 ermitteln
             for line in lines:
                 clean_line = line.strip()
 
@@ -58,6 +29,7 @@ def parse_markdown_file(file_path):
                         title = re.sub(r"<[^>]+>", "", title).strip()
                         continue
 
+                # Teasertext ermitteln (ignoriert Frontmatter und Überschriften)
                 if title and clean_line and not clean_line.startswith("#") and not clean_line.startswith("---"):
                     if re.match(r"^\d+\.", clean_line):
                         continue
@@ -70,7 +42,7 @@ def parse_markdown_file(file_path):
         pass
 
     teaser = " ".join(teaser_words[:10]) + "..." if teaser_words else "Keine Vorschau verfügbar..."
-    return title, teaser, tags
+    return title, teaser
 
 
 # ============================================================
@@ -94,7 +66,7 @@ if os.path.exists(aktuelles_dir):
         base_name = os.path.splitext(filename)[0]
         default_title = base_name
 
-        title, teaser, tags = parse_markdown_file(file_path)
+        title, teaser = parse_markdown_file(file_path)
 
         if not title:
             title = default_title.replace("-", " ").capitalize()
@@ -118,8 +90,7 @@ if os.path.exists(aktuelles_dir):
             "title": title,
             "teaser": teaser,
             "date": formatted_date,
-            "images": images,
-            "tags": tags
+            "images": images
         })
 
 
@@ -147,7 +118,7 @@ if os.path.exists(aktuelles_dir):
 
 
     # ========================================================
-    # AKTUELLES INDEX AKTUALISIEREN (Mit Tag-Liste)
+    # AKTUELLES INDEX AKTUALISIEREN (Rein für die Beitragsliste)
     # ========================================================
 
     index_path = os.path.join(aktuelles_dir, "index.md")
@@ -159,6 +130,7 @@ if os.path.exists(aktuelles_dir):
 
         if "\n\n## Beiträge\n" in existing_index_content:
             existing_index_content = existing_index_content.split("\n\n## Beiträge\n")[0]
+        # Alte Tag-Sektion entfernen falls vorhanden
         if "## Nach Themen filtern" in existing_index_content:
             existing_index_content = existing_index_content.split("## Nach Themen filtern")[0]
 
@@ -167,25 +139,6 @@ if os.path.exists(aktuelles_dir):
     else:
         index_content = "# Aktuelles aus der Schachabteilung\n\nHier findest du alle Neuigkeiten."
 
-    # Alle verwendeten Tags sammeln und zuordnen
-    tag_dict = {}
-    for item in news_items:
-        for tag in item["tags"]:
-            if tag not in tag_dict:
-                tag_dict[tag] = []
-            tag_dict[tag].append(item)
-
-    # Tag-Liste generieren, falls Tags vorhanden sind
-    if tag_dict:
-        index_content += "\n\n## Nach Themen filtern\n\n"
-        for tag in sorted(tag_dict.keys()):
-            index_content += f"* **{tag}:** "
-            links = []
-            for item in tag_dict[tag]:
-                links.append(f"[{item['title']}]({item['filename']})")
-            index_content += ", ".join(links) + "\n"
-
-    # Beiträge-Sektion anhängen
     index_content += "\n\n## Beiträge\n\n"
 
     for item in news_items:
@@ -214,7 +167,7 @@ def scan_folder(path):
                 sub_index = os.path.join(full_path, "index.md")
                 folder_title = ""
                 if os.path.exists(sub_index):
-                    folder_title, _, _ = parse_markdown_file(sub_index)
+                    folder_title, _ = parse_markdown_file(sub_index)
                 if not folder_title:
                     folder_title = entry.replace("_", " ").replace("-", " ").capitalize()
                 
@@ -227,7 +180,7 @@ def scan_folder(path):
                 continue
             name_without_ext = os.path.splitext(entry)[0]
             default_title = name_without_ext.replace("-", " ").capitalize()
-            title, _, _ = parse_markdown_file(full_path)
+            title, _ = parse_markdown_file(full_path)
             if not title:
                 title = default_title
             items.append({title: rel_path.replace(os.sep, "/")})
@@ -236,7 +189,7 @@ def scan_folder(path):
 # Startseite & Navigation zusammenbauen
 start_index = os.path.join(docs_dir, "index.md")
 if os.path.exists(start_index):
-    start_title, _, _ = parse_markdown_file(start_index)
+    start_title, _ = parse_markdown_file(start_index)
     if not start_title:
       start_title = "Startseite"
     nav.append({start_title: "index.md"})
@@ -244,7 +197,7 @@ if os.path.exists(start_index):
 aktuelles_items = scan_folder(aktuelles_dir)
 if aktuelles_items:
     akt_index = os.path.join(aktuelles_dir, "index.md")
-    akt_title, _, _ = parse_markdown_file(akt_index)
+    akt_title, _ = parse_markdown_file(akt_index)
     if not akt_title:
       akt_title = "Aktuelles"
     aktuelles_nav_list = [{"Übersicht": "aktuelles/index.md"}] + [i for i in aktuelles_items if list(i.values())[0] != "aktuelles/index.md"]
@@ -259,7 +212,7 @@ for entry in sorted(os.listdir(docs_dir)):
             folder_title = ""
             sub_index_rel = f"{entry}/index.md"
             if os.path.exists(sub_index):
-                folder_title, _, _ = parse_markdown_file(sub_index)
+                folder_title, _ = parse_markdown_file(sub_index)
             if not folder_title:
                 folder_title = entry.replace("_", " ").replace("-", " ").capitalize()
             folder_nav_list = [{"Übersicht": sub_index_rel}] + [i for i in sub_items if list(i.values())[0] != sub_index_rel]
@@ -272,4 +225,4 @@ config["nav"] = nav
 
 with open("mkdocs.yml", "w", encoding="utf-8") as f:
     yaml.dump(config, f, allow_unicode=True, sort_keys=False)
-  
+    
