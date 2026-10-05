@@ -1,14 +1,11 @@
 import os
-import yaml
 import re
-
-
-# ============================================================
-# GRUNDEINSTELLUNGEN
-# ============================================================
+import yaml
+import shutil
 
 docs_dir = "docs"
 aktuelles_dir = os.path.join(docs_dir, "aktuelles")
+tags_dir = os.path.join(docs_dir, "tags")
 
 nav = []
 news_items = []
@@ -31,7 +28,6 @@ def parse_markdown_file(file_path):
         for line in lines:
             clean_line = line.strip()
 
-            # Frontmatter überspringen
             if clean_line == "---":
                 in_frontmatter = not in_frontmatter
                 continue
@@ -39,12 +35,12 @@ def parse_markdown_file(file_path):
             if in_frontmatter:
                 continue
 
-            # Titel aus Markdown-H1
+            # Markdown-H1
             if not title and clean_line.startswith("# "):
                 title = clean_line[2:].strip()
                 continue
 
-            # Titel aus HTML-H1
+            # HTML-H1
             if not title:
                 h1_match = re.search(
                     r"<h1[^>]*>(.*?)</h1>",
@@ -68,14 +64,13 @@ def parse_markdown_file(file_path):
 
                     continue
 
-            # Teasertext
+            # Teaser
             if (
                 title
                 and clean_line
                 and not clean_line.startswith("#")
                 and not clean_line.startswith("---")
             ):
-                # Nummerierte Listen nicht als Teaser verwenden
                 if re.match(r"^\d+\.", clean_line):
                     continue
 
@@ -98,23 +93,10 @@ def parse_markdown_file(file_path):
 
 
 # ============================================================
-# TAGS AUS MARKDOWN-FRONTMATTER LESEN
+# TAGS AUS FRONTMATTER LESEN
 # ============================================================
 
 def get_tags_from_file(file_path):
-    """
-    Liest Tags aus dem YAML-Frontmatter einer Markdown-Datei.
-
-    Unterstützte Schreibweisen:
-
-    tags:
-      - Turnier
-      - Jugend
-
-    oder:
-
-    tags: [Turnier, Jugend]
-    """
 
     tags = []
 
@@ -122,7 +104,6 @@ def get_tags_from_file(file_path):
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read()
 
-        # Frontmatter muss am Dateianfang stehen
         match = re.match(
             r"^\s*---\s*\n(.*?)\n---\s*(?:\n|$)",
             content,
@@ -140,48 +121,68 @@ def get_tags_from_file(file_path):
         raw_tags = frontmatter.get("tags", [])
 
         if isinstance(raw_tags, str):
-            # Einzelner Tag
-            tags = [raw_tags]
+            raw_tags = [raw_tags]
 
-        elif isinstance(raw_tags, list):
-            tags = raw_tags
+        if not isinstance(raw_tags, list):
+            return tags
 
-        # Nur sinnvolle Strings übernehmen
-        cleaned_tags = []
+        for tag in raw_tags:
 
-        for tag in tags:
             if tag is None:
                 continue
 
             tag = str(tag).strip()
 
             if tag:
-                cleaned_tags.append(tag)
-
-        return cleaned_tags
+                tags.append(tag)
 
     except Exception:
-        return []
+        pass
+
+    return tags
 
 
 # ============================================================
-# TAGS AUS ALLEN MARKDOWN-DATEIEN SAMMELN
+# SICHEREN DATEINAMEN AUS TAG ERZEUGEN
+# ============================================================
+
+def slugify_tag(tag):
+
+    slug = tag.casefold().strip()
+
+    # Umlaute
+    replacements = {
+        "ä": "ae",
+        "ö": "oe",
+        "ü": "ue",
+        "ß": "ss"
+    }
+
+    for old, new in replacements.items():
+        slug = slug.replace(old, new)
+
+    # Alles außer Buchstaben/Zahlen durch -
+    slug = re.sub(r"[^a-z0-9]+", "-", slug)
+
+    slug = slug.strip("-")
+
+    return slug
+
+
+# ============================================================
+# ALLE TAGS SAMMELN
 # ============================================================
 
 def collect_all_tags():
-    """
-    Durchsucht den kompletten docs-Ordner nach Markdown-Dateien
-    und sammelt alle verwendeten Tags.
-    """
 
     all_tags = {}
 
     for root, dirs, files in os.walk(docs_dir):
 
-        # Verzeichnisse, die nicht durchsucht werden sollen
+        # Generierte Tag-Seiten nicht erneut einlesen
         dirs[:] = [
             d for d in dirs
-            if d != ".git"
+            if d not in [".git", "tags"]
         ]
 
         for filename in files:
@@ -189,7 +190,6 @@ def collect_all_tags():
             if not filename.endswith(".md"):
                 continue
 
-            # Technische Übersichtsseiten nicht berücksichtigen
             if filename in [
                 "index.md",
                 "aktuelles-tags.md"
@@ -198,17 +198,13 @@ def collect_all_tags():
 
             file_path = os.path.join(root, filename)
 
-            tags = get_tags_from_file(file_path)
+            for tag in get_tags_from_file(file_path):
 
-            for tag in tags:
+                key = tag.casefold()
 
-                # Einheitliche Schreibweise für die Sortierung
-                normalized = tag.casefold()
+                if key not in all_tags:
+                    all_tags[key] = tag
 
-                if normalized not in all_tags:
-                    all_tags[normalized] = tag
-
-    # Alphabetisch sortieren
     return [
         all_tags[key]
         for key in sorted(all_tags.keys())
@@ -216,18 +212,148 @@ def collect_all_tags():
 
 
 # ============================================================
-# TAG-SEITE ERZEUGEN
+# ALLE BEITRÄGE FÜR EINEN TAG FINDEN
 # ============================================================
 
-def create_tags_page():
-    """
-    Erzeugt automatisch aktuelles/aktuelles-tags.md.
+def collect_tagged_pages(tag):
 
-    Die eigentliche Filterung übernimmt das MkDocs-Material
-    Tags-Plugin.
-    """
+    pages = []
+
+    target = tag.casefold()
+
+    for root, dirs, files in os.walk(docs_dir):
+
+        dirs[:] = [
+            d for d in dirs
+            if d not in [".git", "tags"]
+        ]
+
+        for filename in files:
+
+            if not filename.endswith(".md"):
+                continue
+
+            if filename in [
+                "index.md",
+                "aktuelles-tags.md"
+            ]:
+                continue
+
+            file_path = os.path.join(root, filename)
+
+            file_tags = get_tags_from_file(file_path)
+
+            if any(
+                t.casefold() == target
+                for t in file_tags
+            ):
+
+                title, _ = parse_markdown_file(
+                    file_path
+                )
+
+                if not title:
+                    title = os.path.splitext(filename)[0]
+
+                relative_path = os.path.relpath(
+                    file_path,
+                    docs_dir
+                ).replace(os.sep, "/")
+
+                pages.append({
+                    "title": title,
+                    "path": relative_path
+                })
+
+    pages.sort(
+        key=lambda x: x["title"].casefold()
+    )
+
+    return pages
+
+
+# ============================================================
+# TAG-SEITEN ERZEUGEN
+# ============================================================
+
+def create_tag_pages():
+
+    os.makedirs(tags_dir, exist_ok=True)
 
     tags = collect_all_tags()
+
+    # Alte automatisch erzeugte Tag-Seiten löschen
+    for filename in os.listdir(tags_dir):
+
+        path = os.path.join(
+            tags_dir,
+            filename
+        )
+
+        if os.path.isfile(path) and filename.endswith(".md"):
+            os.remove(path)
+
+    for tag in tags:
+
+        slug = slugify_tag(tag)
+
+        if not slug:
+            continue
+
+        tag_file = os.path.join(
+            tags_dir,
+            f"{slug}.md"
+        )
+
+        pages = collect_tagged_pages(tag)
+
+        content = f"# {tag}\n\n"
+
+        content += (
+            f"Beiträge zum Thema **{tag}**.\n\n"
+        )
+
+        if pages:
+
+            content += "## Beiträge\n\n"
+
+            for page in pages:
+
+                # Relativer Link von /tags/<tag>.md
+                # zur eigentlichen Seite
+                target_path = page["path"]
+
+                target_parts = target_path.split("/")
+
+                depth = len(target_parts) - 1
+
+                prefix = "../" * depth
+
+                link = prefix + target_path.split("/")[-1]
+
+                content += (
+                    f"- [{page['title']}]({link})\n"
+                )
+
+        else:
+            content += "Keine Beiträge gefunden.\n"
+
+        with open(
+            tag_file,
+            "w",
+            encoding="utf-8"
+        ) as f:
+
+            f.write(content)
+
+    return tags
+
+
+# ============================================================
+# TAG-ÜBERSICHT ERZEUGEN
+# ============================================================
+
+def create_tags_overview(tags):
 
     tags_path = os.path.join(
         aktuelles_dir,
@@ -236,7 +362,7 @@ def create_tags_page():
 
     content = """# Beiträge nach Themen
 
-Hier findest du die Beiträge nach Themen sortiert.
+Hier findest du alle Beiträge nach Themen sortiert.
 
 Klicke auf ein Thema, um alle Beiträge mit diesem Tag anzuzeigen.
 
@@ -247,12 +373,23 @@ Klicke auf ein Thema, um alle Beiträge mit diesem Tag anzuzeigen.
     if tags:
 
         for tag in tags:
-            content += f"- [{tag}](../tags/#/default/{tag.lower()})\n"
+
+            slug = slugify_tag(tag)
+
+            content += (
+                f"- [{tag}](../tags/{slug}.md)\n"
+            )
 
     else:
+
         content += "Noch keine Tags vorhanden.\n"
 
-    with open(tags_path, "w", encoding="utf-8") as f:
+    with open(
+        tags_path,
+        "w",
+        encoding="utf-8"
+    ) as f:
+
         f.write(content)
 
 
@@ -265,30 +402,36 @@ if os.path.exists(aktuelles_dir):
     all_files = [
         f
         for f in os.listdir(aktuelles_dir)
-        if f.endswith(".md")
-        and f != "index.md"
-        and f != "aktuelles-tags.md"
+        if (
+            f.endswith(".md")
+            and f != "index.md"
+            and f != "aktuelles-tags.md"
+        )
     ]
 
-    # Dateien nach Namensschema aufteilen
     date_files = []
     number_files = []
     other_files = []
 
-    for f in all_files:
+    for filename in all_files:
 
-        base_name = os.path.splitext(f)[0]
+        base_name = os.path.splitext(filename)[0]
 
-        if re.match(r"^\d{4}-\d{2}-\d{2}$", base_name):
-            date_files.append(f)
+        if re.match(
+            r"^\d{4}-\d{2}-\d{2}$",
+            base_name
+        ):
+            date_files.append(filename)
 
-        elif re.match(r"^\d+$", base_name):
-            number_files.append(f)
+        elif re.match(
+            r"^\d+$",
+            base_name
+        ):
+            number_files.append(filename)
 
         else:
-            other_files.append(f)
+            other_files.append(filename)
 
-    # Sortierung
     date_files.sort(reverse=False)
 
     number_files.sort(
@@ -305,7 +448,6 @@ if os.path.exists(aktuelles_dir):
         + other_files
     )
 
-    # Beiträge einlesen
     for filename in sorted_files:
 
         file_path = os.path.join(
@@ -315,20 +457,19 @@ if os.path.exists(aktuelles_dir):
 
         base_name = os.path.splitext(filename)[0]
 
-        default_title = base_name
-
         title, teaser = parse_markdown_file(
             file_path
         )
 
         if not title:
+
             title = (
-                default_title
+                base_name
                 .replace("-", " ")
                 .capitalize()
             )
 
-        # Datum aus Dateinamen
+        # Datum
         date_match = re.match(
             r"(\d{4})-(\d{2})-(\d{2})",
             base_name
@@ -345,7 +486,7 @@ if os.path.exists(aktuelles_dir):
         else:
             formatted_date = ""
 
-        # Bilderordner
+        # Bilder
         img_folder = os.path.join(
             aktuelles_dir,
             base_name
@@ -372,7 +513,6 @@ if os.path.exists(aktuelles_dir):
                 if img.lower().endswith(valid_exts)
             ])
 
-        # Tags
         tags = get_tags_from_file(
             file_path
         )
@@ -389,7 +529,7 @@ if os.path.exists(aktuelles_dir):
 
 
     # ========================================================
-    # GALERIEN IN BEITRÄGEN AKTUALISIEREN
+    # GALERIEN AKTUALISIEREN
     # ========================================================
 
     for item in news_items:
@@ -407,14 +547,12 @@ if os.path.exists(aktuelles_dir):
 
             content = f.read()
 
-        gallery_marker = (
-            "\n\n## Bilder zum Beitrag\n"
-        )
+        marker = "\n\n## Bilder zum Beitrag\n"
 
-        if gallery_marker in content:
+        if marker in content:
 
             content = content.split(
-                gallery_marker
+                marker
             )[0]
 
         if item["images"]:
@@ -436,8 +574,7 @@ if os.path.exists(aktuelles_dir):
                     f'<img src="{img}" '
                     f'width="300" '
                     f'style="border-radius: 8px; '
-                    f'margin: 8px;" />'
-                    f'</a>\n'
+                    f'margin: 8px;" /></a>\n'
                 )
 
             content += "\n</div>\n"
@@ -452,7 +589,7 @@ if os.path.exists(aktuelles_dir):
 
 
     # ========================================================
-    # AKTUELLES INDEX ERZEUGEN
+    # AKTUELLES INDEX
     # ========================================================
 
     index_path = os.path.join(
@@ -497,14 +634,14 @@ if os.path.exists(aktuelles_dir):
 
     for item in news_items:
 
-        d_str = (
+        date_text = (
             f"**[{item['date']}]** "
             if item["date"]
             else ""
         )
 
         index_content += (
-            f"* {d_str}"
+            f"* {date_text}"
             f"**[{item['title']}]"
             f"({item['filename']})**"
             f" – {item['teaser']} "
@@ -521,16 +658,16 @@ if os.path.exists(aktuelles_dir):
 
 
 # ============================================================
-# TAG-SEITE ERSTELLEN
+# TAGS ERZEUGEN
 # ============================================================
 
-if os.path.exists(aktuelles_dir):
+all_tags = create_tag_pages()
 
-    create_tags_page()
+create_tags_overview(all_tags)
 
 
 # ============================================================
-# RESTLICHE ORDNER SCANNEN
+# NAVIGATION SCANNEN
 # ============================================================
 
 def scan_folder(path):
@@ -560,11 +697,16 @@ def scan_folder(path):
 
         if os.path.isdir(full_path):
 
-            # Beitrags-Bildordner überspringen
+            # Bildordner von Aktuelles überspringen
             if any(
                 item["base_name"] == entry
                 for item in news_items
             ):
+                continue
+
+            # Generierten tags-Ordner nicht automatisch
+            # in die Navigation aufnehmen
+            if entry == "tags":
                 continue
 
             sub_items = scan_folder(
@@ -622,7 +764,7 @@ def scan_folder(path):
                 })
 
         # --------------------------------------------
-        # MARKDOWN-DATEIEN
+        # MARKDOWN
         # --------------------------------------------
 
         elif entry.endswith(".md"):
@@ -685,14 +827,14 @@ if os.path.exists(start_index):
 
 
 # ============================================================
-# AKTUELLES NAVIGATION
+# AKTUELLES
 # ============================================================
 
-aktuelles_items = scan_folder(
-    aktuelles_dir
-)
-
 if os.path.exists(aktuelles_dir):
+
+    aktuelles_items = scan_folder(
+        aktuelles_dir
+    )
 
     akt_index = os.path.join(
         aktuelles_dir,
@@ -734,7 +876,7 @@ if os.path.exists(aktuelles_dir):
 
 
 # ============================================================
-# RESTLICHE ORDNER IN DIE NAVIGATION
+# RESTLICHE ORDNER
 # ============================================================
 
 for entry in sorted(
@@ -748,7 +890,10 @@ for entry in sorted(
 
     if (
         os.path.isdir(full_path)
-        and entry != "aktuelles"
+        and entry not in [
+            "aktuelles",
+            "tags"
+        ]
     ):
 
         sub_items = scan_folder(
@@ -784,63 +929,4 @@ for entry in sorted(
                     entry
                     .replace("_", " ")
                     .replace("-", " ")
-                    .capitalize()
-                )
-
-            folder_nav_list = [
-                {
-                    "Übersicht":
-                    sub_index_rel
-                }
-            ] + [
-                i
-                for i in sub_items
-                if list(i.values())[0]
-                != sub_index_rel
-            ]
-
-            nav.append({
-                folder_title:
-                folder_nav_list
-            })
-
-
-# ============================================================
-# MKDOCS.YML AKTUALISIEREN
-# ============================================================
-
-with open(
-    "mkdocs.yml",
-    "r",
-    encoding="utf-8"
-) as f:
-
-    config = yaml.safe_load(f)
-
-
-config["nav"] = nav
-
-
-with open(
-    "mkdocs.yml",
-    "w",
-    encoding="utf-8"
-) as f:
-
-    yaml.dump(
-        config,
-        f,
-        allow_unicode=True,
-        sort_keys=False
-    )
-
-
-print("Build-Skript erfolgreich ausgeführt.")
-
-print(
-    f"{len(news_items)} Beiträge in 'Aktuelles' gefunden."
-)
-
-print(
-    f"{len(collect_all_tags())} Tags gefunden."
-    )
+                    .capi
