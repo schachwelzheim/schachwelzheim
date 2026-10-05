@@ -27,4 +27,9 @@ Hier erfährst du alles rund um Schachaktivitäten in Welzheim: Mannschaften, Sc
   <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gitbook.svg" width="28" height="28" alt="Impressum" style="vertical-align: middle;" />
 </a>
 
+<a href="./datenschutz" title="Datenschutzerklärung" style="margin: 0 15px; text-decoration: none;">
+  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/letsencrypt.svg" width="26" height="26" alt="Datenschutz" style="vertical-align: middle; filter: grayscale(100%);" />
+</a>
+
+
 </div>
