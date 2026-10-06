@@ -1,1 +1,1 @@
---8<-- "../verein/jugend/index.md"
+--8<-- "verein/jugend/index.md"
