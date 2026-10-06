@@ -25,6 +25,7 @@ Zur Zeit sind in 3 Mannschaften für Welzheimer SpielerInnen aktiv.
 
 ## Trainingszeiten
 
-🗓️ Das Mannschaftstraining findet immer *freitags von 20 bis 24 Uhr* statt.
+🗓️ Das Mannschaftstraining findet immer **freitags von 20 bis 24 Uhr** statt.
+
 📍 Gespielt wird im [Vereinsheim](../spiellokal).
 
