@@ -43,7 +43,7 @@ def get_post_files():
         else:
             other_files.append(filename)
 
-    date_files.sort()
+    date_files.sort(reverse=True)
     number_files.sort(
         key=lambda x: int(os.path.splitext(x)[0])
     )
