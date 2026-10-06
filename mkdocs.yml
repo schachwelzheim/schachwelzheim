@@ -11,6 +11,8 @@ theme:
   language: de
   logo: assets/images/logo.png
   favicon: assets/images/logo.png
+  copyright: "© 2026 Schach in Welzheim | <a href='./impressum'>Impressum</a>"
+  
 
   palette:
     - media: "(prefers-color-scheme: light)"
