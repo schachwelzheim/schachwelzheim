@@ -6,6 +6,6 @@ Kinder und Jugendliche können in Welzheim sowohl in Schulen als auch im Verein 
 
     Alle Informationen zu unseren Schul-AGs und Terminen.
 
-* **[Schachjugend](../verein/schachjugend.md)**
+* **[Schachjugend](../verein/jugend.md)**
 
     Wann und wo unser Jugendtraining stattfindet.
