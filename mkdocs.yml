@@ -12,7 +12,6 @@ theme:
   logo: assets/images/logo.png
   favicon: assets/images/logo.png
   copyright: "© Schach in Welzheim | <a href='./impressum'>Impressum</a>"
-  
 
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -39,3 +38,6 @@ plugins:
 markdown_extensions:
   - attr_list
   - pymdownx.snippets
+
+extra:
+  generator: false
