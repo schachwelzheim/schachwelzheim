@@ -11,13 +11,6 @@ Der wöchentlicher Trainingsbetrieb ist in zwei Leistungsgruppen unterteilt, um 
 * **Fortgeschrittenentraining:** Donnerstags von 17:00 bis 18:00 Uhr.  
   *Für alle, die bereits sicher spielen und ihre Taktik, Eröffnungs- und Endspielkenntnisse vertiefen möchten.*
 
-## Trainingsort
-
-* **Ort:** TSF-Geschäftsstelle / Spielräume
-* **Anschrift:** Burgstraße 39, 73642 Welzheim
-
-[👉 Route in Google Maps öffnen](https://maps.google.com/?q=Burgstraße+39,+73642+Welzheim){ .md-button .md-button--primary }
-
 ---
 
 ## Mitmachen & Reinschnuppern
