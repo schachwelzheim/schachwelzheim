@@ -1,14 +1,14 @@
 from build.aktuelles import build_aktuelles
 from build.tags import build_tags
 from build.navigation import build_navigation
-from build.homebutton import build_homebuttons
+from build.homebutton import build_homebutton
 
 
 def main():
     build_aktuelles()
     build_tags()
     build_navigation()
-    insert_homebuttons()
+    build_homebutton()
 
 
 if __name__ == "__main__":
