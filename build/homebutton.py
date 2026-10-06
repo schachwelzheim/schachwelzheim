@@ -3,9 +3,14 @@ import re
 from build.markdown import read_file, write_file
 
 def build_homebutton(docs_dir="docs"):
-    """Fügt automatisch auf allen Unterseiten oben rechts einen Home-Button ein (garantiert ohne Duplikate)."""
+    """Fügt automatisch auf allen Unterseiten oben rechts einen Home-Button ein (außer bei definierten Ausschlussdateien)."""
     
-    # Der Button mit einem eindeutigen Kommentar als Erkennungsmerkmal
+    # Dateien oder Pfade, die niemals einen Button bekommen sollen (z.B. weil sie per --8<-- inkludiert werden)
+    EXCLUDED_FILES = {
+        "index.md", # Hauptstartseite
+        "verein/jugend/index.md", # Wird per Snippet inkludiert
+    }
+
     button_html = """<!-- HOME_BUTTON -->
 <div style="float: right; margin-top: -10px; margin-bottom: 15px; z-index: 10;">
   <a href="https://schachwelzheim.github.io/schachwelzheim/" title="Startseite" style="text-decoration: none;">
@@ -19,16 +24,18 @@ def build_homebutton(docs_dir="docs"):
         for file in files:
             if not file.endswith(".md"):
                 continue
+                
+            # Relativen Pfad ab docs/ ermitteln (z.B. "verein/jugend/index.md" oder "index.md")
+            rel_path = os.path.relpath(os.path.join(root, file), docs_dir).replace(os.sep, "/")
             
-            # Die Hauptseite überspringen
-            if file == "index.md" and root == docs_dir:
+            # Prüfen, ob die Datei auf der Ausschlussliste steht
+            if rel_path in EXCLUDED_FILES:
                 continue
                 
             file_path = os.path.join(root, file)
             content = read_file(file_path)
             
-            # 1. Alle eventuell vorherigen Versionen (egal ob alt oder neu) restlos entfernen
-            # Das fängt sowohl den Kommentar-Block als auch alte div-Varianten ab
+            # 1. Alle eventuell vorherigen Versionen restlos entfernen
             content = re.sub(r'<!-- HOME_BUTTON -->.*?</div>\s*', '', content, flags=re.DOTALL)
             content = re.sub(r'<div style="float: right;[^>]*>.*?home\.svg.*?</div>\s*', '', content, flags=re.DOTALL)
             
