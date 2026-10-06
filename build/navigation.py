@@ -171,18 +171,25 @@ def build_navigation():
         if not os.path.isdir(full_path):
             continue
 
-        items = scan_folder(full_path)
-
-        if not items:
-            continue
+        sub_items = scan_folder(full_path)
 
         index_path = os.path.join(
             full_path,
             "index.md"
         )
 
+        if not os.path.exists(index_path) and not sub_items:
+            continue
+
         if os.path.exists(index_path):
             title = get_page_title(index_path)
+            relative_index = os.path.relpath(
+                index_path,
+                DOCS_DIR
+            ).replace(os.sep, "/")
+            
+            folder_nav = [{"Übersicht": relative_index}]
+            folder_nav.extend(sub_items)
         else:
             title = (
                 entry
@@ -190,9 +197,10 @@ def build_navigation():
                 .replace("-", " ")
                 .capitalize()
             )
+            folder_nav = sub_items
 
         nav.append({
-            title: items
+            title: folder_nav
         })
 
     config["nav"] = nav
@@ -204,3 +212,4 @@ def build_navigation():
             allow_unicode=True,
             sort_keys=False
         )
+        
