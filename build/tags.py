@@ -154,6 +154,7 @@ def build_tag_overview(tags):
         "",
         "Hier findest du alle Beiträge nach Themen sortiert.",
         "",
+        '<div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">',
     ]
 
     for tag in sorted(
@@ -168,9 +169,12 @@ def build_tag_overview(tags):
         link = f"../themen/{slug}.md"
 
         lines.append(
-            f"* [{tag}]({link})"
+            f'  <a href="{link}" class="md-tag">{tag}</a>'
         )
 
+    lines.append('</div>')
+    lines.append("")
+    lines.append("---")
     lines.append("")
 
     write_file(
@@ -185,3 +189,4 @@ def build_tags():
     build_tag_overview(tags)
 
     return tags
+    
