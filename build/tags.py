@@ -47,7 +47,6 @@ def collect_tagged_pages():
     pages = []
 
     for root, _, files in os.walk(DOCS_DIR):
-        # Ordner wie 'themen' werden nicht mehr benötigt, aber falls noch da, ignorieren
         if "themen" in root.split(os.sep):
             continue
 
@@ -108,11 +107,12 @@ def build_tags():
         '<div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">',
     ]
 
-    # 1. Obere Tag-Wolke mit internen Ankern (#slug)
+    # 1. Obere Tag-Wolke mit reinen Ankern auf derselben Seite (#slug)
     for tag in sorted(tags, key=str.lower):
         slug = slugify(tag)
         if not slug:
             continue
+        # Führt direkt zum Anker #slug auf derselben Seite
         lines.append(f'  <a href="#{slug}" class="md-tag">{tag}</a>')
 
     lines.append('</div>')
@@ -120,19 +120,18 @@ def build_tags():
     lines.append("---")
     lines.append("")
 
-    # 2. Detaillierte Abschnitte für jeden Tag auf derselben Seite
+    # 2. Detaillierte Abschnitte für jeden Tag unten auf derselben Seite
     for tag, tag_pages in sorted(tags.items(), key=lambda item: item[0].lower()):
         slug = slugify(tag)
         if not slug:
             continue
 
-        # Überschrift (MkDocs erzeugt daraus automatisch das passende Anker-Ziel)
+        # MkDocs generiert aus dieser Überschrift automatisch das Ziel für den Anker (#slug)
         lines.append(f"## {tag}")
         lines.append("")
 
         for page in sorted(tag_pages, key=lambda item: item["title"].lower()):
             target = page["path"]
-            # Relativer Pfad von aktuelles/aktuelles-tags.md zur Zieldatei
             link = relative_link("aktuelles/aktuelles-tags.md", target)
             lines.append(f"* [{page['title']}]({link})")
 
@@ -141,4 +140,4 @@ def build_tags():
     write_file(path, "\n".join(lines))
 
     return tags
-            
+    
