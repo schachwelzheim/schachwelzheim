@@ -6,7 +6,6 @@ site_author: Schach in Welzheim
 # Design & Theme
 theme:
   name: material
-  custom_dir: overrides
   features:
     - navigation.instant
   language: de
