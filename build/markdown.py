@@ -111,3 +111,19 @@ def get_teaser(content, words_count=10):
         teaser += "..."
 
     return teaser
+
+
+def add_home_button(content):
+    """Fügt automatisch einen Zurück-zur-Startseite-Button ein, falls noch nicht vorhanden."""
+    button_html = '<p><a class="md-button" href="/">🏠 Zur Startseite</a></p>\n\n'
+    
+    if "Zur Startseite" in content:
+        return content
+
+    if content.startswith("---"):
+        parts = content.split("---", 2)
+        if len(parts) >= 3:
+            return f"---{parts[1]}---\n\n{button_html}{parts[2]}"
+            
+    return button_html + content
+    
