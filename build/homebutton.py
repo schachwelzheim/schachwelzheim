@@ -4,7 +4,9 @@ from build.markdown import read_file, write_file
 def build_homebutton(docs_dir="docs"):
     """Fügt automatisch auf allen Unterseiten einen Home-Button ein."""
     button_html = """<p><a href="https://schachwelzheim.github.io/schachwelzheim/" title="Startseite" style="margin: 0 12px; text-decoration: none;">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/homeassistant.svg" width="28" height="28" alt="Startseite" style="vertical-align: middle;" />
+  <img src="
+  https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/homepage.svg
+  " width="28" height="28" alt="Startseite" style="vertical-align: middle;" />
 </a>
 </p>
 
