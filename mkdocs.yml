@@ -37,3 +37,6 @@ plugins:
 markdown_extensions:
   - attr_list
   - pymdownx.snippets
+
+extra_javascript:
+  - javascripts/clickable-header.js
