@@ -47,3 +47,9 @@ body:has(.home-page) .md-content__inner > h1:first-child {
   color: inherit;
   text-decoration: none;
 }
+
+/* Erzwingt, dass das Logo auch auf Handys in der Kopfzeile angezeigt wird */
+.md-header__button.md-logo {
+    display: flex !important;
+}
+
