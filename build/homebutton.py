@@ -2,13 +2,12 @@ import os
 from build.markdown import read_file, write_file
 
 def build_homebutton(docs_dir="docs"):
-    """Fügt automatisch auf allen Unterseiten einen Home-Button ein."""
-    button_html = """<p><a href="https://schachwelzheim.github.io/schachwelzheim/" title="Startseite" style="margin: 0 12px; text-decoration: none;">
-  <img src="
-  https://img.icons8.com/ios-filled/50/home.png
-  " width="28" height="28" alt="Startseite" style="vertical-align: middle;" />
-</a>
-</p>
+    """Fügt automatisch auf allen Unterseiten oben rechts einen Home-Button ein."""
+    button_html = """<div style="float: right; margin-top: -10px; margin-bottom: 15px; z-index: 10;">
+  <a href="https://schachwelzheim.github.io/schachwelzheim/" title="Startseite" style="text-decoration: none;">
+    <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/home.svg" width="26" height="26" alt="Startseite" style="vertical-align: middle;" />
+  </a>
+</div>
 
 """
     
@@ -24,7 +23,7 @@ def build_homebutton(docs_dir="docs"):
             file_path = os.path.join(root, file)
             content = read_file(file_path)
             
-            if "Zur Startseite" in content or "homeassistant.svg" in content:
+            if "Zur Startseite" in content or "home.svg" in content:
                 continue
                 
             # Nach dem Frontmatter einfügen, falls vorhanden
