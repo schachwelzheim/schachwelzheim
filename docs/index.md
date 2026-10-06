@@ -11,7 +11,7 @@ Hier erfährst du alles rund um Schachaktivitäten in Welzheim. Vor allem wann u
 * Schau im Bereich **[Aktuelles](./aktuelles)** vorbei für die neuesten Ereignisse.
 * Informiere dich über Aktivitäten für **[Kinder und Jugendliche](./jugend)** und über die Arbeit unseres **[Schachvereins](./verein)**.
 
-Wir freuen uns über jede und jeden, um mit uns zu spielen.
+Wir freuen uns über jede und jeden, um gemeinsam zu spielen.
 
 Kommt vorbei in den **[Schach AGs](./jugend/schach-ags)**, ins **[Jugendtraining](./verein/jugend)** oder zum **[Schach für alle](./verein/alle)**.
 
