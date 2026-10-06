@@ -64,6 +64,11 @@ def collect_tagged_pages():
             tags = get_tags(content)
 
             if not tags:
+                content_tags = []
+            else:
+                content_tags = tags
+
+            if not content_tags:
                 continue
 
             relative_path = os.path.relpath(
@@ -79,7 +84,7 @@ def collect_tagged_pages():
             pages.append({
                 "path": relative_path,
                 "title": title,
-                "tags": tags,
+                "tags": content_tags,
             })
 
     return pages
@@ -104,29 +109,17 @@ def build_tags():
         "",
         "Hier findest du alle Beiträge nach Themen sortiert.",
         "",
-        '<div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">',
+        "---",
+        "",
     ]
 
-    # 1. Obere Tag-Wolke mit reinen Ankern auf derselben Seite (#slug)
-    for tag in sorted(tags, key=str.lower):
-        slug = slugify(tag)
-        if not slug:
-            continue
-        # Führt direkt zum Anker #slug auf derselben Seite
-        lines.append(f'  <a href="#{slug}" class="md-tag">{tag}</a>')
-
-    lines.append('</div>')
-    lines.append("")
-    lines.append("---")
-    lines.append("")
-
-    # 2. Detaillierte Abschnitte für jeden Tag unten auf derselben Seite
+    # Detaillierte Abschnitte für jeden Tag sauber untereinander
     for tag, tag_pages in sorted(tags.items(), key=lambda item: item[0].lower()):
         slug = slugify(tag)
         if not slug:
             continue
 
-        # MkDocs generiert aus dieser Überschrift automatisch das Ziel für den Anker (#slug)
+        # Saubere Überschrift für das Thema
         lines.append(f"## {tag}")
         lines.append("")
 
