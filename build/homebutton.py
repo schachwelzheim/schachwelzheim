@@ -1,4 +1,5 @@
 import os
+from build.markdown import read_file, write_file
 
 def build_homebutton(docs_dir="docs"):
     """Fügt automatisch auf allen Unterseiten einen Home-Button ein."""
