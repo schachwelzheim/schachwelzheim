@@ -1,6 +1,6 @@
 import os
 
-def build_homebuttons(docs_dir="docs"):
+def build_homebutton(docs_dir="docs"):
     """Fügt automatisch auf allen Unterseiten einen Home-Button ein."""
     button_html = '<p><a class="md-button" href="/">🏠 Zur Startseite</a></p>\n\n'
     
