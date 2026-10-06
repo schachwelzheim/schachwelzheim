@@ -46,6 +46,7 @@ nav:
       - Nach Themen: aktuelles/aktuelles-tags.md
 
   - Verein:
+      - Übersicht: verein/index.md
       - Mannschaften: verein/mannschaften.md
       - Training: verein/training.md
 
