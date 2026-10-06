@@ -30,7 +30,8 @@ extra_css:
 # Plugins
 plugins:
   - search
-  - tags
+  - tags:
+      tags_file: aktuelles/aktuelles-tags.md
 
 # Markdown
 markdown_extensions:
