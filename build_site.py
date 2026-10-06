@@ -8,6 +8,7 @@ def main():
     build_aktuelles()
     build_tags()
     build_navigation()
+    insert_home_buttons()
 
 
 if __name__ == "__main__":
