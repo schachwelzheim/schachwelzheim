@@ -1,4 +1,4 @@
-# Jugend & Nachwuchs
+# Kinder & Jugendliche
 
 Kinder und Jugendliche können in Welzheim sowohl in Schulen als auch im Verein das Schachspiel kennenlernen und werden beim gemeinsamen Spielen und Üben unterstützt.
 
