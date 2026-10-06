@@ -41,9 +41,6 @@ def scan_folder(path):
 
             sub_items = scan_folder(full_path)
 
-            if not sub_items:
-                continue
-
             index_path = os.path.join(
                 full_path,
                 "index.md"
@@ -53,6 +50,10 @@ def scan_folder(path):
                 index_path,
                 DOCS_DIR
             ).replace(os.sep, "/")
+
+            # NEU: Ordner nur überspringen, wenn weder index.md noch Unterelemente existieren
+            if not os.path.exists(index_path) and not sub_items:
+                continue
 
             if os.path.exists(index_path):
                 folder_title = get_page_title(
