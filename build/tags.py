@@ -11,7 +11,6 @@ from .markdown import (
 
 DOCS_DIR = "docs"
 AKTUELLES_DIR = os.path.join(DOCS_DIR, "aktuelles")
-THEMEN_DIR = os.path.join(DOCS_DIR, "themen")
 
 
 def slugify(text):
@@ -48,6 +47,7 @@ def collect_tagged_pages():
     pages = []
 
     for root, _, files in os.walk(DOCS_DIR):
+        # Ordner wie 'themen' werden nicht mehr benötigt, aber falls noch da, ignorieren
         if "themen" in root.split(os.sep):
             continue
 
@@ -86,64 +86,15 @@ def collect_tagged_pages():
     return pages
 
 
-def build_tag_pages(pages):
-    os.makedirs(THEMEN_DIR, exist_ok=True)
+def build_tags():
+    pages = collect_tagged_pages()
 
+    # Nach Themen gruppieren
     tags = {}
-
     for page in pages:
         for tag in page["tags"]:
             tags.setdefault(tag, []).append(page)
 
-    for tag, tag_pages in sorted(
-        tags.items(),
-        key=lambda item: item[0].lower()
-    ):
-        slug = slugify(tag)
-
-        if not slug:
-            continue
-
-        tag_path = os.path.join(
-            THEMEN_DIR,
-            f"{slug}.md"
-        )
-
-        lines = [
-            f"# {tag}",
-            "",
-            f"Beiträge zum Thema **{tag}**:",
-            "",
-        ]
-
-        source = f"themen/{slug}.md"
-
-        for page in sorted(
-            tag_pages,
-            key=lambda item: item["title"].lower()
-        ):
-            target = page["path"]
-
-            link = relative_link(
-                source,
-                target
-            )
-
-            lines.append(
-                f"* [{page['title']}]({link})"
-            )
-
-        lines.append("")
-
-        write_file(
-            tag_path,
-            "\n".join(lines)
-        )
-
-    return tags
-
-
-def build_tag_overview(tags):
     path = os.path.join(
         AKTUELLES_DIR,
         "aktuelles-tags.md"
@@ -157,36 +108,37 @@ def build_tag_overview(tags):
         '<div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">',
     ]
 
-    for tag in sorted(
-        tags,
-        key=str.lower
-    ):
+    # 1. Obere Tag-Wolke mit internen Ankern (#slug)
+    for tag in sorted(tags, key=str.lower):
         slug = slugify(tag)
-
         if not slug:
             continue
-
-        link = f"../themen/{slug}.md"
-
-        lines.append(
-            f'  <a href="{link}" class="md-tag">{tag}</a>'
-        )
+        lines.append(f'  <a href="#{slug}" class="md-tag">{tag}</a>')
 
     lines.append('</div>')
     lines.append("")
     lines.append("---")
     lines.append("")
 
-    write_file(
-        path,
-        "\n".join(lines)
-    )
+    # 2. Detaillierte Abschnitte für jeden Tag auf derselben Seite
+    for tag, tag_pages in sorted(tags.items(), key=lambda item: item[0].lower()):
+        slug = slugify(tag)
+        if not slug:
+            continue
 
+        # Überschrift (MkDocs erzeugt daraus automatisch das passende Anker-Ziel)
+        lines.append(f"## {tag}")
+        lines.append("")
 
-def build_tags():
-    pages = collect_tagged_pages()
-    tags = build_tag_pages(pages)
-    build_tag_overview(tags)
+        for page in sorted(tag_pages, key=lambda item: item["title"].lower()):
+            target = page["path"]
+            # Relativer Pfad von aktuelles/aktuelles-tags.md zur Zieldatei
+            link = relative_link("aktuelles/aktuelles-tags.md", target)
+            lines.append(f"* [{page['title']}]({link})")
+
+        lines.append("")
+
+    write_file(path, "\n".join(lines))
 
     return tags
-    
+            
