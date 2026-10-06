@@ -36,22 +36,3 @@ plugins:
 # Markdown
 markdown_extensions:
   - attr_list
-
-# Navigation
-nav:
-  - Startseite: index.md
-
-  - Aktuelles:
-      - Übersicht: aktuelles/index.md
-      - Nach Themen: aktuelles/aktuelles-tags.md
-
-  - Verein:
-      - Übersicht: verein/index.md
-      - Mannschaften: verein/mannschaften.md
-      - Training: verein/training.md
-
-  - Jugend & AGs:
-      - Schulschach-AG: jugend-und-ags/schulschach-ag.md
-      - Jugendtraining: jugend-und-ags/jugendtraining.md
-
-  - Spiellokal: orte/spiellokal.md
