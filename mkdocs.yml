@@ -36,3 +36,4 @@ plugins:
 # Markdown
 markdown_extensions:
   - attr_list
+  - pymdownx.snippets
