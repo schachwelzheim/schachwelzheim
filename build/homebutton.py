@@ -3,7 +3,7 @@ from build.markdown import read_file, write_file
 
 def build_homebutton(docs_dir="docs"):
     """Fügt automatisch auf allen Unterseiten einen Home-Button ein."""
-    button_html = '<p><a class="md-button" href="/">🏠 Zur Startseite</a></p>\n\n'
+    button_html = '<p><a class="md-button" href="https://schachwelzheim.github.io/schachwelzheim/"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/homeassistant.svg" /></a></p>\n\n'
     
     for root, dirs, files in os.walk(docs_dir):
         for file in files:
