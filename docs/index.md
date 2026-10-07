@@ -23,12 +23,12 @@ if (heute > endDatum) {
 });
 </script>
 
+**Kommt vorbei** in den **[Schach AGs](./jugend/schach-ags)**, ins **[Jugendtraining](./verein/jugend)** oder zum **[Schach für alle](./verein/alle)**.
+
 * Schau im Bereich **[Aktuelles](./aktuelles)** vorbei für die neuesten Ereignisse.
 * Informiere dich über Aktivitäten für **[Kinder und Jugendliche](./jugend)** und über die Arbeit unseres **[Schachvereins](./verein)**.
 
 Wir freuen uns über alle Schachbegeisterten, die mit uns am Brett zusammenkommen möchten.
-
-Kommt vorbei in den **[Schach AGs](./jugend/schach-ags)**, ins **[Jugendtraining](./verein/jugend)** oder zum **[Schach für alle](./verein/alle)**.
 
 Wir freuen uns auf Euch 💚
 
