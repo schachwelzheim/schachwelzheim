@@ -1,3 +1,1 @@
 # Themen - Aktuelles
-
-[TAGS]
