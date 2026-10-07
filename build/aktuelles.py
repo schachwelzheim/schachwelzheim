@@ -190,16 +190,17 @@ def build_index(posts):
 
     for post in posts:
         date = (
-            f"**[{post['date']}]** "
+            f"### {post['date']} "
             if post["date"]
-            else ""
+            else "### "
         )
 
         index_content += (
-            f"* {date}"
-            f"**[{post['title']}]({post['filename']})** "
-            f"– {post['teaser']} "
+            f"{date}"
+            f"[{post['title']}]({post['filename']})\n"
+            f"{post['teaser']} "
             f"[weiterlesen]({post['filename']})\n"
+            f"---\n"
         )
 
     write_file(path, index_content)
