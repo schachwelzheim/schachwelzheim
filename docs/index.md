@@ -2,7 +2,7 @@
 
 <img src="assets/images/logo.png" width="130" alt="Schach Welzheim Logo" style="margin-bottom: 10px;" />
 
-<H1>Willkommen bei Schach in Welzheim</H1>
+<H1>Willkommen bei<br>Schach in Welzheim</H1>
 
 <i>Dein Portal für alle Schachaktivitäten in Welzheim.</i>
 
@@ -71,15 +71,12 @@ Wir freuen uns über alle Schachbegeisterten, die mit uns am Brett zusammenkomme
 <a href="https://www.instagram.com/schachwelzheim" target="_blank" title="Instagram" style="margin: 0 12px; text-decoration: none;">
   <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" width="26" height="26" alt="Instagram" style="vertical-align: middle;" />
 </a>
-
 <a href="mailto:schach@tsfwelzheim.de" title="E-Mail schreiben" style="margin: 0 12px; text-decoration: none;">
   <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/minutemailer.svg" width="26" height="26" alt="E-Mail" style="vertical-align: middle;" />
 </a>
-
 <a href="./impressum" title="Impressum" style="margin: 0 12px; text-decoration: none;">
   <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gitbook.svg" width="26" height="26" alt="Impressum" style="vertical-align: middle;" />
 </a>
-
 <a href="./datenschutzerklaerung" title="Datenschutzerklärung" style="margin: 0 15px; text-decoration: none;">
   <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/letsencrypt.svg" width="24" height="24" alt="Datenschutz" style="vertical-align: middle; filter: grayscale(100%);" />
 </a>
