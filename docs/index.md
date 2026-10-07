@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     Wettkampfschach, Aufstellungen und Spieltage unserer Teams im Ligabetrieb.
 
-    [→ Schach für alle](./verein/mannschaften)
+    [→ Mannschaften](./verein/mannschaften)
 
 -   __Aktuelles & Berichte__
 
