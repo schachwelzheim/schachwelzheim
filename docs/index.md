@@ -31,25 +31,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     Spannendes Jugendtraining, Schach-AGs an Schulen und erste Turniererfahrungen.
 
-    [→ Jugendbereich entdecken](./jugend)
+    🎓 [Jugendbereich entdecken](./jugend)
 
 -   __Für Erwachsene & Alle__
 
     Egal ob Anfänger oder erfahrener Vereinsspieler – komm zu unserem Offenen Schachabend.
 
-    [→ Schach für alle](./verein/alle)
+    ☕ [Schach für alle](./verein/alle)
 
 -   __Mannschaften & Liga__
 
     Wettkampfschach, Aufstellungen und Spieltage unserer Teams im Ligabetrieb.
 
-    [→ Mannschaften](./verein/mannschaften)
+    🏆 [Mannschaften](./verein/mannschaften)
 
 -   __Aktuelles & Berichte__
 
     Bleibe auf dem Laufenden über Turniere, Ergebnisse und Vereinsaktivitäten.
 
-    [→ Zu den News](./aktuelles)
+    📢 [Zu den News](./aktuelles)
 
 </div>
 
