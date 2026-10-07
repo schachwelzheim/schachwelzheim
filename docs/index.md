@@ -51,12 +51,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     🗺️ [Zur Karte](https://schachwelzheim.github.io/wam-karte/)
     
+-   __Termine & Saison-Highlights__
+
+    Alle anstehenden Turniere, Spieltage und Saison-Highlights im Überblick.
+    
+    🗓️ [Zu den Terminen](./termine)
+    
 -   __Aktuelles & Berichte__
 
     Bleibe auf dem Laufenden über Turniere, Ergebnisse und Vereinsaktivitäten.
 
     📢 [Zu den News](./aktuelles)
-
+    
 </div>
 
 ## Komm einfach vorbei!
