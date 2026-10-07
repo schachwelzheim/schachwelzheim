@@ -23,7 +23,7 @@ def slugify(text):
         "ß": "ss",
     }
 
-    for old, new in replacements.items():
+    for old, new, in replacements.items():
         text = text.replace(old, new)
 
     text = re.sub(r"[^a-z0-9]+", "-", text)
@@ -47,16 +47,14 @@ def collect_tagged_pages():
     pages = []
 
     for root, _, files in os.walk(DOCS_DIR):
-        if "themen" in root.split(os.sep):
+        if "tags" in root.split(os.sep) or "themen" in root.split(os.sep):
             continue
 
         for filename in files:
             if not filename.endswith(".md"):
                 continue
 
-            if filename in {
-                "aktuelles-tags.md",
-            }:
+            if filename == "aktuelles-tags.md":
                 continue
 
             path = os.path.join(root, filename)
@@ -107,12 +105,11 @@ def build_tags():
         '<div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">',
     ]
 
-    # 1. Obere Tag-Wolke mit reinen Ankern auf derselben Seite (#slug)
+    # 1. Obere Tag-Wolke mit Ankern (#slug)
     for tag in sorted(tags, key=str.lower):
         slug = slugify(tag)
         if not slug:
             continue
-        # Führt direkt zum Anker #slug auf derselben Seite
         lines.append(f'  <a href="#{slug}" class="md-tag">{tag}</a>')
 
     lines.append('</div>')
@@ -120,13 +117,13 @@ def build_tags():
     lines.append("---")
     lines.append("")
 
-    # 2. Detaillierte Abschnitte für jeden Tag unten auf derselben Seite
+    # 2. Detaillierte Abschnitte für jeden Tag exakt EINMALig unten aufgeführt
     for tag, tag_pages in sorted(tags.items(), key=lambda item: item[0].lower()):
         slug = slugify(tag)
         if not slug:
             continue
 
-        # MkDocs generiert aus dieser Überschrift automatisch das Ziel für den Anker (#slug)
+        # Überschrift dient gleichzeitig als Sprungziel (#slug)
         lines.append(f"## {tag}")
         lines.append("")
 
