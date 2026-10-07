@@ -94,10 +94,6 @@ def inject_date_into_post(filename, date_str):
     path = os.path.join(AKTUELLES_DIR, filename)
     content = read_file(path)
 
-    # Prüfen, ob das Datum bereits im Inhalt steht, um Duplikate zu vermeiden
-    if date_str in content:
-        return
-
     lines = content.splitlines()
     new_lines = []
     title_found = False
