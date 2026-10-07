@@ -9,22 +9,19 @@
 Hier erfährst du alles rund um Schachaktivitäten in Welzheim. Vor allem wann und wo Du Schach spielen kannst.
 
 <div id="zeitgesteuerter-text">
-<strong>Mach mit!</strong> Bei der [Stadtmeisterschaft](./aktuelles/2026-10-07/) oder beim [Familien-und Freundeturnier](./aktuelles/2026-09-29).
+<strong>Mach mit!</strong> Bei der [Stadtmeisterschaft](./aktuelles/2026-10-07/) oder beim [Familien- und Freundeturnier](./aktuelles/2026-09-29).
 </div>
 <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const heute = new Date();
-            
-            // HIER DAS DATUM ANPASSEN (Format: JAHR-MONAT-TAGTStunde:Minute:Sekunde)
-            const endDatum = new Date("2026-11-06T23:59:59"); 
+  const heute = new Date();
+  const endDatum = new Date("2026-11-06T23:59:59"); 
 
-            if (heute > endDatum) {
-                document.getElementById("zeitgesteuerter-text").style.display = "none";
-            }
-        });
-    </script>
+if (heute > endDatum) {
+        document.getElementById("zeitgesteuerter-text").style.display = "none";
+  }
+});
+</script>
 
-    
 * Schau im Bereich **[Aktuelles](./aktuelles)** vorbei für die neuesten Ereignisse.
 * Informiere dich über Aktivitäten für **[Kinder und Jugendliche](./jugend)** und über die Arbeit unseres **[Schachvereins](./verein)**.
 
