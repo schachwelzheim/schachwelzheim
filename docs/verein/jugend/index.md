@@ -11,7 +11,7 @@ Der wöchentlicher Trainingsbetrieb ist in zwei Leistungsgruppen unterteilt, um 
 * **Fortgeschrittenentraining:** Donnerstags von 17:00 bis 18:00 Uhr.  
   *Für alle, die bereits sicher spielen und ihre Taktik, Eröffnungs- und Endspielkenntnisse vertiefen möchten.*
 
-Gespielt wird im [Vereinsheim](../spiellokal).
+📍 Gespielt wird im [Vereinsheim](../spiellokal).
 
 ---
 
