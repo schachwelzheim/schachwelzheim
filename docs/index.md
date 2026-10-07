@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
 ## Entdecke unsere Angebote
 
 <div class="grid cards" markdown>
+  
 -   __Für Kinder & Jugendliche__
 
     Spannendes Jugendtraining, Schach-AGs an Schulen und erste Turniererfahrungen.
