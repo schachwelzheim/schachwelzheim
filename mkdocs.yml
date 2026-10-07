@@ -37,8 +37,8 @@ plugins:
 markdown_extensions:
   - attr_list
   - pymdownx.snippets
+  - pymdownx.emoji
   - md_in_html
-  - def_list
 
 extra:
   generator: false
