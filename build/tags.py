@@ -105,7 +105,7 @@ def build_tags():
         '<div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">',
     ]
 
-    # 1. Obere Tag-Wolke mit Ankern (#slug)
+    # Obere Tag-Wolke mit Ankern (#slug)
     for tag in sorted(tags, key=str.lower):
         slug = slugify(tag)
         if not slug:
