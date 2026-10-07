@@ -37,6 +37,7 @@ plugins:
 markdown_extensions:
   - attr_list
   - pymdownx.snippets
+  - pymdownx.grids
 
 extra:
   generator: false
