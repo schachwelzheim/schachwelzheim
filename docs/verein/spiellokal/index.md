@@ -1,6 +1,6 @@
 # Spiellokal
 
-Der Schachverein Welzheim bietet seine [Trainings](../trainings)
+Der Schachverein Welzheim bietet seine Trainings
 im Vereinsheim des TSF Welzheim e.V. an.
 
 * **Ort:** TSF-Geschäftsstelle
