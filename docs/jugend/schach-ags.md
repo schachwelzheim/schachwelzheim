@@ -25,7 +25,7 @@ Zurzeit gibt es an drei Schulen aktive Schach-AGs.
 ### Kastell-Realschule
 
 * Obwohl die Kastell-Realschule keine offizielle Schach-AG anbietet, ist Schach auch hier vertreten.
-* Ehemalige Schülerinnen und Schüler, die bereits an der Hofgarten-Grundschule oder der Bürgfeld-Gemeinschaftsschule das Schachspiel gelernt haben und erfolgreich spielen, gehen regelmäßig als Team der Kastell-Realschule bei Bezirksturnieren an den Start.
+* Schülerinnen und Schüler, die bereits in der Grundschule, Daheim oder im Verein das Schachspiel gelernt haben und erfolgreich spielen, gehen regelmäßig als Team der Kastell-Realschule bei Bezirksturnieren an den Start.
 * Highlight: [1. Platz bei der Bezirksmeisterschaft 2026](https://krswelzheim.de/index.php/11433/1-platz-bei-der-schulschachmeisterschaft-2026/)!
 
 ---
