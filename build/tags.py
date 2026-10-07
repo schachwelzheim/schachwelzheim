@@ -117,22 +117,6 @@ def build_tags():
     lines.append("---")
     lines.append("")
 
-    # 2. Detaillierte Abschnitte für jeden Tag exakt EINMALig unten aufgeführt
-    for tag, tag_pages in sorted(tags.items(), key=lambda item: item[0].lower()):
-        slug = slugify(tag)
-        if not slug:
-            continue
-
-        # Überschrift dient gleichzeitig als Sprungziel (#slug)
-        lines.append(f"## {tag}")
-        lines.append("")
-
-        for page in sorted(tag_pages, key=lambda item: item["title"].lower()):
-            target = page["path"]
-            link = relative_link("aktuelles/aktuelles-tags.md", target)
-            lines.append(f"* [{page['title']}]({link})")
-
-        lines.append("")
 
     write_file(path, "\n".join(lines))
 
