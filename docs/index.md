@@ -2,9 +2,9 @@
 
 <img src="assets/images/logo.png" width="130" alt="Schach Welzheim Logo" style="margin-bottom: 10px;" />
 
-# Willkommen bei Schach in Welzheim
+<H1>Willkommen bei Schach in Welzheim</H1>
 
-*Dein Portal für alle Schachaktivitäten in Welzheim.*
+<i>Dein Portal für alle Schachaktivitäten in Welzheim.</i>
 
 </div>
 
