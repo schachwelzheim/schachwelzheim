@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-## Entdecke unsere Angebote
+## Entdecke das Schachangebot in Welzheim
 
 <div class="grid cards" markdown>
   
