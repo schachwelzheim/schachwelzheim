@@ -38,6 +38,7 @@ markdown_extensions:
   - attr_list
   - pymdownx.snippets
   - pymdownx.grids
+  - def_list
 
 extra:
   generator: false
