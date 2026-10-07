@@ -3,12 +3,10 @@
 <img src="assets/images/logo.png" width="130" alt="Schach Welzheim Logo" style="margin-bottom: 10px;" />
 
 <H1>Willkommen bei<br>Schach in Welzheim</H1>
-
+<hr>
 <i>Dein Portal für alle Schachaktivitäten in Welzheim.</i>
-
+<hr>
 </div>
-
----
 
 <div id="zeitgesteuerter-text" style="background: var(--md-primary-bg-color, #f3f4f6); padding: 15px 20px; border-left: 4px solid var(--md-primary-fg-color, #4f46e5); border-radius: 4px; margin-bottom: 25px;">
 <strong>🎯 Aktueller Tipp:</strong><br>Mach mit bei der <a href="./aktuelles/2026-10-07/">Stadtmeisterschaft</a> oder beim <a href="./aktuelles/2026-09-29/">Familien- und Freundeturnier</a>!
@@ -54,8 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
     [→ Zu den News](./aktuelles)
 
 </div>
-
----
 
 ## Komm einfach vorbei!
 
