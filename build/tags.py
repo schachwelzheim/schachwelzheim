@@ -110,7 +110,7 @@ def build_tags():
         slug = slugify(tag)
         if not slug:
             continue
-        lines.append(f'  <a href="#{slug}" class="md-tag">{tag}</a>')
+        lines.append(f'  <a href="#tag:{slug}" class="md-tag">{tag}</a>')
 
     lines.append('</div>')
     lines.append("")
