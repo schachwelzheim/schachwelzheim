@@ -23,12 +23,16 @@ if (heute > endDatum) {
 });
 </script>
 
-**Kommt vorbei** in den **[Schach AGs](./jugend/schach-ags)**, ins **[Jugendtraining](./verein/jugend)** oder zum **[Schach für alle](./verein/alle)**.
+**Komm vorbei** in den **[Schach AGs](./jugend/schach-ags)**, ins **[Jugendtraining](./verein/jugend)** oder zum **[Schach für alle](./verein/alle)**.
 
-* Schau im Bereich **[Aktuelles](./aktuelles)** vorbei für die neuesten Ereignisse.
-* Informiere dich über Aktivitäten für **[Kinder und Jugendliche](./jugend)** und über die Arbeit unseres **[Schachvereins](./verein)**.
+Im Bereich **[Aktuelles](./aktuelles)** findest Du Berichte rund um Schach in Welzheim.
+
+Hier findest Du Aktivitäten für **[Kinder und Jugendliche](./jugend)** und über die Arbeit unseres **[Schachvereins](./verein)**.
 
 Wir freuen uns über alle Schachbegeisterten, die mit uns am Brett zusammenkommen möchten.
+
+Meldet Euch bei **Fragen** per [Mail](mailto:schach@tsfwelzheim.de,anke.werner@svw.de?subject=Kontakt%20per%20Homepage)!
+
 
 Wir freuen uns auf Euch 💚
 
