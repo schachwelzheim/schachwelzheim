@@ -86,6 +86,35 @@ def get_images(post_name):
     )
 
 
+def inject_date_into_post(filename, date_str):
+    """Fügt das Datum automatisch direkt unter den Haupttitel der Beitragsseite ein."""
+    if not date_str:
+        return
+
+    path = os.path.join(AKTUELLES_DIR, filename)
+    content = read_file(path)
+
+    # Prüfen, ob das Datum bereits im Inhalt steht, um Duplikate zu vermeiden
+    if date_str in content:
+        return
+
+    lines = content.splitlines()
+    new_lines = []
+    title_found = False
+
+    for line in lines:
+        new_lines.append(line)
+        # Suchen nach der Hauptüberschrift des Beitrags (# Titel)
+        if line.startswith("# ") and not title_found:
+            title_found = True
+            # Eine kleine Leerzeile und das Datum als dezenter Text (oder kursiv/fett) eingefügt
+            new_lines.append("")
+            new_lines.append(f"*{date_str}*")
+            new_lines.append("")
+
+    write_file(path, "\n".join(new_lines))
+
+
 def build_gallery(filename, images):
     path = os.path.join(AKTUELLES_DIR, filename)
 
@@ -127,11 +156,17 @@ def collect_posts():
         if not title:
             title = name.replace("-", " ").capitalize()
 
+        date_str = format_date(filename)
+
+        # Datum direkt in die Beitragsdatei einfügen, falls im Datumsformat
+        if date_str:
+            inject_date_into_post(filename, date_str)
+
         posts.append({
             "filename": filename,
             "title": title,
             "teaser": get_teaser(content),
-            "date": format_date(filename),
+            "date": date_str,
             "images": get_images(name),
         })
 
@@ -189,3 +224,4 @@ def build_aktuelles():
     build_index(posts)
 
     return posts
+    
