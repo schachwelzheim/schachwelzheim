@@ -25,9 +25,7 @@ if (heute > endDatum) {
 
 **Komm vorbei** in den **[Schach AGs](./jugend/schach-ags)**, ins **[Jugendtraining](./verein/jugend)** oder zum **[Schach für alle](./verein/alle)**.
 
-Im Bereich **[Aktuelles](./aktuelles)** findest Du Berichte rund um Schach in Welzheim.
-
-Hier findest Du Aktivitäten für **[Kinder und Jugendliche](./jugend)** und über die Arbeit unseres **[Schachvereins](./verein)**.
+Im Bereich **[Aktuelles](./aktuelles)** findest Du Berichte rund um Schach in Welzheim und hier findest Du Aktivitäten für **[Kinder und Jugendliche](./jugend)** und über die Arbeit unseres **[Schachvereins](./verein)**.
 
 Wir freuen uns über alle Schachbegeisterten, die mit uns am Brett zusammenkommen möchten.
 
