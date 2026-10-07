@@ -28,19 +28,17 @@ document.addEventListener("DOMContentLoaded", function() {
 ## Entdecke unsere Angebote
 
 <div class="grid cards" markdown>
-<div markdown>
 -   __Für Kinder & Jugendliche__
 
     Spannendes Jugendtraining, Schach-AGs an Schulen und erste Turniererfahrungen.
 
     [:octicons-arrow-right-24: Jugendbereich entdecken](./jugend)
-</div>
 
 -   __Für Erwachsene & Alle__
 
     Egal ob Anfänger oder erfahrener Vereinsspieler – komm zu unserem Offenen Schachabend.
 
-        [:octicons-arrow-right-24: Schach für alle](./verein/alle)
+    [:octicons-arrow-right-24: Schach für alle](./verein/alle)
 
 -   __Mannschaften & Liga__
 
