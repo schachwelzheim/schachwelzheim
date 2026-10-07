@@ -11,7 +11,7 @@
 ---
 
 <div id="zeitgesteuerter-text" style="background: var(--md-primary-bg-color, #f3f4f6); padding: 15px 20px; border-left: 4px solid var(--md-primary-fg-color, #4f46e5); border-radius: 4px; margin-bottom: 25px;">
-<strong>🎯 Aktueller Tipp:</strong> Mach mit bei der <a href="./aktuelles/2026-10-07/">Stadtmeisterschaft</a> oder beim <a href="./aktuelles/2026-09-29/">Familien- und Freundeturnier</a>!
+<strong>🎯 Aktueller Tipp:</strong><br>Mach mit bei der <a href="./aktuelles/2026-10-07/">Stadtmeisterschaft</a> oder beim <a href="./aktuelles/2026-09-29/">Familien- und Freundeturnier</a>!
 </div>
 
 <script>
