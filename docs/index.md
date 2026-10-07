@@ -67,7 +67,7 @@ Wir freuen uns über alle Schachbegeisterten, die mit uns am Brett zusammenkomme
 <a href="https://www.instagram.com/schachwelzheim" target="_blank" title="Instagram" style="margin: 0 12px; text-decoration: none;">
   <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" width="26" height="26" alt="Instagram" style="vertical-align: middle;" />
 </a>
-<a href="mailto:schach@tsfwelzheim.de" title="E-Mail schreiben" style="margin: 0 12px; text-decoration: none;">
+<a href="mailto:schach@tsfwelzheim.de,anke.werner@svw.de?subject=Kontakt%20per%20Homepage" title="E-Mail schreiben" style="margin: 0 12px; text-decoration: none;">
   <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/minutemailer.svg" width="26" height="26" alt="E-Mail" style="vertical-align: middle;" />
 </a>
 <a href="./impressum" title="Impressum" style="margin: 0 12px; text-decoration: none;">
