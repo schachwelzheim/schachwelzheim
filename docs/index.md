@@ -45,6 +45,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     🏆 [Mannschaften](./verein/mannschaften)
 
+-   __Interaktive Turnierkarte__
+
+    Finde Turniere, Spielorte und Aktivitäten interaktiv auf der Karte.
+
+    🗺️ [Zur Karte](https://schachwelzheim.github.io/wam-karte/)
+    
 -   __Aktuelles & Berichte__
 
     Bleibe auf dem Laufenden über Turniere, Ergebnisse und Vereinsaktivitäten.
