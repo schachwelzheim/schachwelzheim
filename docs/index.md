@@ -33,25 +33,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     Spannendes Jugendtraining, Schach-AGs an Schulen und erste Turniererfahrungen.
 
-    [:octicons-arrow-right-24: Jugendbereich entdecken](./jugend)
+    [→ Jugendbereich entdecken](./jugend)
 
 -   __Für Erwachsene & Alle__
 
     Egal ob Anfänger oder erfahrener Vereinsspieler – komm zu unserem Offenen Schachabend.
 
-    [:octicons-arrow-right-24: Schach für alle](./verein/alle)
+    [→ Schach für alle](./verein/alle)
 
 -   __Mannschaften & Liga__
 
     Wettkampfschach, Aufstellungen und Spieltage unserer Teams im Ligabetrieb.
 
-    [:octicons-arrow-right-24: Schach für alle](./verein/mannschaften)
+    [→ Schach für alle](./verein/mannschaften)
 
 -   __Aktuelles & Berichte__
 
     Bleibe auf dem Laufenden über Turniere, Ergebnisse und Vereinsaktivitäten.
 
-    [:octicons-arrow-right-24: Zu den News](./aktuelles)
+    [→ Zu den News](./aktuelles)
 
 </div>
 
