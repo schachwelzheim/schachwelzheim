@@ -4,7 +4,7 @@ Hier findest du alle kommenden Turniere, Spieltage, Mannschaftskämpfe und Termi
 
 ## Nächste Termine
 
-| Datum | Veranstaltung / Begegnung | Details & Ort |
+| Datum | Veranstaltung / Begegnung | Details |
 | :--- | :--- | :--- |
 | **11/26 - 07/27** | Stadtmeisterschaft Welzheim | [Zum Beitrag](../aktuelles/2026-10-07/) |
 | **07.11.2026** | 2. Familien- und Freundeturnier | [Zum Beitrag](../aktuelles/2026-09-29/) |
