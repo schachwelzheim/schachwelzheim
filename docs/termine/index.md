@@ -11,9 +11,9 @@ Hier findest du alle kommenden Turniere, Spieltage, Mannschaftskämpfe und Termi
 
 ## Regelmäßige Termine & Spielbetrieb
 
-*   **Kinder und Jugendliche:** Wöchentlich an den beteiligten Schulen und im Vereinsheim. [Mehr Infos...](./jugend/).
-*   **Schach für Alle:** Für alle die Just for fun spielen möchten. [Mehr Infos...](./verein/alle).
-*   **Mannschafts- & Ligabetrieb:** Unsere Teams kämpfen in der laufenden Saison an den angesetzten Spieltagen um Punkte. Alle Aufstellungen und Termine findest du im [Mannschaftsbereich](./verein/mannschaften).
+*   **Kinder und Jugendliche:** Wöchentlich an den beteiligten Schulen und im Vereinsheim. [Mehr Infos...](../jugend/).
+*   **Schach für Alle:** Für alle die Just for fun spielen möchten. [Mehr Infos...](../verein/alle).
+*   **Mannschafts- & Ligabetrieb:** Unsere Teams kämpfen in der laufenden Saison an den angesetzten Spieltagen um Punkte. Alle Aufstellungen und Termine findest du im [Mannschaftsbereich](../verein/mannschaften).
 
 🗺️ **Tipp:** Spielorte und Turniere in der Umgebung findest du auch übersichtlich auf unserer [interaktiven Turnierkarte](https://schachwelzheim.github.io/wam-karte/).
 
