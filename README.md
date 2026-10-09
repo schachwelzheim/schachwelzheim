@@ -29,10 +29,11 @@ Passend zu den Berichten werden Bilder vollautomatisch über eine Ordnerstruktur
 
 ## ⚙️ Erklärung der Attributliste (`attr_list`)
 
-Die in der `mkdocs.yml` aktivierte Erweiterung **`attr_list`** ist eine Markdown-Erweiterung, mit der man HTML-Attribute (wie CSS-Klassen oder Styles) direkt an normale Markdown-Elemente anhängen kann, ohne reines HTML schreiben zu müssen.
+Die in der `mkdocs.yml` aktivierte Erweiterung **`attr_list`** ist eine Markdown-Erweiterung, mit der man HTML-Attribute (wie CSS-Klassen oder IDs) direkt an Markdown-Elemente anhängen kann, ohne reines HTML schreiben zu müssen.
 
 * **Wofür wird sie genutzt?** 
-  Man kann damit Markdown-Elemente wie Links gezielt mit Design-Klassen des Material-Themes versehen. Ein klassisches Anwendungsbeispiel sind Buttons, um normale Links in farbige Klick-Buttons im Corporate Design zu verwandeln (z. B. für Google-Maps-Routen).
+  * **Kachel-Grids:** Sie wird zusammen mit `md_in_html` verwendet, um Listen oder Container in moderne, responsive Kacheln zu verwandeln (z. B. für das 6er-Raster auf der Startseite mit der Klasse `class="grid cards"`).
+  * **Element-Anpassung:** Man kann damit gezielt CSS-Klassen oder Formatierungen an Markdown-Blöcke übergeben, um das Layout ohne komplexe HTML-Workarounds flexibel zu steuern.
 
 ---
 
