@@ -1,4 +1,4 @@
-# Schach in Welzheim – Website & Automatisierung
+# Schach in Welzheim<br>Website & Automatisierung
 
 Dieses Repository enthält den Quellcode und die Automatisierung für die Website **„Schach in Welzheim“**, die alle Schachaktivitäten vor Ort – vom Vereinsleben über Mannschaften bis hin zu Schulschach-AGs – zentral bündelt. Die Seite basiert auf [MkDocs](https://www.mkdocs.org/) und dem [Material-Theme](https://squidfunk.github.io/mkdocs-material/) und wird über GitHub Pages automatisch gehostet und bereitgestellt.
 
@@ -7,11 +7,11 @@ Dieses Repository enthält den Quellcode und die Automatisierung für die Websit
 * **Umfassender Fokus:** Zentrale Plattform für alle Schachaktivitäten in Welzheim (Verein, Turniere, Jugendarbeit und Schulschach-AGs).
 * **Modernes Design:** Verwendung des *MkDocs Material*-Themes mit automatischer Erkennung des hellen und dunklen Modus (Light/Dark Mode).
 * **Individuelles Branding:** Angepasst an das lokale Design inklusive Logo und einer maßgeschneiderten Hauptfarbe (Sattes Vereinsgrün: `#106933`).
-* **Vollautomatische Navigation:** Ein integriertes GitHub-Actions-Skript scannt beim Build-Prozess vollautomatisch die Ordnerstruktur, liest Überschriften aus den Markdown-Dateien aus und baut daraus die gesamte Menüstruktur (`mkdocs.yml`).
+* **Symmetrisches 6er-Karten-Raster:** Eine moderne, übersichtliche Startseite mit 6 zentralen Einstiegspunkten (Schule, Mannschaften, Verein, Termine, interaktive Turnierkarte und Aktuelles).
 * **Erweiterungen:** 
   * Aktivierte Volltextsuche (`search`-Plugin) für schnelles Finden von Informationen.
-  * Unterstützung für erweiterte Attributlisten (`attr_list`).
-
+  * Unterstützung für erweiterte Attributlisten (`attr_list`), HTML-Einbettungen (`md_in_html`) und Makros (`mkdocs-macros-plugin`).
+  * 
 ---
 
 ## 📰 Automatisches News- & Beitrags-Management (`/aktuelles/`)
@@ -39,11 +39,22 @@ Die in der `mkdocs.yml` aktivierte Erweiterung **`attr_list`** ist eine Markdown
 ## 🛠️ Technische Struktur & Workflow
 
 ### 1. Konfiguration (`mkdocs.yml`)
-Steuert die globalen Metadaten der Website (Titel, Beschreibung, Autor), das Layout, die Farbpalette, Plugins sowie die Markdown-Erweiterungen.
+Steuert die globalen Metadaten der Website (Titel, Beschreibung, Autor), das Layout, die Farbpalette und das *MkDocs Material*-Theme. 
+Aktivierte Kern-Erweiterungen und Plugins:
+* **`attr_list` & `md_in_html`**: Erlauben die direkte Einbettung von HTML-Strukturen (wie dem 2x3-Karten-Raster auf der Startseite) in Markdown.
+* **`mkdocs-macros-plugin`**: Ermöglicht dynamische Makros (z. B. für automatische Unterseiten-Listen).
+* **Volltextsuche (`search`)**: Schnelles Auffinden von Inhalten auf der gesamten Website.
 
-### 2. GitHub Actions Deployment (`pages.yml`)
+### 2. Seitenstruktur (`docs/`)
+Die Inhalte der Website sind logisch in Ordner unterteilt:
+* `index.md`: Die Hauptseite mit dem 6er-Karten-Layout (Schule, Mannschaften, Verein, Termine, interaktive Karte, Aktuelles).
+* `termine.md`: Zentrale Übersicht für anstehende Turniere, Mannschaftskämpfe und regelmäßige Termine.
+* `aktuelles/`: Ordner für Berichte und Ankündigungen.
+* `verein/` & `jugend/`: Unterseiten für den Ligabetrieb, das Training und offene Angebote („Schach für alle“).
+
+### 3. GitHub Actions Deployment (`pages.yml`)
 Ein automatisierter CI/CD-Workflow (`.github/workflows/pages.yml`), der bei jedem `push` auf den `main`-Branch folgendes ausführt:
-1. Eingerichtet wird eine saubere Python-Umgebung inklusive Installation von `mkdocs-material` und `pyyaml`.
-2. Das integrierte Python-Skript generiert dynamisch die Navigation, sammelt News-Beiträge ein und erstellt automatische Übersichten sowie Bildgalerien.
-3. Die Website wird kompiliert und vollautomatisch auf **GitHub Pages** veröffentlicht (`mkdocs gh-deploy`).
-   
+1. Einrichtung einer sauberen Python-Umgebung inklusive Installation von `mkdocs-material`, `mkdocs-macros-plugin` und weiteren Abhängigkeiten.
+2. Kompilierung der statischen Website aus den Markdown-Dateien.
+3. Vollautomatische Veröffentlichung auf **GitHub Pages** (`mkdocs gh-deploy`): [Schach in Welzheim](https://schachwelzheim.github.io/schachwelzheim/)
+
