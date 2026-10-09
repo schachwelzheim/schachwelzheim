@@ -19,7 +19,7 @@ Zur Zeit sind in 3 Mannschaften für Welzheimer SpielerInnen aktiv.
 
 ### Spielgemeinschaft SF Spraitbach / Welzheim
 
-* Liga: Beginnerliga -Gmünd
+* Liga: Beginnerliga Schwäbisch Gmünd
 * [SpielerInnen und Termine](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/teamPortrait?teamtable=1815843&pageState=vorrunde&championship=Ostalb+25%2F26&group=4189)
 * [Ergebnisse](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Ostalb+25%2F26&group=4189)
 
