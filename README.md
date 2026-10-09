@@ -21,7 +21,7 @@ Im Ordner `docs/aktuelles/` abgelegte Berichte (benannt nach dem Schema `YYYY-MM
 
 ### 🖼️ Automatische Bildzuordnung in Beiträgen
 Passend zu den Berichten werden Bilder vollautomatisch über eine Ordnerstruktur eingebunden:
-1. **Ordnerstruktur:** Zu jedem News-Artikel kann im selben Verzeichnis ein exakt gleichnamiger Unterordner angelegt werden (z. B. `docs/aktuelles/2026-10-02-sieg-und-niederlage/`).
+1. **Ordnerstruktur:** Zu jedem News-Artikel kann im selben Verzeichnis ein exakt gleichnamiger Unterordner angelegt werden (z. B. `docs/aktuelles/2026-10-02/`).
 2. **Erkennung & Einbindung:** Das Skript sucht dort nach gängigen Bildformaten (`.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`) und generiert beim Build-Prozess vollautomatisch am Ende des Artikels den Bereich für die Bilder.
 3. **Lightbox-Galerie:** Die Fotos werden als responsive Galerie (`glightbox`) eingebunden, sodass Besucher sie per Klick in einem großen Popup-Fenster betrachten können.
 
