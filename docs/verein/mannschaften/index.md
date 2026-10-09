@@ -12,7 +12,7 @@ Zur Zeit sind in 3 Mannschaften für Welzheimer SpielerInnen aktiv.
 
 ### 2. Mannschaft (Spielgemeinschaft SG SF 90 Spraitbach/TSF Welzheim 7)
 
-* Liga: A-klasse - Gmünd
+* Liga: A-Klasse - Schwäbisch Gmünd
 * [SpielerInnen und Termine](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/teamPortrait?teamtable=1821449&pageState=vorrunde&championship=Ostalb+26%2F27&group=5895)
 * [Ergebnisse](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Ostalb+26%2F27&group=5895)
 
