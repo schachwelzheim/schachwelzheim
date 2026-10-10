@@ -17,7 +17,7 @@ Hier findest du alle Infos, Runden und Termine zu unseren internen Meisterschaft
 
     Das klassische Langpartie-Turnier um den Titel der Stadtmeisterschaft.
 
-    *   *[Mehr Infos](https://schachwelzheim.github.io/schachwelzheim/aktuelles/2026-10-07/)*
+    *   *[Mehr Infos](../../aktuelles/2026-10-07/)*
 
 </div>
 
