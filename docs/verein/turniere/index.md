@@ -4,7 +4,7 @@ Hier findest du alle Infos, Runden und Termine zu unseren internen Meisterschaft
 
 <div class="grid cards" markdown>
 
--   __⚡ Schnellschach__
+-   __🐇 Schnellschach__
 
     Spannende Partien mit verkürzter Bedenkzeit über das Jahr verteilt im [Vereinsheim](../spiellokal/).
 
