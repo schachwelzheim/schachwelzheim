@@ -1,4 +1,4 @@
-# Vereinsinterne Turniere
+# Turniere im Verein
 
 Hier findest du alle Infos, Runden und Termine zu unseren internen Meisterschaften und Turnieren in Welzheim.
 
