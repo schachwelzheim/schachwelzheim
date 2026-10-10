@@ -12,7 +12,7 @@ Hier findest du alle Infos, Runden und Termine zu unseren internen Meisterschaft
     *   **Runde 2:** Freitag, 18.12.2026
     *   **Runde 3:** Freitag, 19.02.2027
     *   **Runde 4:** Freitag, 23.04.2027
-    *   📊 [Ergebnisse](../turniere/images/SS_R1_2026_27.png)
+    *   📊 [Ergebnisse](../turniere/images/SS_2026_27.png)
 
 -   __🏆 Stadtmeisterschaft__
 
