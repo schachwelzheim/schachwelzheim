@@ -14,7 +14,7 @@ Hier findest du alle Infos, Runden und Termine zu unseren internen Meisterschaft
     *   **Runde 4:** Freitag, 23.04.2027
     *   📊 [Ergebnisse](../turniere/images/SS_2026_27.png)
 
-     __🐇 Blitzschach__
+-   __⚡ Blitzschach__
 
     Spannende Partien mit Kurzer Bedenkzeit (5 Minuten/ Spieler) über das Jahr verteilt im [Vereinsheim](../spiellokal/).
 
