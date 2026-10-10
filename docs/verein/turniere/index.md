@@ -6,13 +6,24 @@ Hier findest du alle Infos, Runden und Termine zu unseren internen Meisterschaft
 
 -   __🐇 Schnellschach__
 
-    Spannende Partien mit verkürzter Bedenkzeit über das Jahr verteilt im [Vereinsheim](../spiellokal/).
+    Spannende Partien mit verkürzter Bedenkzeit (15 Minuten/Spieler) über das Jahr verteilt im [Vereinsheim](../spiellokal/).
 
     *   **Runde 1:** Freitag, 09.10.2026
     *   **Runde 2:** Freitag, 18.12.2026
     *   **Runde 3:** Freitag, 19.02.2027
     *   **Runde 4:** Freitag, 23.04.2027
     *   📊 [Ergebnisse](../turniere/images/SS_2026_27.png)
+
+     __🐇 Blitzschach__
+
+    Spannende Partien mit Kurzer Bedenkzeit (5 Minuten/ Spieler) über das Jahr verteilt im [Vereinsheim](../spiellokal/).
+
+    *   **Runde 1:** Freitag, 06.11.2026
+    *   **Runde 2:** Freitag, 04.12.2026
+    *   **Runde 3:** Freitag, 22.01.2027
+    *   **Runde 4:** Freitag, 09.04.2027
+    *   📊 [Ergebnisse](../turniere/images/BS_2026_27.png)
+
 
 -   __🏆 Stadtmeisterschaft__
 
