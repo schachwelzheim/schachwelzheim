@@ -6,7 +6,7 @@ Hier findest du alle Infos, Runden und Termine zu unseren internen Meisterschaft
 
 -   __⚡ Schnellschach__
 
-    Spannende Partien mit verkürzter Bedenkzeit über das Jahr verteilt im Vereinsheim.
+    Spannende Partien mit verkürzter Bedenkzeit über das Jahr verteilt im [Vereinsheim](../spiellokal/).
 
     *   **Runde 1:** Freitag, 09.10.2026
     *   **Runde 2:** Freitag, 18.12.2026
