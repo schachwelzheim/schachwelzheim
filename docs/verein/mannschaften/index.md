@@ -1,31 +1,36 @@
 # Welzheimer Schach Mannschaften
 
-## Mannschaften
+Zur Zeit sind 3 Mannschaften für Welzheimer SpielerInnen im Ligabetrieb aktiv.
 
-Zur Zeit sind in 3 Mannschaften für Welzheimer SpielerInnen aktiv.
+## Unsere Teams
 
-### 1. Mannschaft 
+<div class="grid cards" markdown>
 
-* Liga: Bezirksliga - Ostalb
-* [Spieler und Termine](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/teamPortrait?teamtable=1815582&pageState=vorrunde&championship=Ostalb+25%2F26&group=4173)
-* [Ergebnisse](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Ostalb+25%2F26&group=4173)
+-   __♟️ 1. Mannschaft__
 
-### 2. Mannschaft (Spielgemeinschaft SG SF 90 Spraitbach/TSF Welzheim 7)
+    *   **Liga:** Bezirksliga - Ostalb
+    *   [👤 Spieler und Termine](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/teamPortrait?teamtable=1815582&pageState=vorrunde&championship=Ostalb+25%2F26&group=4173)
+    *   [📊 Ergebnisse](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Ostalb+25%2F26&group=4173)
 
-* Liga: A-Klasse - Schwäbisch Gmünd
-* [SpielerInnen und Termine](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/teamPortrait?teamtable=1821449&pageState=vorrunde&championship=Ostalb+26%2F27&group=5895)
-* [Ergebnisse](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Ostalb+26%2F27&group=5895)
+-   __🤝 2. Mannschaft__
 
+    *   *Spielgemeinschaft SG SF 90 Spraitbach / TSF Welzheim*
+    *   **Liga:** A-Klasse - Schwäbisch Gmünd
+    *   [👤 SpielerInnen und Termine](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/teamPortrait?teamtable=1821449&pageState=vorrunde&championship=Ostalb+26%2F27&group=5895)
+    *   [📊 Ergebnisse](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Ostalb+26%2F27&group=5895)
 
-### Spielgemeinschaft SF Spraitbach / Welzheim
+-   __🌱 Spielgemeinschaft__
 
-* Liga: Beginnerliga Schwäbisch Gmünd
-* [SpielerInnen und Termine](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/teamPortrait?teamtable=1815843&pageState=vorrunde&championship=Ostalb+25%2F26&group=4189)
-* [Ergebnisse](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Ostalb+25%2F26&group=4189)
+    *   *SF Spraitbach / Welzheim*
+    *   **Liga:** Beginnerliga Schwäbisch Gmünd
+    *   [👤 SpielerInnen und Termine](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/teamPortrait?teamtable=1815843&pageState=vorrunde&championship=Ostalb+25%2F26&group=4189)
+    *   [📊 Ergebnisse](https://svw-schach.liga.nu/cgi-bin/WebObjects/nuLigaSCHACHDE.woa/wa/groupPage?championship=Ostalb+25%2F26&group=4189)
 
-## Trainingszeiten
+</div>
 
-🗓️ Das Mannschaftstraining findet immer **freitags von 20 bis 24 Uhr** statt.
+---
 
-📍 Gespielt wird im [Vereinsheim](../spiellokal).
+## Trainingszeiten & Spielort
 
+*   🗓️ Das Mannschaftstraining findet immer **freitags von 20 bis 24 Uhr** statt.
+*   📍 Gespielt wird im [Vereinsheim](../spiellokal).
