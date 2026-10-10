@@ -2,11 +2,9 @@
 
 Hier findest du alle Infos, Runden und Termine zu unseren internen Meisterschaften und Turnieren in Welzheim.
 
-## **Schnellschachturniere** <br>Saison 2026 / 2027
-
 <div class="grid cards" markdown>
 
--   __⚡ Schnellschach-Serie__
+-   __⚡ Schnellschach__
 
     Spannende Partien mit verkürzter Bedenkzeit über das Jahr verteilt im Vereinsheim.
 
