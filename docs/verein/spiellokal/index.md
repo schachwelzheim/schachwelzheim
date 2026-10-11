@@ -7,7 +7,6 @@ Unsere Spielabende, das Training und die vereinsinternen Turniere finden im Vere
 -   __🏠 TSF-Geschäftsstelle & Vereinsheim__
 
     * **Anschrift:** Burgstraße 39, 73642 Welzheim
-    * **Atmosphäre:** Gemütlicher Clubraum mit optimalen Bedingungen für Turniere und Spielabende.
 
 </div>
 
