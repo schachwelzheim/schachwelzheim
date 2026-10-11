@@ -1,12 +1,34 @@
 # Schachverein Welzheim
 
-Der Schachverein Welzheim ist als 
-[Schachabteilung](https://www.tsfwelzheim.de/abteilungen/schach/) Teil des 
-[TSF Welzheim e.V.](https://www.tsfwelzheim.de).
+Der Schachverein Welzheim ist als [Schachabteilung](https://www.tsfwelzheim.de/abteilungen/schach/) ein fester Bestandteil des [TSF Welzheim e.V.](https://www.tsfwelzheim.de). 
 
-Hier findest Du weitere Informationen zu
+Auf der Website finden Interessierte alle wichtigen Informationen rund um das Vereinsleben:
 
-* [Schach für alle](./alle)
-* [Welzheimer Schachjugend](./jugend)
-* [Welzheimer Schachmannschaften](./mannschaften)
-* und zum [Spiellokal](./spiellokal) im Vereinsheim des TSF
+<div class="grid cards" markdown>
+
+-   __♟️ Schach für alle__
+
+    Ein offener Treff für alle, die ganz unkompliziert und *just for fun* spielen möchten.  
+    👉 [Zum Angebot](./alle)
+
+-   __🌱 Schachjugend__
+
+    Wöchentliches Trainings (außer in den Schulferien) zur Förderung von Kindern und Jugendlichen.  
+    👉 [Zum Jugendbereich](./jugend)
+
+-   __🏆 Mannschaften__
+
+    Aktuelle Ligen, Spieler, Ergebnisse und Trainingszeiten der Mannschaften im Ligabetrieb. 
+    👉 [Zu den Mannschaften](./mannschaften)
+
+-   __📖 Highlights & Historie__
+
+    Ein Überblick über sportliche Erfolge, Meilensteine und große Vereinsjubiläen.  
+    👉 [Zur Historie](./highlights)
+
+-   __🏠 Spiellokal__
+
+    Hier wird trainiert und gespielt:
+    👉 [Zum Spiellokal](./spiellokal)
+
+</div>
