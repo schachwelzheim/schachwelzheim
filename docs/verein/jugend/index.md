@@ -20,8 +20,6 @@ Der wöchentliche Trainingsbetrieb (außer in den Schulferien) ist in zwei Grupp
 
 </div>
 
----
-
 ## 📍 Spielort & Info
 
 * **Ort:** Gespielt wird im [Vereinsheim](../spiellokal).
