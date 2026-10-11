@@ -1,9 +1,16 @@
 # Spiellokal
 
-Der Schachverein Welzheim bietet seine Trainings
-im Vereinsheim des TSF Welzheim e.V. an.
+Unsere Spielabende, das Training und die vereinsinternen Turniere finden im Vereinsheim der TSF Welzheim statt.
 
-* **Ort:** TSF-Geschäftsstelle
-* **Anschrift:** Burgstraße 39, 73642 Welzheim
+<div class="grid cards" markdown>
 
-[👉 Route in Google Maps öffnen](https://maps.google.com/?q=Burgstraße+39,+73642+Welzheim){ .md-button .md-button--primary }
+-   __🏠 TSF-Geschäftsstelle & Vereinsheim__
+
+    * **Anschrift:** Burgstraße 39, 73642 Welzheim
+    * **Atmosphäre:** Gemütlicher Clubraum mit optimalen Bedingungen für Turniere und Spielabende.
+
+</div>
+
+<p align="center">
+  <a href="https://maps.google.com/?q=Burgstraße+39,+73642+Welzheim" class="md-button md-button--primary" target="_blank">👉 Route in Google Maps öffnen</a>
+</p>
