@@ -2,27 +2,27 @@
 
 Die Jugendförderung hat in der Schachabteilung des TSF Welzheim einen hohen Stellenwert. Egal ob erste Schritte auf dem Brett oder fortgeschrittene Schachtaktiken – hier sind Kinder und Jugendliche herzlich willkommen, die Spaß am königlichen Spiel haben.
 
-Der wöchentlicher Trainingsbetrieb ist in zwei Leistungsgruppen unterteilt, um gezielter fördern zu können:
+Der wöchentliche Trainingsbetrieb (außer in den Schulferien) ist in zwei Gruppen unterteilt, um alle Kinder und Jugendlichen optimal zu fördern:
 
 ## Trainingszeiten
 
 <div class="grid cards" markdown>
 
--   __Anfängertraining__
+-   __🌱 Anfängertraining__
 
-* Mittwochs von 15:00 bis 16:00 Uhr.
-* Hier lernen die Kinder spielerisch die Regeln, die Gangart der Figuren und erste grundlegende Mattmotive.
+    * **Wann:** Mittwochs, 15:00 bis 16:00 Uhr *(außer in den Schulferien)*
+    * **Inhalt:** Spielerisches Erlernen der Regeln, Gangart der Figuren und erste grundlegende Mattmotive.
 
--   __Fortgeschrittenentraining__
+-   __♟️ Fortgeschrittenentraining__
 
-* Donnerstags von 17:00 bis 18:00 Uhr
-* Für alle, die bereits sicher spielen und ihre Taktik, Eröffnungs- und Endspielkenntnisse vertiefen möchten.
+    * **Wann:** Donnerstags, 17:00 bis 18:00 Uhr *(außer in den Schulferien)*
+    * **Inhalt:** Vertiefung von Taktik, Eröffnungen und Endspielkenntnissen für alle, die schon sicher spielen.
 
 </div>
 
-📍 Gespielt wird im [Vereinsheim](../spiellokal).
-
 ---
 
-## Mitmachen & Reinschnuppern
-Interessierte Kinder und Jugendliche können jederzeit gerne zu den Trainingszeiten vorbeischauen und ein unverbindliches Schnuppertraining absolvieren. Wir freuen uns auf euch!
+## 📍 Spielort & Info
+
+* **Ort:** Gespielt wird im [Vereinsheim](../spiellokal).
+* **Mitmachen & Reinschnuppern:** Interessierte Kinder und Jugendliche können jederzeit gerne außerhalb der Schulferien zu den Trainingszeiten vorbeischauen und ein unverbindliches Schnuppertraining absolvieren. Wir freuen uns auf euch! 💚
