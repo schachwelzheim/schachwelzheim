@@ -25,4 +25,6 @@ Der wöchentliche Trainingsbetrieb (außer in den Schulferien) ist in zwei Grupp
 ## 📍 Spielort & Info
 
 * **Ort:** Gespielt wird im [Vereinsheim](../spiellokal).
-* **Mitmachen & Reinschnuppern:** Interessierte Kinder und Jugendliche können jederzeit gerne außerhalb der Schulferien zu den Trainingszeiten vorbeischauen und ein unverbindliches Schnuppertraining absolvieren. Wir freuen uns auf euch! 💚
+* **Mitmachen & Reinschnuppern:** Interessierte Kinder und Jugendliche können jederzeit gerne außerhalb der Schulferien zu den Trainingszeiten vorbeischauen und ein unverbindliches Schnuppertraining absolvieren.
+
+Wir freuen uns auf euch! 💚
