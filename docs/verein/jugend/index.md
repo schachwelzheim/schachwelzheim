@@ -6,10 +6,19 @@ Der wöchentlicher Trainingsbetrieb ist in zwei Leistungsgruppen unterteilt, um 
 
 ## Trainingszeiten
 
-* **Anfängertraining:** Mittwochs von 15:00 bis 16:00 Uhr.  
-  *Hier lernen die Kinder spielerisch die Regeln, die Gangart der Figuren und erste grundlegende Mattmotive.*
-* **Fortgeschrittenentraining:** Donnerstags von 17:00 bis 18:00 Uhr.  
-  *Für alle, die bereits sicher spielen und ihre Taktik, Eröffnungs- und Endspielkenntnisse vertiefen möchten.*
+<div class="grid cards" markdown>
+
+-   __Anfängertraining__
+
+* Mittwochs von 15:00 bis 16:00 Uhr.
+* Hier lernen die Kinder spielerisch die Regeln, die Gangart der Figuren und erste grundlegende Mattmotive.
+
+-   __Fortgeschrittenentraining__
+
+* Donnerstags von 17:00 bis 18:00 Uhr
+* Für alle, die bereits sicher spielen und ihre Taktik, Eröffnungs- und Endspielkenntnisse vertiefen möchten.
+
+</div>
 
 📍 Gespielt wird im [Vereinsheim](../spiellokal).
 
