@@ -19,4 +19,3 @@ Jede und jeder ist herzlich willkommen, um bei uns ganz unkompliniert und *just 
 
 * **Ort:** Gespielt wird im [Vereinsheim](../spiellokal/).
 * **Vorkenntnisse:** Egal ob Anfänger, Wiedereinsteiger oder erfahrener Spieler – komm einfach vorbei! 💚
-* 
