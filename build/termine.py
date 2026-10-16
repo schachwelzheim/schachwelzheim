@@ -2,19 +2,21 @@ from datetime import datetime
 import os
 import re
 
+# Pfade
 INPUT_DIR = "content/termine"
-OUTPUT_DIR = "docs/termine"
+OUTPUT_DIR = "docs/verein/termine"
+GESAMT_FILE = "docs/verein/termine/index.md"
 
 
 def parse_date(date_str):
   """Liest ein Datum im Format D.M.YY, DD.MM.YY oder DD.MM.YYYY"""
-  match = re.search(r'(\d{1,2})\.(\d{1,2})\.(\d{2,4})', date_str)
+  match = re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{2,4})", date_str)
   if not match:
     return None
 
   day, month, year = match.groups()
   if len(year) == 2:
-    year = '20' + year
+    year = "20" + year
 
   try:
     return datetime(int(year), int(month), int(day)).date()
@@ -23,14 +25,14 @@ def parse_date(date_str):
 
 
 def format_date_str(date_obj):
-  return date_obj.strftime('%d.%m.%Y')
+  return date_obj.strftime("%d.%m.%Y")
 
 
 def parse_termine_file(filepath):
-  with open(filepath, 'r', encoding='utf-8') as f:
+  with open(filepath, "r", encoding="utf-8") as f:
     lines = f.readlines()
 
-  title = ''
+  title = ""
   entries = []
 
   for line in lines:
@@ -38,18 +40,18 @@ def parse_termine_file(filepath):
     if not line_str:
       continue
 
-    if line_str.startswith('#'):
-      title = line_str.lstrip('#').strip()
+    if line_str.startswith("#"):
+      title = line_str.lstrip("#").strip()
       continue
 
     date_obj = parse_date(line_str)
     if date_obj:
       event_text = re.sub(
-          r'^\s*\d{1,2}\.\d{1,2}\.\d{2,4}\s*', '', line_str
+          r"^\s*\d{1,2}\.\d{1,2}\.\d{2,4}\s*", "", line_str
       ).strip()
       entries.append({
-          'date': date_obj,
-          'text': event_text,
+          "date": date_obj,
+          "text": event_text,
       })
 
   return title, entries
@@ -57,7 +59,7 @@ def parse_termine_file(filepath):
 
 def build_termine():
   if not os.path.exists(INPUT_DIR):
-    print(f'Hinweis: Ordner "{INPUT_DIR}" nicht gefunden.')
+    print(f"Hinweis: Ordner '{INPUT_DIR}' existiert nicht.")
     return
 
   os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -66,81 +68,93 @@ def build_termine():
   all_events = []
   kategorien = []
 
+  # 1. Quelldateien einlesen
   for filename in sorted(os.listdir(INPUT_DIR)):
-    if not filename.endswith('.md'):
+    if not filename.endswith(".md"):
       continue
 
     filepath = os.path.join(INPUT_DIR, filename)
     title, entries = parse_termine_file(filepath)
     if not title:
-      title = filename.replace('.md', '').capitalize()
+      title = filename.replace(".md", "").capitalize()
 
-    # Nach Datum sortieren (älteste zuerst)
-    entries.sort(key=lambda x: x['date'])
-
-    kategorien.append({'slug': filename, 'title': title, 'entries': entries})
+    entries.sort(key=lambda x: x["date"])
+    kategorien.append({"slug": filename, "title": title, "entries": entries})
 
     for entry in entries:
       all_events.append({
-          'date': entry['date'],
-          'category': title,
-          'text': entry['text'],
+          "date": entry["date"],
+          "category": title,
+          "text": entry["text"],
       })
 
-  # 1. Einzelseiten generieren
+  # 2. Einzelseiten in docs/verein/termine/ generieren
   for kat in kategorien:
-    out_filepath = os.path.join(OUTPUT_DIR, kat['slug'])
-    content = f'# {kat["title"]}\n\n'
-    content += '| Datum | Event | Status |\n'
-    content += '| :--- | :--- | :--- |\n'
+    out_filepath = os.path.join(OUTPUT_DIR, kat["slug"])
 
-    for entry in kat['entries']:
-      date_formatted = format_date_str(entry['date'])
-      is_past = entry['date'] < today
+    # Header & Überschrift
+    content = f"# {kat['title']}\n\n"
 
-      if is_past:
-        content += (
-            f"| <del style='color: gray;'>{date_formatted}</del> | <del"
-            f" style='color: gray;'>{entry['text']}</del> | 🛑 *Vergangen* |\n"
-        )
-      else:
-        content += (
-            f'| **{date_formatted}** | {entry["text"]} | ⏳ *Anstehend* |\n'
-        )
+    if not kat["entries"]:
+      content += "*Aktuell keine Termine eingetragen.*\n"
+    else:
+      content += "| Datum | Ereignis | Status |\n"
+      content += "| :--- | :--- | :--- |\n"
 
-    with open(out_filepath, 'w', encoding='utf-8') as f:
+      for entry in kat["entries"]:
+        date_formatted = format_date_str(entry["date"])
+        is_past = entry["date"] < today
+
+        if is_past:
+          content += (
+              f"| <del style='color: #888;'>{date_formatted}</del> | <del"
+              f" style='color: #888;'>{entry['text']}</del> | 🛑 *Vergangen* |\n"
+          )
+        else:
+          content += (
+              f"| **{date_formatted}** | **{entry['text']}** | ⏳ *Anstehend* |\n"
+          )
+
+    with open(out_filepath, "w", encoding="utf-8") as f:
       f.write(content)
 
-  # 2. Gesamte Übersichtsseite (docs/termine/index.md) generieren
-  all_events.sort(key=lambda x: (x['date'], x['category']))
+  # 3. Gesamtseite (docs/verein/termine/index.md) generieren
+  all_events.sort(key=lambda x: (x["date"], x["category"]))
 
-  index_filepath = os.path.join(OUTPUT_DIR, 'index.md')
-  index_content = '# 📅 Gesamter Terminplan\n\n'
-  index_content += '| Datum | Kategorie | Event | Status |\n'
-  index_content += '| :--- | :--- | :--- | :--- |\n'
+  gesamt_content = "# 📅 Gesamter Terminplan\n\n"
+  gesamt_content += (
+      "Hier findest Du alle Termine aller Kategorien in chronologischer"
+      " Reihenfolge.\n\n"
+  )
 
-  for ev in all_events:
-    date_formatted = format_date_str(ev['date'])
-    is_past = ev['date'] < today
+  if not all_events:
+    gesamt_content += "*Keine Termine vorhanden.*\n"
+  else:
+    gesamt_content += "| Datum | Kategorie | Ereignis | Status |\n"
+    gesamt_content += "| :--- | :--- | :--- | :--- |\n"
 
-    if is_past:
-      index_content += (
-          f"| <del style='color: gray;'>{date_formatted}</del> | <del"
-          f" style='color: gray;'>{ev['category']}</del> | <del"
-          f" style='color: gray;'>{ev['text']}</del> | 🛑 |\n"
-      )
-    else:
-      index_content += (
-          f'| **{date_formatted}** | `{ev["category"]}` | **{ev["text"]}** | ⏳'
-          ' |\n'
-      )
+    for ev in all_events:
+      date_formatted = format_date_str(ev["date"])
+      is_past = ev["date"] < today
 
-  with open(index_filepath, 'w', encoding='utf-8') as f:
-    f.write(index_content)
+      if is_past:
+        gesamt_content += (
+            f"| <del style='color: #888;'>{date_formatted}</del> | <del"
+            f" style='color: #888;'>{ev['category']}</del> | <del"
+            f" style='color: #888;'>{ev['text']}</del> | 🛑 |\n"
+        )
+      else:
+        gesamt_content += (
+            f"| **{date_formatted}** | `{ev['category']}` |"
+            f" **{ev['text']}** | ⏳ |\n"
+        )
 
-  print('Termin-Build erfolgreich durchgeführt!')
+  with open(GESAMT_FILE, "w", encoding="utf-8") as f:
+    f.write(gesamt_content)
+
+  print("Termine erfolgreich verarbeitet und Seiten generiert!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
   build_termine()
   
