@@ -2,14 +2,19 @@ from datetime import datetime
 import os
 import re
 
-# Pfade
+# Pfade definieren
 INPUT_DIR = "content/termine"
 OUTPUT_DIR = "docs/verein/termine"
-GESAMT_FILE = "docs/verein/termine/index.md"
+GESAMT_FILE = os.path.join(OUTPUT_DIR, "index.md")
+
+
+def log_debug(msg):
+  """Hilfsfunktion für übersichtliche Debug-Ausgaben"""
+  print(f"[DEBUG - TERMINE] {msg}")
 
 
 def parse_date(date_str):
-  """Liest ein Datum im Format D.M.YY, DD.MM.YY oder DD.MM.YYYY"""
+  """Sucht ein Datum im Format D.M.YY, DD.MM.YY oder DD.MM.YYYY"""
   match = re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{2,4})", date_str)
   if not match:
     return None
@@ -29,19 +34,21 @@ def format_date_str(date_obj):
 
 
 def parse_termine_file(filepath):
+  log_debug(f"Lese Quelldatei: {filepath}")
   with open(filepath, "r", encoding="utf-8") as f:
     lines = f.readlines()
 
   title = ""
   entries = []
 
-  for line in lines:
+  for line_idx, line in enumerate(lines, start=1):
     line_str = line.strip()
     if not line_str:
       continue
 
     if line_str.startswith("#"):
       title = line_str.lstrip("#").strip()
+      log_debug(f"  -> Titel in Zeile {line_idx} gefunden: '{title}'")
       continue
 
     date_obj = parse_date(line_str)
@@ -53,30 +60,55 @@ def parse_termine_file(filepath):
           "date": date_obj,
           "text": event_text,
       })
+      log_debug(
+          f"  -> Termin geparst (Zeile {line_idx}): {format_date_str(date_obj)}"
+          f" | {event_text}"
+      )
+    else:
+      log_debug(
+          f"  [!] Zeile {line_idx} übersprungen (kein Datum erkannt):"
+          f" '{line_str}'"
+      )
 
   return title, entries
 
 
 def build_termine():
+  log_debug("=== Starte Termin-Build ===")
+  log_debug(f"Arbeitsverzeichnis: {os.getcwd()}")
+  log_debug(f"Input-Ordner:  {os.path.abspath(INPUT_DIR)}")
+  log_debug(f"Output-Ordner: {os.path.abspath(OUTPUT_DIR)}")
+
   if not os.path.exists(INPUT_DIR):
-    print(f"Hinweis: Ordner '{INPUT_DIR}' existiert nicht.")
+    log_debug(
+      f"FEHLER: Eingabe-Ordner '{INPUT_DIR}' existiert nicht!"
+      " Abbruch."
+    )
     return
 
   os.makedirs(OUTPUT_DIR, exist_ok=True)
   today = datetime.now().date()
+  log_debug(f"Heute angewandtes Vergleichsdatum: {today}")
 
   all_events = []
   kategorien = []
 
-  # 1. Quelldateien einlesen
-  for filename in sorted(os.listdir(INPUT_DIR)):
-    if not filename.endswith(".md"):
-      continue
+  files = [f for f in os.listdir(INPUT_DIR) if f.endswith(".md")]
+  log_debug(f"Gefundene .md Dateien in '{INPUT_DIR}': {files}")
 
+  if not files:
+    log_debug(f"WARNUNG: Keine .md Dateien in '{INPUT_DIR}' gefunden!")
+
+  # 1. Quelldateien einlesen
+  for filename in sorted(files):
     filepath = os.path.join(INPUT_DIR, filename)
     title, entries = parse_termine_file(filepath)
+
     if not title:
       title = filename.replace(".md", "").capitalize()
+      log_debug(
+          f"  -> Kein Titel in Datei. Verwende Fallback-Titel: '{title}'"
+      )
 
     entries.sort(key=lambda x: x["date"])
     kategorien.append({"slug": filename, "title": title, "entries": entries})
@@ -89,10 +121,13 @@ def build_termine():
       })
 
   # 2. Einzelseiten in docs/verein/termine/ generieren
+  log_debug("--- Generiere Einzelseiten ---")
   for kat in kategorien:
     out_filepath = os.path.join(OUTPUT_DIR, kat["slug"])
+    log_debug(
+        f"Schreibe Einzelseite: {out_filepath} ({len(kat['entries'])} Termine)"
+    )
 
-    # Header & Überschrift
     content = f"# {kat['title']}\n\n"
 
     if not kat["entries"]:
@@ -119,7 +154,10 @@ def build_termine():
       f.write(content)
 
   # 3. Gesamtseite (docs/verein/termine/index.md) generieren
+  log_debug("--- Generiere Gesamtübersicht ---")
   all_events.sort(key=lambda x: (x["date"], x["category"]))
+  log_debug(f"Gesamtanzahl aller Termine: {len(all_events)}")
+  log_debug(f"Schreibe Gesamtdatei nach: {GESAMT_FILE}")
 
   gesamt_content = "# 📅 Gesamter Terminplan\n\n"
   gesamt_content += (
@@ -152,9 +190,18 @@ def build_termine():
   with open(GESAMT_FILE, "w", encoding="utf-8") as f:
     f.write(gesamt_content)
 
-  print("Termine erfolgreich verarbeitet und Seiten generiert!")
+  log_debug(f"Prüfe Existenz der erzeugten Datei '{GESAMT_FILE}':")
+  if os.path.exists(GESAMT_FILE):
+    log_debug(
+        f"  [OK] '{GESAMT_FILE}' wurde erfolgreich mit"
+        f" {os.path.getsize(GESAMT_FILE)} Bytes angelegt!"
+    )
+  else:
+    log_debug(f"  [FEHLER] '{GESAMT_FILE}' konnte nicht angelegt werden!")
+
+  log_debug("=== Termin-Build abgeschlossen ===")
 
 
 if __name__ == "__main__":
   build_termine()
-  
+        
