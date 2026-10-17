@@ -1,9 +1,7 @@
-# Spraitbach/TSF Welzheim 2 (A-Klasse)
+# Spraitbach/TSF Welzheim 2
 
-27.9.26 Spraitbach 6 - Sp/Welzheim
-11.10.26 Sp/Welzheim - Leinzell 3
-15.11.26 Schw. Gmünd 6 - Sp/Welzheim
-13.12.26 Sp/Welzheim - Bettringen 2
-14.2.27 Grunbach 7 - Sp/Welzheim
-14.3.27 Sp/Welzheim - Plüderhausen 3
-11.4.27 Schorndorf 5 - Sp/Welzheim
+15.11.2026 Schw. Gmünd 6 - Sp/Welzheim
+13.12.2026 Sp/Welzheim - Bettringen 2
+14.02.2027 Grunbach 7 - Sp/Welzheim
+07.03.2027 Sp/Welzheim - Schw. Gmünd 7
+11.04.2027 Waldstetten 3 - Sp/Welzheim
