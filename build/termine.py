@@ -2,18 +2,20 @@ from datetime import datetime
 import os
 import re
 
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import A4, landscape
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+
 # Dynamische Pfadermittlung (Projekt-Hauptverzeichnis)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 INPUT_DIR = os.path.join(BASE_DIR, "content", "termine")
 OUTPUT_DIR = os.path.join(BASE_DIR, "docs", "verein", "termine")
+
 GESAMT_FILE = os.path.join(OUTPUT_DIR, "index.md")
 MATRIX_FILE = os.path.join(OUTPUT_DIR, "kalender-matrix.md")
-
-
-def log_debug(msg):
-  """Hilfsfunktion für übersichtliche Log-Ausgaben im Build-Prozess"""
-  print(f"[DEBUG - TERMINE] {msg}")
+PDF_FILE = os.path.join(OUTPUT_DIR, "terminplan.pdf")
 
 
 def parse_date(date_str):
@@ -38,23 +40,20 @@ def format_date_str(date_obj):
 
 
 def parse_termine_file(filepath):
-  """Liest eine Termin-Quelldatei ein und verarbeitet Einzel- sowie Zeitraumingaben."""
-  log_debug(f"Lese Quelldatei: {filepath}")
+  """Liest eine Termin-Quelldatei ein und verarbeitet Einzel- sowie Zeitraumingaben (Ferien)."""
   with open(filepath, "r", encoding="utf-8") as f:
     lines = f.readlines()
 
   title = ""
   entries = []
 
-  for line_idx, line in enumerate(lines, start=1):
+  for line in lines:
     line_str = line.strip()
     if not line_str:
       continue
 
-    # Überschrift auslesen
     if line_str.startswith("#"):
       title = line_str.lstrip("#").strip()
-      log_debug(f"  -> Titel in Zeile {line_idx}: '{title}'")
       continue
 
     # 1. Fall: Datumsbereich (z. B. "1.8.26 - 13.9.26 Sommerferien")
@@ -79,10 +78,6 @@ def parse_termine_file(filepath):
             "display_date": disp_date,
             "text": event_text.strip(),
         })
-        log_debug(
-            f"  -> Zeitraum geparst (Zeile {line_idx}): {disp_date} |"
-            f" {event_text.strip()}"
-        )
         continue
 
     # 2. Fall: Einzeldatum (z. B. "6.11.26 Runde 1")
@@ -97,40 +92,122 @@ def parse_termine_file(filepath):
           "display_date": format_date_str(date_obj),
           "text": event_text,
       })
-      log_debug(
-          f"  -> Termin geparst (Zeile {line_idx}):"
-          f" {format_date_str(date_obj)} | {event_text}"
-      )
-    else:
-      log_debug(
-          f"  [!] Zeile {line_idx} übersprungen (kein Datum erkannt):"
-          f" '{line_str}'"
-      )
 
   return title, entries
 
 
-def build_termine():
-  """Hauptfunktion zum Verarbeiten aller Termine und Generieren der Markdown-Seiten."""
-  log_debug("=== Starte Termin-Build ===")
+def generate_pdf_matrix(sorted_upcoming_dates, kat_titles, events_by_date):
+  """Generiert ein DIN A4 Querformat-PDF mit allen anstehenden Terminen als Matrix-Tabelle."""
+  doc = SimpleDocTemplate(
+      PDF_FILE,
+      pagesize=landscape(A4),
+      rightMargin=20,
+      leftMargin=20,
+      topMargin=20,
+      bottomMargin=20,
+  )
 
-  if not os.path.exists(INPUT_DIR):
-    log_debug(
-        f"FEHLER: Eingabe-Ordner '{INPUT_DIR}' existiert nicht! Abbruch."
+  styles = getSampleStyleSheet()
+
+  title_style = ParagraphStyle(
+      "TitleStyle",
+      parent=styles["Heading1"],
+      fontSize=16,
+      leading=20,
+      textColor=colors.HexColor("#1b4332"),
+      spaceAfter=10,
+  )
+
+  header_cell_style = ParagraphStyle(
+      "HeaderCellStyle",
+      parent=styles["Normal"],
+      fontSize=8,
+      leading=10,
+      fontName="Helvetica-Bold",
+      textColor=colors.white,
+      alignment=1,
+  )
+
+  cell_style = ParagraphStyle(
+      "BodyCellStyle",
+      parent=styles["Normal"],
+      fontSize=7,
+      leading=9,
+      textColor=colors.HexColor("#2b2b2b"),
+      alignment=1,
+  )
+
+  date_cell_style = ParagraphStyle(
+      "DateCellStyle",
+      parent=styles["Normal"],
+      fontSize=7,
+      leading=9,
+      fontName="Helvetica-Bold",
+      textColor=colors.HexColor("#1b4332"),
+      alignment=1,
+  )
+
+  elements = [
+      Paragraph("Schach in Welzheim – Anstehende Termine", title_style),
+      Spacer(1, 10),
+  ]
+
+  table_data = [[
+      Paragraph("Datum", header_cell_style)
+  ] + [Paragraph(title, header_cell_style) for title in kat_titles]]
+
+  for d in sorted_upcoming_dates:
+    row = [Paragraph(d.strftime("%d.%m.%Y"), date_cell_style)]
+    for kt in kat_titles:
+      item = events_by_date.get(d, {}).get(kt)
+      val = item[0] if item else ""
+      row.append(Paragraph(val, cell_style))
+    table_data.append(row)
+
+  if len(table_data) > 1:
+    num_cols = len(kat_titles) + 1
+    col_width = 800 / num_cols
+
+    t = Table(table_data, colWidths=[col_width] * num_cols, repeatRows=1)
+    t.setStyle(
+        TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#2d6a4f")),
+            ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+            ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#d3d3d3")),
+            ("ROWBACKGROUNDS", (0, 1), (-1, -1), [
+                colors.HexColor("#f8f9fa"),
+                colors.white,
+            ]),
+            ("TOPPADDING", (0, 0), (-1, -1), 4),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+        ])
     )
+    elements.append(t)
+  else:
+    elements.append(
+        Paragraph(
+            "Aktuell keine anstehenden Termine vorhanden.", styles["Normal"]
+        )
+    )
+
+  doc.build(elements)
+
+
+def build_termine():
+  """Hauptfunktion zum Verarbeiten aller Termine und Generieren der Markdown-Seiten und des PDFs."""
+  if not os.path.exists(INPUT_DIR):
     return
 
   os.makedirs(OUTPUT_DIR, exist_ok=True)
   today = datetime.now().date()
-  log_debug(f"Vergleichsdatum für Vergangenheitscheck: {today}")
 
   all_events = []
   kategorien = []
   all_dates = set()
-  events_by_date = {}  # { date_obj: { category_title: (event_text, is_past) } }
+  events_by_date = {}
 
   files = [f for f in os.listdir(INPUT_DIR) if f.endswith(".md")]
-  log_debug(f"Gefundene Quell-Dateien in '{INPUT_DIR}': {files}")
 
   # 1. Quelldateien einlesen & parsen
   for filename in sorted(files):
@@ -157,15 +234,12 @@ def build_termine():
           "is_past": is_past,
       })
 
-      # Für Matrix-Ansicht (alle Termine inkl. vergangene erfassen)
       all_dates.add(d)
       if d not in events_by_date:
         events_by_date[d] = {}
       events_by_date[d][title] = (entry["text"], is_past)
 
   # 2. Einzelseiten (z. B. docs/verein/termine/blitz.md) erzeugen
-  # -> Alle Termine bleiben sichtbar, vergangene werden ausgegraut
-  log_debug("--- Generiere Einzelseiten ---")
   for kat in kategorien:
     out_filepath = os.path.join(OUTPUT_DIR, kat["slug"])
 
@@ -196,12 +270,14 @@ def build_termine():
       f.write(content)
 
   # 3. Gesamtübersicht (docs/verein/termine/index.md) erzeugen
-  # -> Nur anstehende / zukünftige Termine
-  log_debug("--- Generiere Gesamtübersicht (nur anstehende Termine) ---")
   upcoming_events = [ev for ev in all_events if not ev["is_past"]]
   upcoming_events.sort(key=lambda x: (x["date"], x["category"]))
 
   gesamt_content = "# 📅 Anstehende Termine & Spielplan\n\n"
+  gesamt_content += (
+      "[📄 Terminplan als DIN A4 PDF"
+      " herunterladen](terminplan.pdf){: .md-button .md-button--primary }\n\n"
+  )
   gesamt_content += (
       "Hier findest Du alle anstehenden Termine in chronologischer"
       " Reihenfolge.\n\n"
@@ -223,14 +299,14 @@ def build_termine():
     f.write(gesamt_content)
 
   # 4. Matrix-Ansicht (docs/verein/termine/kalender-matrix.md) erzeugen
-  # -> Alle Termine bleiben enthalten (vergangene ausgegraut & durchgestrichen)
-  log_debug(
-      "--- Generiere Matrix-Ansicht (alle Termine, vergangene ausgegraut) ---"
-  )
   sorted_dates = sorted(list(all_dates))
   kat_titles = [k["title"] for k in kategorien]
 
   matrix_content = "# 📊 Terminplan - Matrix-Ansicht\n\n"
+  matrix_content += (
+      "[📄 Anstehende Termine als A4 PDF"
+      " herunterladen](terminplan.pdf){: .md-button .md-button--primary }\n\n"
+  )
   matrix_content += (
       "| Datum | " + " | ".join(kat_titles) + " | Status |\n"
   )
@@ -243,12 +319,9 @@ def build_termine():
     is_day_past = d < today
 
     row_cells = []
-    has_event = False
-
     for kt in kat_titles:
       item = events_by_date.get(d, {}).get(kt)
       if item:
-        has_event = True
         val, is_item_past = item
         if is_item_past or is_day_past:
           row_cells.append(f"<del style='color: #888;'>{val}</del>")
@@ -271,9 +344,11 @@ def build_termine():
   with open(MATRIX_FILE, "w", encoding="utf-8") as f:
     f.write(matrix_content)
 
-  log_debug("=== Termin-Build erfolgreich abgeschlossen ===")
+  # 5. DIN A4 PDF Matrix generieren (nur anstehende Termine)
+  upcoming_dates = [d for d in sorted_dates if d >= today]
+  generate_pdf_matrix(upcoming_dates, kat_titles, events_by_date)
 
 
 if __name__ == "__main__":
   build_termine()
-  
+    
