@@ -1,0 +1,49 @@
+/* =========================================================
+   Schach Welzheim – Farben
+   ========================================================= */
+
+[data-md-color-primary="custom"] {
+  --md-primary-fg-color: #106933;
+  --md-primary-fg-color--light: #188a44;
+  --md-primary-fg-color--dark: #094721;
+}
+
+
+/* =========================================================
+   Überschriften
+   ========================================================= */
+
+.md-content h1 {
+  color: #106933;
+}
+
+
+/* =========================================================
+   Startseite
+   ========================================================= */
+
+/*
+   MkDocs erzeugt automatisch eine H1 für den Seitentitel.
+   Auf der Startseite gibt es zusätzlich unsere eigene H1.
+
+   Durch .home-page wird ausschließlich die automatisch
+   erzeugte H1 ausgeblendet.
+*/
+
+body:has(.home-page) .md-content__inner > h1:first-child {
+  display: none;
+}
+
+
+/* =========================================================
+   Kopfzeile
+   ========================================================= */
+
+.md-header__title {
+  cursor: pointer;
+}
+
+.md-header__title a {
+  color: inherit;
+  text-decoration: none;
+}
