@@ -12,3 +12,4 @@
 19.12.2026 WAM/WJPT/SSGT Sulzbach/Murr
 24.01.2027 SU Schorndorf 4 - SG SF 90 Spraitbach/TSF Welzheim 8
 28.02.2027 SG SF 90 Spraitbach/TSF Welzheim 8 - SG Bettringen 3
+17.7.27 WAM/WJPT/SSGT in Welzheim
