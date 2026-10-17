@@ -7,7 +7,7 @@ from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
-# Dynamische Pfadermittlung (Projekt-Hauptverzeichnis)
+# Dynamische Pfadermittlung
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 INPUT_DIR = os.path.join(BASE_DIR, "content", "termine")
@@ -17,17 +17,17 @@ GESAMT_FILE = os.path.join(OUTPUT_DIR, "index.md")
 MATRIX_FILE = os.path.join(OUTPUT_DIR, "kalender-matrix.md")
 PDF_FILE = os.path.join(OUTPUT_DIR, "terminplan.pdf")
 
-# Strikte Reihung passend zu den Quell-Dateien / Excel-Spalten
-EXCEL_ORDER_KEYWORDS = [
-    "tsf-welzheim-1",
-    "spraitbach",
-    "blitz",
-    "schnell",
-    "normal",
-    "theorie",
-    "jugend",
-    "turnier",
-    "ferien",
+# EXAKTE REIHENFOLGE DER EXCEL-SPALTEN (Anhand der Titel/Keywords)
+EXCEL_ORDER = [
+    "TSF Welzheim I",
+    "Spraitbach",
+    "Blitz",
+    "Schnell",
+    "Normal",
+    "Theorie",
+    "Jugendschach",
+    "Turniere Aktive",
+    "Ferien",
 ]
 
 
@@ -105,17 +105,19 @@ def parse_termine_file(filepath):
 
 
 def sort_kategorien(kategorien):
-  """Sortiert Kategorien exakt in der Reihenfolge der Excel-Spalten."""
+  """Ordnet Kategorien exakt der EXCEL_ORDER zu"""
 
-  def get_index(kat):
-    slug = kat["slug"].lower()
+  def get_sort_index(kat):
     title = kat["title"].lower()
-    for idx, kw in enumerate(EXCEL_ORDER_KEYWORDS):
-      if kw in slug or kw in title:
-        return idx
-    return 99
+    slug = kat["slug"].lower()
 
-  return sorted(kategorien, key=get_index)
+    for idx, key in enumerate(EXCEL_ORDER):
+      k_lower = key.lower()
+      if k_lower in title or k_lower in slug:
+        return idx
+    return 999
+
+  return sorted(kategorien, key=get_sort_index)
 
 
 def generate_pdf_matrix(sorted_upcoming_dates, kat_titles, events_by_date):
@@ -263,10 +265,11 @@ def build_termine():
           events_by_date[d] = {}
         events_by_date[d][title] = (entry["text"], is_past)
 
+  # WICHTIG: Kategorien sauber nach EXCEL_ORDER sortieren
   kategorien = sort_kategorien(raw_kategorien)
   kat_titles = [k["title"] for k in kategorien]
 
-  # 1. Einzelseiten (z. B. docs/verein/termine/blitz.md)
+  # 1. Einzelseiten
   for kat in kategorien:
     out_filepath = os.path.join(OUTPUT_DIR, kat["slug"])
     content = f"# {kat['title']}\n\n"
@@ -295,7 +298,7 @@ def build_termine():
     with open(out_filepath, "w", encoding="utf-8") as f:
       f.write(content)
 
-  # 2. Gesamtübersicht (index.md) - nur anstehende Termine (ohne Status-Spalte)
+  # 2. Gesamtübersicht (index.md)
   upcoming_events = [ev for ev in all_events if not ev["is_past"]]
   upcoming_events.sort(key=lambda x: (x["date"], x["category"]))
 
