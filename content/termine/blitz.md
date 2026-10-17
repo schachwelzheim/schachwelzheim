@@ -1,6 +1,6 @@
 # Blitz
 
-6.11.26 Runde 1
-4.12.26 Runde 2
-22.1.27 Runde 3
-9.4.27 Runde 4
+06.11.2026 Runde 1
+04.12.2026 Runde 2
+22.01.2027 Runde 3
+09.04.2027 Runde 4
