@@ -2,8 +2,8 @@ import os
 import yaml
 
 from .markdown import (
-    read_file,
     get_title,
+    read_file,
 )
 
 
@@ -13,6 +13,21 @@ IGNORED_FILES = {
     "index.md",
     "aktuelles-tags.md",
 }
+
+# FESTE REIHENFOLGE FÜR DEN ORDNER verein/termine (EXCEL-STRUKTUR)
+TERMINE_ORDER = [
+    "index.md",            # 1. Übersicht
+    "kalender-matrix.md",   # 2. Matrix
+    "tsf-welzheim-1",      # 3. TSF Welzheim I
+    "spraitbach",          # 4. Spraitbach/TSF Welzheim 2
+    "blitz",               # 5. Blitz
+    "schnell",             # 6. Schnell
+    "normal",              # 7. Normal
+    "theorie",             # 8. Theorie
+    "jugend",              # 9. Jugendschach
+    "turnier",             # 10. Turniere Aktive
+    "ferien",              # 11. Ferien
+]
 
 
 def get_page_title(path):
@@ -27,6 +42,29 @@ def get_page_title(path):
     )[0]
 
     return filename.replace("-", " ").capitalize()
+
+
+def is_verein_termine_path(path):
+    """Prüft, ob der angegebene Pfad genau zum Ordner 'verein/termine' gehört."""
+    norm_path = os.path.normpath(path).replace(os.sep, "/")
+    return norm_path.endswith("verein/termine")
+
+
+def sort_termine_items(items):
+    """Sortiert die Navigations-Einträge des Ordners 'verein/termine' strikt nach TERMINE_ORDER."""
+    def get_sort_key(item):
+        val = list(item.values())[0]  # Pfad z. B. 'verein/termine/blitz.md'
+        if isinstance(val, list):
+            val = str(val)
+        
+        val_lower = str(val).lower()
+        
+        for idx, key in enumerate(TERMINE_ORDER):
+            if key in val_lower:
+                return idx
+        return 999
+
+    return sorted(items, key=get_sort_key)
 
 
 def scan_folder(path):
@@ -51,7 +89,6 @@ def scan_folder(path):
                 DOCS_DIR
             ).replace(os.sep, "/")
 
-            # NEU: Ordner nur überspringen, wenn weder index.md noch Unterelemente existieren
             if not os.path.exists(index_path) and not sub_items:
                 continue
 
@@ -76,6 +113,10 @@ def scan_folder(path):
 
             children.extend(sub_items)
 
+            # Prüfen, ob dieser Unterordner exakt 'verein/termine' ist
+            if is_verein_termine_path(full_path):
+                children = sort_termine_items(children)
+
             items.append({
                 folder_title: children
             })
@@ -92,6 +133,10 @@ def scan_folder(path):
             items.append({
                 get_page_title(full_path): relative_path
             })
+
+    # Falls der aktuelle Ordner 'verein/termine' ist, dessen Einträge sortieren
+    if is_verein_termine_path(path):
+        items = sort_termine_items(items)
 
     return items
 
@@ -200,6 +245,10 @@ def build_navigation():
             )
             folder_nav = sub_items
 
+        # Sortierung gezielt anwenden, wenn der Ordner zu verein/termine gehört
+        if is_verein_termine_path(full_path):
+            folder_nav = sort_termine_items(folder_nav)
+
         nav.append({
             title: folder_nav
         })
@@ -212,5 +261,5 @@ def build_navigation():
             f,
             allow_unicode=True,
             sort_keys=False
-        )
+                )
         
