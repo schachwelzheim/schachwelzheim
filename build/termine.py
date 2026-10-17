@@ -326,7 +326,7 @@ def build_termine():
   with open(GESAMT_FILE, "w", encoding="utf-8") as f:
     f.write(gesamt_content)
 
-  # 3. Matrix-Ansicht (kalender-matrix.md) - NUR ANSTEHENDE TERMINE
+  # 3. Matrix-Ansicht (kalender-matrix.md) - NUR ANSTEHENDE TERMINE (ohne Status-Spalte)
   sorted_upcoming_dates = sorted(list(all_dates))
 
   matrix_content = "# 📊 Anstehende Termine - Matrix-Ansicht\n\n"
@@ -334,9 +334,7 @@ def build_termine():
       "[📄 Anstehende Termine als A4 PDF"
       " herunterladen](terminplan.pdf){: .md-button .md-button--primary }\n\n"
   )
-  matrix_content += (
-      "| Datum | " + " | ".join(kat_titles) + " |\n"
-  )
+  matrix_content += "| Datum | " + " | ".join(kat_titles) + " |\n"
   matrix_content += (
       "| :--- | " + " | ".join([":---"] * len(kat_titles)) + " |\n"
   )
