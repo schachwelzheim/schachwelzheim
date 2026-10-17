@@ -8,7 +8,7 @@ from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
-# Dynamische Pfadermittlung
+# Dynamische Pfadermittlung (Projekt-Hauptverzeichnis)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 INPUT_DIR = os.path.join(BASE_DIR, "content", "termine")
@@ -67,6 +67,7 @@ def parse_termine_file(filepath):
       title = line_str.lstrip("#").strip()
       continue
 
+    # Datumsbereich parsen (z. B. "24.10.2026 - 01.11.2026 Herbstferien")
     range_match = re.search(
         r"^(\d{1,2}\.\d{1,2}\.\d{2,4})\s*-\s*(\d{1,2}\.\d{1,2}\.\d{2,4})\s+(.*)$",
         line_str,
@@ -90,6 +91,7 @@ def parse_termine_file(filepath):
         })
         continue
 
+    # Einzeldatum parsen (z. B. "18.10.2026 W1 - Bopfingen 1")
     date_obj = parse_date(line_str)
     if date_obj:
       event_text = re.sub(
@@ -163,6 +165,16 @@ def generate_pdf_matrix(
       alignment=1,
   )
 
+  span_cell_style = ParagraphStyle(
+      "SpanCellStyle",
+      parent=styles["Normal"],
+      fontSize=7,
+      leading=8,
+      fontName="Helvetica-Bold",
+      textColor=colors.HexColor("#1b4332"),
+      alignment=1,
+  )
+
   date_cell_style = ParagraphStyle(
       "DateCellStyle",
       parent=styles["Normal"],
@@ -182,13 +194,50 @@ def generate_pdf_matrix(
       Paragraph("Datum", header_cell_style)
   ] + [Paragraph(title, header_cell_style) for title in kat_titles]]
 
-  for d in sorted_upcoming_dates:
+  t_styles = [
+      ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#2d6a4f")),
+      ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+      ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+      ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#d3d3d3")),
+      (
+          "ROWBACKGROUNDS",
+          (0, 1),
+          (-1, -1),
+          [colors.HexColor("#f8f9fa"), colors.white],
+      ),
+      ("TOPPADDING", (0, 0), (-1, -1), 2),
+      ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
+  ]
+
+  for row_idx, d in enumerate(sorted_upcoming_dates, start=1):
     disp_date = date_display_map.get(d, format_date_str(d))
-    row = [Paragraph(disp_date, date_cell_style)]
+
+    # Überprüfen, ob für dieses Datum ein übergreifendes Großevent vorliegt
+    is_span_event = False
+    span_text = ""
     for kt in kat_titles:
       item = events_by_date.get(d, {}).get(kt)
-      val = item[0] if item else ""
-      row.append(Paragraph(val, cell_style))
+      if item and "WAM/WJPT/SSGT in Welzheim" in item[0]:
+        is_span_event = True
+        span_text = item[0]
+        break
+
+    if is_span_event:
+      row = [Paragraph(disp_date, date_cell_style)]
+      row.append(Paragraph(f"🏆 {span_text}", span_cell_style))
+      row.extend([Paragraph("", cell_style)] * (len(kat_titles) - 1))
+
+      t_styles.append(("SPAN", (1, row_idx), (-1, row_idx)))
+      t_styles.append(
+          ("BACKGROUND", (1, row_idx), (-1, row_idx), colors.HexColor("#d8f3dc"))
+      )
+    else:
+      row = [Paragraph(disp_date, date_cell_style)]
+      for kt in kat_titles:
+        item = events_by_date.get(d, {}).get(kt)
+        val = item[0] if item else ""
+        row.append(Paragraph(val, cell_style))
+
     table_data.append(row)
 
   if len(table_data) > 1:
@@ -196,20 +245,7 @@ def generate_pdf_matrix(
     col_width = 812 / num_cols
 
     t = Table(table_data, colWidths=[col_width] * num_cols, repeatRows=1)
-    t.setStyle(
-        TableStyle([
-            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#2d6a4f")),
-            ("ALIGN", (0, 0), (-1, -1), "CENTER"),
-            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-            ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#d3d3d3")),
-            ("ROWBACKGROUNDS", (0, 1), (-1, -1), [
-                colors.HexColor("#f8f9fa"),
-                colors.white,
-            ]),
-            ("TOPPADDING", (0, 0), (-1, -1), 2),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
-        ])
-    )
+    t.setStyle(TableStyle(t_styles))
     elements.append(t)
   else:
     elements.append(
@@ -233,7 +269,7 @@ def build_termine():
   raw_kategorien = []
   all_dates = set()
   events_by_date = {}
-  date_display_map = {}  # { date_obj: display_date_str }
+  date_display_map = {}
 
   files = [f for f in os.listdir(INPUT_DIR) if f.endswith(".md")]
 
@@ -306,7 +342,7 @@ def build_termine():
     with open(out_filepath, "w", encoding="utf-8") as f:
       f.write(content)
 
-  # 2. Gesamtübersicht (index.md)
+  # 2. Gesamtübersicht (index.md) - Nur anstehende Termine
   upcoming_events = [ev for ev in all_events if not ev["is_past"]]
   upcoming_events.sort(key=lambda x: (x["date"], x["category"]))
 
@@ -335,7 +371,7 @@ def build_termine():
   with open(GESAMT_FILE, "w", encoding="utf-8") as f:
     f.write(gesamt_content)
 
-  # 3. Matrix-Ansicht (kalender-matrix.md)
+  # 3. Matrix-Ansicht (kalender-matrix.md) - Nur anstehende Termine
   sorted_upcoming_dates = sorted(list(all_dates))
 
   matrix_content = "# 📊 Anstehende Termine - Matrix-Ansicht\n\n"
@@ -369,4 +405,4 @@ def build_termine():
 
 if __name__ == "__main__":
   build_termine()
-    
+            
