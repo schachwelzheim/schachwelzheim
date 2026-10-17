@@ -1,9 +1,9 @@
 # Normal
 
-13.11.26 Runde 1
-11.12.26 Runde 2
-29.1.27 Runde 3
-19.3.27 Runde 4
-30.4.27 Runde 5
-21.5.27 Nachholspieltag
-11.6.27 Nachholspieltag
+13.11.2026 Runde 1
+11.12.2026 Runde 2
+29.01.2027 Runde 3
+19.03.2027 Runde 4
+30.04.2027 Runde 5
+04.06.2027 Runde 6
+09.07.2027 Runde 7
