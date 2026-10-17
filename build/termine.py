@@ -121,7 +121,9 @@ def sort_kategorien(kategorien):
   return sorted(kategorien, key=get_sort_index)
 
 
-def generate_pdf_matrix(sorted_upcoming_dates, kat_titles, events_by_date):
+def generate_pdf_matrix(
+    sorted_upcoming_dates, kat_titles, events_by_date, date_display_map
+):
   doc = SimpleDocTemplate(
       PDF_FILE,
       pagesize=landscape(A4),
@@ -181,7 +183,8 @@ def generate_pdf_matrix(sorted_upcoming_dates, kat_titles, events_by_date):
   ] + [Paragraph(title, header_cell_style) for title in kat_titles]]
 
   for d in sorted_upcoming_dates:
-    row = [Paragraph(d.strftime("%d.%m.%Y"), date_cell_style)]
+    disp_date = date_display_map.get(d, format_date_str(d))
+    row = [Paragraph(disp_date, date_cell_style)]
     for kt in kat_titles:
       item = events_by_date.get(d, {}).get(kt)
       val = item[0] if item else ""
@@ -224,12 +227,13 @@ def build_termine():
 
   os.makedirs(OUTPUT_DIR, exist_ok=True)
   today = datetime.now().date()
-  cache_buster = int(time.time())  # Eindeutiger Zeitstempel gegen Browser-Caching
+  cache_buster = int(time.time())
 
   all_events = []
   raw_kategorien = []
   all_dates = set()
   events_by_date = {}
+  date_display_map = {}  # { date_obj: display_date_str }
 
   files = [f for f in os.listdir(INPUT_DIR) if f.endswith(".md")]
 
@@ -263,6 +267,9 @@ def build_termine():
 
       if not is_past:
         all_dates.add(d)
+        if d not in date_display_map or "–" in entry["display_date"]:
+          date_display_map[d] = entry["display_date"]
+
         if d not in events_by_date:
           events_by_date[d] = {}
         events_by_date[d][title] = (entry["text"], is_past)
@@ -270,7 +277,7 @@ def build_termine():
   kategorien = sort_kategorien(raw_kategorien)
   kat_titles = [k["title"] for k in kategorien]
 
-  # 1. Einzelseiten (z. B. docs/verein/termine/blitz.md)
+  # 1. Einzelseiten
   for kat in kategorien:
     out_filepath = os.path.join(OUTPUT_DIR, kat["slug"])
     content = f"# {kat['title']}\n\n"
@@ -299,7 +306,7 @@ def build_termine():
     with open(out_filepath, "w", encoding="utf-8") as f:
       f.write(content)
 
-  # 2. Gesamtübersicht (index.md) - nur anstehende Termine
+  # 2. Gesamtübersicht (index.md)
   upcoming_events = [ev for ev in all_events if not ev["is_past"]]
   upcoming_events.sort(key=lambda x: (x["date"], x["category"]))
 
@@ -342,20 +349,22 @@ def build_termine():
   )
 
   for d in sorted_upcoming_dates:
-    date_str = format_date_str(d)
+    disp_date = date_display_map.get(d, format_date_str(d))
     row_cells = []
     for kt in kat_titles:
       item = events_by_date.get(d, {}).get(kt)
       val = item[0] if item else ""
       row_cells.append(f"**{val}**" if val else "")
 
-    matrix_content += f"| **{date_str}** | " + " | ".join(row_cells) + " |\n"
+    matrix_content += f"| **{disp_date}** | " + " | ".join(row_cells) + " |\n"
 
   with open(MATRIX_FILE, "w", encoding="utf-8") as f:
     f.write(matrix_content)
 
   # 4. DIN A4 PDF Matrix generieren
-  generate_pdf_matrix(sorted_upcoming_dates, kat_titles, events_by_date)
+  generate_pdf_matrix(
+      sorted_upcoming_dates, kat_titles, events_by_date, date_display_map
+  )
 
 
 if __name__ == "__main__":
