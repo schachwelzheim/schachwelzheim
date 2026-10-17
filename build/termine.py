@@ -1,6 +1,7 @@
 from datetime import datetime
 import os
 import re
+import time
 
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, landscape
@@ -17,7 +18,7 @@ GESAMT_FILE = os.path.join(OUTPUT_DIR, "index.md")
 MATRIX_FILE = os.path.join(OUTPUT_DIR, "kalender-matrix.md")
 PDF_FILE = os.path.join(OUTPUT_DIR, "terminplan.pdf")
 
-# EXAKTE REIHENFOLGE DER EXCEL-SPALTEN (Anhand der Titel/Keywords)
+# EXAKTE REIHENFOLGE DER EXCEL-SPALTEN
 EXCEL_ORDER = [
     "TSF Welzheim I",
     "Spraitbach",
@@ -223,6 +224,7 @@ def build_termine():
 
   os.makedirs(OUTPUT_DIR, exist_ok=True)
   today = datetime.now().date()
+  cache_buster = int(time.time())  # Eindeutiger Zeitstempel gegen Browser-Caching
 
   all_events = []
   raw_kategorien = []
@@ -265,11 +267,10 @@ def build_termine():
           events_by_date[d] = {}
         events_by_date[d][title] = (entry["text"], is_past)
 
-  # WICHTIG: Kategorien sauber nach EXCEL_ORDER sortieren
   kategorien = sort_kategorien(raw_kategorien)
   kat_titles = [k["title"] for k in kategorien]
 
-  # 1. Einzelseiten
+  # 1. Einzelseiten (z. B. docs/verein/termine/blitz.md)
   for kat in kategorien:
     out_filepath = os.path.join(OUTPUT_DIR, kat["slug"])
     content = f"# {kat['title']}\n\n"
@@ -298,14 +299,14 @@ def build_termine():
     with open(out_filepath, "w", encoding="utf-8") as f:
       f.write(content)
 
-  # 2. Gesamtübersicht (index.md)
+  # 2. Gesamtübersicht (index.md) - nur anstehende Termine
   upcoming_events = [ev for ev in all_events if not ev["is_past"]]
   upcoming_events.sort(key=lambda x: (x["date"], x["category"]))
 
   gesamt_content = "# 📅 Anstehende Termine & Spielplan\n\n"
   gesamt_content += (
-      "[📄 Terminplan als DIN A4 PDF"
-      " herunterladen](terminplan.pdf){: .md-button .md-button--primary }\n\n"
+      f"[📄 Terminplan als DIN A4 PDF herunterladen](terminplan.pdf?v={cache_buster}){{:"
+      " .md-button .md-button--primary }\n\n"
   )
   gesamt_content += (
       "Hier findest Du alle anstehenden Termine in chronologischer"
@@ -332,8 +333,8 @@ def build_termine():
 
   matrix_content = "# 📊 Anstehende Termine - Matrix-Ansicht\n\n"
   matrix_content += (
-      "[📄 Anstehende Termine als A4 PDF"
-      " herunterladen](terminplan.pdf){: .md-button .md-button--primary }\n\n"
+      f"[📄 Anstehende Termine als A4 PDF herunterladen](terminplan.pdf?v={cache_buster}){{:"
+      " .md-button .md-button--primary }\n\n"
   )
   matrix_content += "| Datum | " + " | ".join(kat_titles) + " |\n"
   matrix_content += (
