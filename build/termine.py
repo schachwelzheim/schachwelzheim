@@ -8,6 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INPUT_DIR = os.path.join(BASE_DIR, "content", "termine")
 OUTPUT_DIR = os.path.join(BASE_DIR, "docs", "verein", "termine")
 GESAMT_FILE = os.path.join(OUTPUT_DIR, "index.md")
+MATRIX_FILE = os.path.join(OUTPUT_DIR, "kalender-matrix.md")
 
 
 def log_debug(msg):
@@ -37,7 +38,7 @@ def format_date_str(date_obj):
 
 
 def parse_termine_file(filepath):
-  """Liest eine Termin-Quelldatei ein und verarbeitet Einzel- sowie Zeitraumingaben (Ferien)."""
+  """Liest eine Termin-Quelldatei ein und verarbeitet Einzel- sowie Zeitraumingaben."""
   log_debug(f"Lese Quelldatei: {filepath}")
   with open(filepath, "r", encoding="utf-8") as f:
     lines = f.readlines()
@@ -112,9 +113,6 @@ def parse_termine_file(filepath):
 def build_termine():
   """Hauptfunktion zum Verarbeiten aller Termine und Generieren der Markdown-Seiten."""
   log_debug("=== Starte Termin-Build ===")
-  log_debug(f"Projekt-Hauptverzeichnis: {BASE_DIR}")
-  log_debug(f"Input-Ordner:  {INPUT_DIR}")
-  log_debug(f"Output-Ordner: {OUTPUT_DIR}")
 
   if not os.path.exists(INPUT_DIR):
     log_debug(
@@ -128,12 +126,11 @@ def build_termine():
 
   all_events = []
   kategorien = []
+  all_dates = set()
+  events_by_date = {}  # { date_obj: { category_title: (event_text, is_past) } }
 
   files = [f for f in os.listdir(INPUT_DIR) if f.endswith(".md")]
   log_debug(f"Gefundene Quell-Dateien in '{INPUT_DIR}': {files}")
-
-  if not files:
-    log_debug(f"WARNUNG: Keine .md Dateien in '{INPUT_DIR}' gefunden!")
 
   # 1. Quelldateien einlesen & parsen
   for filename in sorted(files):
@@ -147,21 +144,30 @@ def build_termine():
     kategorien.append({"slug": filename, "title": title, "entries": entries})
 
     for entry in entries:
+      d = entry["date"]
+      check_date = entry["end_date"] if entry["end_date"] else d
+      is_past = check_date < today
+
       all_events.append({
-          "date": entry["date"],
+          "date": d,
           "end_date": entry["end_date"],
           "display_date": entry["display_date"],
           "category": title,
           "text": entry["text"],
+          "is_past": is_past,
       })
 
-  # 2. Einzelseiten in docs/verein/termine/ erzeugen
+      # Für Matrix-Ansicht (alle Termine inkl. vergangene erfassen)
+      all_dates.add(d)
+      if d not in events_by_date:
+        events_by_date[d] = {}
+      events_by_date[d][title] = (entry["text"], is_past)
+
+  # 2. Einzelseiten (z. B. docs/verein/termine/blitz.md) erzeugen
+  # -> Alle Termine bleiben sichtbar, vergangene werden ausgegraut
   log_debug("--- Generiere Einzelseiten ---")
   for kat in kategorien:
     out_filepath = os.path.join(OUTPUT_DIR, kat["slug"])
-    log_debug(
-        f"Schreibe Einzelseite: {out_filepath} ({len(kat['entries'])} Termine)"
-    )
 
     content = f"# {kat['title']}\n\n"
 
@@ -173,8 +179,6 @@ def build_termine():
 
       for entry in kat["entries"]:
         disp_date = entry["display_date"]
-
-        # Bei Zeiträumen zählt das Enddatum für den Vergangenheits-Status
         check_date = (
             entry["end_date"] if entry["end_date"] else entry["date"]
         )
@@ -192,45 +196,84 @@ def build_termine():
       f.write(content)
 
   # 3. Gesamtübersicht (docs/verein/termine/index.md) erzeugen
-  log_debug("--- Generiere Gesamtübersicht ---")
-  all_events.sort(key=lambda x: (x["date"], x["category"]))
-  log_debug(f"Gesamtanzahl aller Termine: {len(all_events)}")
-  log_debug(f"Schreibe Gesamtdatei nach: {GESAMT_FILE}")
+  # -> Nur anstehende / zukünftige Termine
+  log_debug("--- Generiere Gesamtübersicht (nur anstehende Termine) ---")
+  upcoming_events = [ev for ev in all_events if not ev["is_past"]]
+  upcoming_events.sort(key=lambda x: (x["date"], x["category"]))
 
-  gesamt_content = "# 📅 Gesamter Terminplan\n\n"
+  gesamt_content = "# 📅 Anstehende Termine & Spielplan\n\n"
   gesamt_content += (
-      "Hier findest Du alle Termine aller Kategorien in chronologischer"
+      "Hier findest Du alle anstehenden Termine in chronologischer"
       " Reihenfolge.\n\n"
   )
 
-  if not all_events:
-    gesamt_content += "*Keine Termine vorhanden.*\n"
+  if not upcoming_events:
+    gesamt_content += "*Aktuell keine anstehenden Termine vorhanden.*\n"
   else:
     gesamt_content += "| Datum | Kategorie | Ereignis | Status |\n"
     gesamt_content += "| :--- | :--- | :--- | :--- |\n"
 
-    for ev in all_events:
+    for ev in upcoming_events:
       disp_date = ev["display_date"]
-      check_date = ev["end_date"] if ev["end_date"] else ev["date"]
-      is_past = check_date < today
-
-      if is_past:
-        gesamt_content += (
-            f"| <del style='color: #888;'>{disp_date}</del> | <del"
-            f" style='color: #888;'>{ev['category']}</del> | <del"
-            f" style='color: #888;'>{ev['text']}</del> | 🛑 |\n"
-        )
-      else:
-        gesamt_content += (
-            f"| **{disp_date}** | `{ev['category']}` | **{ev['text']}** | ⏳ |\n"
-        )
+      gesamt_content += (
+          f"| **{disp_date}** | `{ev['category']}` | **{ev['text']}** | ⏳ |\n"
+      )
 
   with open(GESAMT_FILE, "w", encoding="utf-8") as f:
     f.write(gesamt_content)
+
+  # 4. Matrix-Ansicht (docs/verein/termine/kalender-matrix.md) erzeugen
+  # -> Alle Termine bleiben enthalten (vergangene ausgegraut & durchgestrichen)
+  log_debug(
+      "--- Generiere Matrix-Ansicht (alle Termine, vergangene ausgegraut) ---"
+  )
+  sorted_dates = sorted(list(all_dates))
+  kat_titles = [k["title"] for k in kategorien]
+
+  matrix_content = "# 📊 Terminplan - Matrix-Ansicht\n\n"
+  matrix_content += (
+      "| Datum | " + " | ".join(kat_titles) + " | Status |\n"
+  )
+  matrix_content += (
+      "| :--- | " + " | ".join([":---"] * len(kat_titles)) + " | :--- |\n"
+  )
+
+  for d in sorted_dates:
+    date_str = format_date_str(d)
+    is_day_past = d < today
+
+    row_cells = []
+    has_event = False
+
+    for kt in kat_titles:
+      item = events_by_date.get(d, {}).get(kt)
+      if item:
+        has_event = True
+        val, is_item_past = item
+        if is_item_past or is_day_past:
+          row_cells.append(f"<del style='color: #888;'>{val}</del>")
+        else:
+          row_cells.append(f"**{val}**")
+      else:
+        row_cells.append("")
+
+    status = "🛑" if is_day_past else "⏳"
+    d_display = (
+        f"<del style='color: #888;'>{date_str}</del>"
+        if is_day_past
+        else f"**{date_str}**"
+    )
+
+    matrix_content += (
+        f"| {d_display} | " + " | ".join(row_cells) + f" | {status} |\n"
+    )
+
+  with open(MATRIX_FILE, "w", encoding="utf-8") as f:
+    f.write(matrix_content)
 
   log_debug("=== Termin-Build erfolgreich abgeschlossen ===")
 
 
 if __name__ == "__main__":
   build_termine()
-    
+  
