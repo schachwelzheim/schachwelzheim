@@ -257,14 +257,12 @@ def build_termine():
           "is_past": is_past,
       })
 
-      # Erfasse nur anstehende Termine für Matrix & PDF
       if not is_past:
         all_dates.add(d)
         if d not in events_by_date:
           events_by_date[d] = {}
         events_by_date[d][title] = (entry["text"], is_past)
 
-  # Spalten strikt nach Excel-Reihenfolge ordnen
   kategorien = sort_kategorien(raw_kategorien)
   kat_titles = [k["title"] for k in kategorien]
 
@@ -297,7 +295,7 @@ def build_termine():
     with open(out_filepath, "w", encoding="utf-8") as f:
       f.write(content)
 
-  # 2. Gesamtübersicht (index.md) - nur anstehende Termine
+  # 2. Gesamtübersicht (index.md) - nur anstehende Termine (ohne Status-Spalte)
   upcoming_events = [ev for ev in all_events if not ev["is_past"]]
   upcoming_events.sort(key=lambda x: (x["date"], x["category"]))
 
@@ -314,19 +312,19 @@ def build_termine():
   if not upcoming_events:
     gesamt_content += "*Aktuell keine anstehenden Termine vorhanden.*\n"
   else:
-    gesamt_content += "| Datum | Kategorie | Ereignis | Status |\n"
-    gesamt_content += "| :--- | :--- | :--- | :--- |\n"
+    gesamt_content += "| Datum | Kategorie | Ereignis |\n"
+    gesamt_content += "| :--- | :--- | :--- |\n"
 
     for ev in upcoming_events:
       disp_date = ev["display_date"]
       gesamt_content += (
-          f"| **{disp_date}** | `{ev['category']}` | **{ev['text']}** | ⏳ |\n"
+          f"| **{disp_date}** | `{ev['category']}` | **{ev['text']}** |\n"
       )
 
   with open(GESAMT_FILE, "w", encoding="utf-8") as f:
     f.write(gesamt_content)
 
-  # 3. Matrix-Ansicht (kalender-matrix.md) - NUR ANSTEHENDE TERMINE (ohne Status-Spalte)
+  # 3. Matrix-Ansicht (kalender-matrix.md)
   sorted_upcoming_dates = sorted(list(all_dates))
 
   matrix_content = "# 📊 Anstehende Termine - Matrix-Ansicht\n\n"
@@ -352,7 +350,7 @@ def build_termine():
   with open(MATRIX_FILE, "w", encoding="utf-8") as f:
     f.write(matrix_content)
 
-  # 4. DIN A4 PDF Matrix generieren - NUR ANSTEHENDE TERMINE
+  # 4. DIN A4 PDF Matrix generieren
   generate_pdf_matrix(sorted_upcoming_dates, kat_titles, events_by_date)
 
 
