@@ -40,9 +40,3 @@ Hier findest du alle kommenden Turniere, Spieltage und Termine rund um Schach in
 ---
 
 <p align="center"><strong>Wir freuen uns auf deine Teilnahme am Brett! 💚</strong></p>
-
-> [!TIP]
-> Das ist ein hilfreicher Tipp, um Aufgaben schneller oder einfacher zu erledigen.
-
-> [!NOTE]
-> Das ist eine Notiz.
