@@ -6,6 +6,10 @@ Auf der Website finden Interessierte alle wichtigen Informationen rund um das Ve
 
 <div class="grid cards" markdown>
 
+-   __🗓️ Termine__
+
+    Hier findest Du alle anstehenden [Termine](./termine), besonders die [vereinsinternen Turniere](./turniere).
+
 -   __♟️ Schach für alle__
 
     Ein offener Treff für alle, die ganz unkompliziert und *just for fun* spielen möchten.  
@@ -13,7 +17,7 @@ Auf der Website finden Interessierte alle wichtigen Informationen rund um das Ve
 
 -   __🌱 Schachjugend__
 
-    Wöchentliches Trainings (außer in den Schulferien) zur Förderung von Kindern und Jugendlichen.  
+    Wöchentliche Trainings (außer in den Schulferien) zur Förderung von Kindern und Jugendlichen.  
     👉 [Zum Jugendbereich](./jugend)
 
 -   __🏆 Mannschaften__
