@@ -14,6 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INPUT_DIR = os.path.join(BASE_DIR, "content", "termine")
 OUTPUT_DIR = os.path.join(BASE_DIR, "docs", "verein", "termine")
 TURNIERE_FILE = os.path.join(BASE_DIR, "docs", "verein", "turniere", "index.md")
+JUGEND_TERMINE_FILE = os.path.join(BASE_DIR, "docs", "jugend", "termine.md")
 
 GESAMT_FILE = os.path.join(OUTPUT_DIR, "index.md")
 MATRIX_FILE = os.path.join(OUTPUT_DIR, "kalender-matrix.md")
@@ -403,13 +404,14 @@ def build_termine():
   # 1. Einzelseiten
   for kat in kategorien:
     out_filepath = os.path.join(OUTPUT_DIR, kat["slug"])
-    content = f"# {kat['title']}\n\n"
-
+    
+    # Aufbau der Tabelle
+    table_body = ""
     if not kat["entries"]:
-      content += "*Aktuell keine Termine eingetragen.*\n"
+      table_body = "*Aktuell keine Termine eingetragen.*\n"
     else:
-      content += "| Datum | Ereignis | Status |\n"
-      content += "| :--- | :--- | :--- |\n"
+      table_body = "| Datum | Ereignis | Status |\n"
+      table_body += "| :--- | :--- | :--- |\n"
 
       for entry in kat["entries"]:
         disp_date = entry["display_date"]
@@ -419,15 +421,22 @@ def build_termine():
         is_past = check_date < today
 
         if is_past:
-          content += (
+          table_body += (
               f"| <del style='color: #888;'>{disp_date}</del> | <del"
               f" style='color: #888;'>{entry['text']}</del> | 🛑 *Vergangen* |\n"
           )
         else:
-          content += f"| **{disp_date}** | **{entry['text']}** | ⏳ *Anstehend* |\n"
+          table_body += f"| **{disp_date}** | **{entry['text']}** | ⏳ *Anstehend* |\n"
 
+    # Schreiben der regulären Vereins-Kategorieseite
     with open(out_filepath, "w", encoding="utf-8") as f:
-      f.write(content)
+      f.write(f"# {kat['title']}\n\n" + table_body)
+
+    # Wenn es Jugendschach ist, zusätzlich unter docs/jugend/termine.md mit Überschrift "# Termine" schreiben
+    if kat["slug"].lower() == "jugendschach.md":
+      os.makedirs(os.path.dirname(JUGEND_TERMINE_FILE), exist_ok=True)
+      with open(JUGEND_TERMINE_FILE, "w", encoding="utf-8") as f:
+        f.write("# Termine\n\n" + table_body)
 
   # 2. Gesamtübersicht (index.md)
   upcoming_events = [ev for ev in all_events if not ev["is_past"]]
@@ -495,5 +504,5 @@ def build_termine():
 
 
 if __name__ == "__main__":
-    build_termine()
-    
+  build_termine()
+      
