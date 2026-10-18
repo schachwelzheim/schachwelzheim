@@ -32,8 +32,7 @@ Zurzeit gibt es an drei Schulen aktive Schach-AGs.
 
 </div>
 
-!!! info "Teilnahme an Bezirksmeisterschaft"
-   Alle vier Schulen nehmen regelmäßig an den Schulschach-Bezirksmeisterschaften im Bezirk Ludwigsburg/Rems-Murr teil.
+!!! info "Teilnahme an Bezirksmeisterschaft" Alle vier Schulen nehmen regelmäßig an den Schulschach-Bezirksmeisterschaften im Bezirk Ludwigsburg/Rems-Murr teil.
 
 ## Mitmachen & Kontakt
 Interesse an der Schach-AG oder Fragen zum Ablauf an den jeweiligen Schulen? Meldet Euch bei [Eberhard Fink](mailto:schach@tsfwelzheim.de) oder [Anke Werner](mailto:Anke.Werner@svw.info).
