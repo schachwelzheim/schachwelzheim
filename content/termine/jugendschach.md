@@ -5,7 +5,7 @@
 25.10.2026 SG Schwäbisch Gmünd 8 - SG SF 90 Spraitbach/TSF Welzheim 8
 27.10.2026 TSF Herbstferienprogramm
 31.10.2026 F-Kader
-07.11.2026 Familien- und Freundeturnier Schulcampus Welzheim
+07.11.2026 [Familien- und Freundeturnier Schulcampus Welzheim](https://schachwelzheim.github.io/schachwelzheim/aktuelles/2026-09-29/)
 11.11.2026 Grundschulturnier Lindach
 28.11.2026 SG SF 90 Spraitbach/TSF Welzheim 8 - SC Grunbach 8
 05.12.2026 WAM/WJPT/SSGT Murrhardt
