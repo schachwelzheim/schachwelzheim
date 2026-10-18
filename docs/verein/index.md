@@ -6,10 +6,6 @@ Auf der Website finden Interessierte alle wichtigen Informationen rund um das Ve
 
 <div class="grid cards" markdown>
 
--   __🗓️ Termine__
-
-    Hier findest Du alle anstehenden [Termine](./termine), besonders die [vereinsinternen Turniere](./turniere).
-
 -   __♟️ Schach für alle__
 
     Ein offener Treff für alle, die ganz unkompliziert und *just for fun* spielen möchten.  
@@ -25,6 +21,10 @@ Auf der Website finden Interessierte alle wichtigen Informationen rund um das Ve
     Aktuelle Ligen, Spieler, Ergebnisse und Trainingszeiten der Mannschaften im Ligabetrieb. 
     👉 [Zu den Mannschaften](./mannschaften)
 
+-   __🗓️ Termine__
+
+    Hier findest Du alle anstehenden [Termine](./termine), besonders die [vereinsinternen Turniere](./turniere).
+    
 -   __📖 Highlights & Historie__
 
     Ein Überblick über sportliche Erfolge, Meilensteine und große Vereinsjubiläen.  
