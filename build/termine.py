@@ -471,7 +471,7 @@ def build_termine():
   # 3. Matrix-Ansicht (kalender-matrix.md)
   sorted_upcoming_dates = sorted(list(all_dates))
 
-  matrix_content = "# 📊 Anstehende Termine - Matrix-Ansicht\n\n"
+  matrix_content = "# Matrix-Ansicht\n\n"
   matrix_content += (
       f"[📄 Anstehende Termine als A4 PDF herunterladen](terminplan.pdf?v={cache_buster}){{:"
       " .md-button .md-button--primary }\n\n"
