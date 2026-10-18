@@ -442,7 +442,7 @@ def build_termine():
   upcoming_events = [ev for ev in all_events if not ev["is_past"]]
   upcoming_events.sort(key=lambda x: (x["date"], x["category"]))
 
-  gesamt_content = "# 📅 Anstehende Termine & Spielplan\n\n"
+  gesamt_content = "# Termine\n\n"
   gesamt_content += (
       f"[📄 Terminplan als DIN A4 PDF herunterladen](terminplan.pdf?v={cache_buster}){{:"
       " .md-button .md-button--primary }\n\n"
