@@ -19,6 +19,30 @@
 
 
 /* =========================================================
+   Admonitions / Infoboxen (Farbanpassung an Theme)
+   ========================================================= */
+
+.md-typeset .admonition.note,
+.md-typeset .admonition.info,
+.md-typeset .admonition.tip {
+  border-color: #106933;
+}
+
+.md-typeset .admonition.note > .admonition-title,
+.md-typeset .admonition.info > .admonition-title,
+.md-typeset .admonition.tip > .admonition-title {
+  background-color: rgba(16, 105, 51, 0.1);
+  border-color: #106933;
+}
+
+.md-typeset .admonition.note > .admonition-title::before,
+.md-typeset .admonition.info > .admonition-title::before,
+.md-typeset .admonition.tip > .admonition-title::before {
+  background-color: #106933;
+}
+
+
+/* =========================================================
    Startseite
    ========================================================= */
 
