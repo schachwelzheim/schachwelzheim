@@ -432,11 +432,11 @@ def build_termine():
     with open(out_filepath, "w", encoding="utf-8") as f:
       f.write(f"# {kat['title']}\n\n" + table_body)
 
-    # Wenn es Jugendschach ist, zusätzlich unter docs/jugend/termine.md mit Überschrift "# Termine" schreiben
+    # Wenn es Jugendschach ist, zusätzlich unter docs/jugend/termine.md mit Überschrift "# Termine Jugendschach" schreiben
     if kat["slug"].lower() == "jugendschach.md":
       os.makedirs(os.path.dirname(JUGEND_TERMINE_FILE), exist_ok=True)
       with open(JUGEND_TERMINE_FILE, "w", encoding="utf-8") as f:
-        f.write("# Termine\n\n" + table_body)
+        f.write("# Termine Jugendschach\n\n" + table_body)
 
   # 2. Gesamtübersicht (index.md)
   upcoming_events = [ev for ev in all_events if not ev["is_past"]]
