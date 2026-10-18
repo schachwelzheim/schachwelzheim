@@ -1,4 +1,4 @@
-# Schachverein Welzheim
+# ♟️ Schachverein Welzheim
 
 Der Schachverein Welzheim ist als [Schachabteilung](https://www.tsfwelzheim.de/abteilungen/schach/) ein fester Bestandteil des [TSF Welzheim e.V.](https://www.tsfwelzheim.de). 
 
