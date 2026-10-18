@@ -8,17 +8,17 @@ from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
-# Dynamische Pfadermittlung (Projekt-Hauptverzeichnis)
+# Dynamische Pfadermittlung
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 INPUT_DIR = os.path.join(BASE_DIR, "content", "termine")
 OUTPUT_DIR = os.path.join(BASE_DIR, "docs", "verein", "termine")
+TURNIERE_FILE = os.path.join(BASE_DIR, "docs", "verein", "turniere", "index.md")
 
 GESAMT_FILE = os.path.join(OUTPUT_DIR, "index.md")
 MATRIX_FILE = os.path.join(OUTPUT_DIR, "kalender-matrix.md")
 PDF_FILE = os.path.join(OUTPUT_DIR, "terminplan.pdf")
 
-# EXAKTE REIHENFOLGE DER EXCEL-SPALTEN
 EXCEL_ORDER = [
     "TSF Welzheim I",
     "Spraitbach",
@@ -33,7 +33,6 @@ EXCEL_ORDER = [
 
 
 def clean_markdown_links(text):
-  """Wandelt Markdown-Links '[Text](URL)' im PDF in reine Textform 'Text' um."""
   if not text:
     return ""
   return re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
@@ -58,6 +57,20 @@ def format_date_str(date_obj):
   return date_obj.strftime("%d.%m.%Y")
 
 
+def format_weekday_date(date_obj):
+  wochentage = [
+      "Montag",
+      "Dienstag",
+      "Mittwoch",
+      "Donnerstag",
+      "Freitag",
+      "Samstag",
+      "Sonntag",
+  ]
+  tagname = wochentage[date_obj.weekday()]
+  return f"{tagname}, {date_obj.strftime('%d.%m.%Y')}"
+
+
 def parse_termine_file(filepath):
   with open(filepath, "r", encoding="utf-8") as f:
     lines = f.readlines()
@@ -74,7 +87,6 @@ def parse_termine_file(filepath):
       title = line_str.lstrip("#").strip()
       continue
 
-    # Datumsbereich parsen (z. B. "24.10.2026 - 01.11.2026 Herbstferien")
     range_match = re.search(
         r"^(\d{1,2}\.\d{1,2}\.\d{2,4})\s*-\s*(\d{1,2}\.\d{1,2}\.\d{2,4})\s+(.*)$",
         line_str,
@@ -98,7 +110,6 @@ def parse_termine_file(filepath):
         })
         continue
 
-    # Einzeldatum parsen
     date_obj = parse_date(line_str)
     if date_obj:
       event_text = re.sub(
@@ -115,8 +126,6 @@ def parse_termine_file(filepath):
 
 
 def sort_kategorien(kategorien):
-  """Ordnet Kategorien exakt der EXCEL_ORDER zu"""
-
   def get_sort_index(kat):
     title = kat["title"].lower()
     slug = kat["slug"].lower()
@@ -131,7 +140,6 @@ def sort_kategorien(kategorien):
 
 
 def get_short_category(category_title):
-  """Kürzt Kategorienamen ausschließlich für die Gesamtübersichts-Tabelle ab."""
   cat_lower = category_title.lower()
 
   if "welzheim 1" in cat_lower or "welzheim i" in cat_lower:
@@ -233,7 +241,6 @@ def generate_pdf_matrix(
   for row_idx, d in enumerate(sorted_upcoming_dates, start=1):
     disp_date = date_display_map.get(d, format_date_str(d))
 
-    # Überprüfen, ob für dieses Datum ein übergreifendes Großevent vorliegt
     is_span_event = False
     span_text = ""
     for kt in kat_titles:
@@ -278,6 +285,62 @@ def generate_pdf_matrix(
   doc.build(elements)
 
 
+def generate_turniere_page(kategorien_by_slug):
+  """Befüllt die Platzhalter-Kommentare in docs/verein/turniere/index.md mit aktuellen Terminen."""
+  if not os.path.exists(TURNIERE_FILE):
+    return
+
+  with open(TURNIERE_FILE, "r", encoding="utf-8") as f:
+    content = f.read()
+
+  # 1. Blitztermine
+  blitz_entries = kategorien_by_slug.get("blitz.md", {}).get("entries", [])
+  blitz_lines = []
+  for entry in blitz_entries:
+    formatted_d = format_weekday_date(entry["date"])
+    blitz_lines.append(f"    *   **{entry['text']}:** {formatted_d}")
+  blitz_text = "\n".join(blitz_lines)
+
+  # 2. Schnelltermine
+  schnell_entries = kategorien_by_slug.get("schnell.md", {}).get("entries", [])
+  schnell_lines = []
+  for entry in schnell_entries:
+    formatted_d = format_weekday_date(entry["date"])
+    schnell_lines.append(f"    *   **{entry['text']}:** {formatted_d}")
+  schnell_text = "\n".join(schnell_lines)
+
+  # 3. Stadtmeisterschaftstermine (normal.md)
+  normal_entries = kategorien_by_slug.get("normal.md", {}).get("entries", [])
+  normal_lines = []
+  for entry in normal_entries:
+    formatted_d = format_weekday_date(entry["date"])
+    normal_lines.append(f"    *   **{entry['text']}:** {formatted_d}")
+  normal_text = "\n".join(normal_lines)
+
+  # Ersetzen der Platzhalter
+  content = re.sub(
+      r"<!--\s*Blitztermine.*?\s*-->",
+      blitz_text,
+      content,
+      flags=re.IGNORECASE | re.DOTALL,
+  )
+  content = re.sub(
+      r"<!--\s*Schnelltermine.*?\s*-->",
+      schnell_text,
+      content,
+      flags=re.IGNORECASE | re.DOTALL,
+  )
+  content = re.sub(
+      r"<!--\s*Stadtmeisterschaftstermine.*?\s*-->",
+      normal_text,
+      content,
+      flags=re.IGNORECASE | re.DOTALL,
+  )
+
+  with open(TURNIERE_FILE, "w", encoding="utf-8") as f:
+    f.write(content)
+
+
 def build_termine():
   if not os.path.exists(INPUT_DIR):
     return
@@ -288,6 +351,7 @@ def build_termine():
 
   all_events = []
   raw_kategorien = []
+  kategorien_by_slug = {}
   all_dates = set()
   events_by_date = {}
   date_display_map = {}
@@ -302,11 +366,13 @@ def build_termine():
       title = filename.replace(".md", "").capitalize()
 
     entries.sort(key=lambda x: x["date"])
-    raw_kategorien.append({
+    kat_obj = {
         "slug": filename,
         "title": title,
         "entries": entries,
-    })
+    }
+    raw_kategorien.append(kat_obj)
+    kategorien_by_slug[filename] = kat_obj
 
     for entry in entries:
       d = entry["date"]
@@ -419,12 +485,15 @@ def build_termine():
   with open(MATRIX_FILE, "w", encoding="utf-8") as f:
     f.write(matrix_content)
 
-  # 4. DIN A4 PDF Matrix generieren (mit bereinigten Links)
+  # 4. DIN A4 PDF Matrix generieren
   generate_pdf_matrix(
       sorted_upcoming_dates, kat_titles, events_by_date, date_display_map
   )
 
+  # 5. Platzhalter in docs/verein/turniere/index.md befüllen
+  generate_turniere_page(kategorien_by_slug)
+
 
 if __name__ == "__main__":
-  build_termine()
+    build_termine()
     
