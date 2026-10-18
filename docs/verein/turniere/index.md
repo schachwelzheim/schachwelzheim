@@ -30,9 +30,9 @@ Hier findest du alle Infos, Runden und Termine zu unseren internen Meisterschaft
 
 </div>
 
----
+## Mitmachen lohnt sich!
 
-> **Mitmachen lohnt sich!** 
-> Egal ob erfahrener Mannschaftsspieler oder Hobbyspieler – bei unseren internen Turnieren steht der Spaß am Schachsport im Vordergrund. Komm einfach am Spielabend vorbei oder melde Dich per [Mail](mailto:schach@tsfwelzheim.de)!
+Egal ob erfahrener Mannschaftsspieler oder Hobbyspieler – bei unseren internen Turnieren steht der Spaß am Schachsport im Vordergrund.
+> Komm einfach am Spielabend vorbei oder melde Dich per [Mail](mailto:schach@tsfwelzheim.de)!
 
 🗺️ Weitere Turniere findest du auch auf unserer [interaktiven Turnierkarte](https://schachwelzheim.github.io/wam-karte/).
