@@ -20,7 +20,7 @@ Kinder und Jugendliche können in Welzheim sowohl in Schulen als auch im Verein 
 
     Alle anstehenden Spieltage, WAM-Jugendturniere, Kader-Termine und Ferienaktionen im Überblick.
 
-    * [Zu Terminen](./termine/)
+    * [Zu den Terminen](./termine/)
 
 </div>
 
