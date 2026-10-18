@@ -6,7 +6,7 @@ Hier findest du alle kommenden Turniere, Spieltage und Termine rund um Schach in
 
 <div class="grid cards" markdown>
 
--   __📅 11/26 – 07/27__
+-   __🏆 November 26 bis Juli 27__
 
     **Stadtmeisterschaft Welzheim**
 
@@ -14,7 +14,7 @@ Hier findest du alle kommenden Turniere, Spieltage und Termine rund um Schach in
     
     [Zum Beitrag](../aktuelles/2026-10-07/)
 
--   __🏆 07.11.2026__
+-   __♟️💞 07.11.2026__
 
     **2. Familien- und Freundeturnier**
 
