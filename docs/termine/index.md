@@ -1,4 +1,4 @@
-# 🗓️Termine & Saison-Highlights
+# 🗓️ Termine & Saison-Highlights
 
 Hier findest du alle kommenden Turniere, Spieltage und Termine rund um Schach in Welzheim.
 
