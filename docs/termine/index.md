@@ -25,7 +25,7 @@ Hier findest du alle kommenden Turniere, Spieltage und Termine rund um Schach in
 </div>
 
 !!! tip "Gesamter Terminplan & PDF-Kalender"
-    Eine vollständige Übersicht aller Spieltage, Turniere und Vereinsabende sowie den Terminplan als DIN A4 PDF-Download findest du in unserer **[Terminliste](../verein/termine/)**.
+    Eine vollständige Übersicht aller Spieltage und Turniere sowie den Terminplan als DIN A4 PDF-Download findest du in unserer **[Terminliste](../verein/termine/)**.
 
 ## Regelmäßige Termine & Spielbetrieb
 
