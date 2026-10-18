@@ -4,7 +4,7 @@ Die Jugendförderung hat in der Schachabteilung des TSF Welzheim einen hohen Ste
 
 Der wöchentliche Trainingsbetrieb (außer in den Schulferien) ist in zwei Gruppen unterteilt, um alle Kinder und Jugendlichen optimal zu fördern:
 
-## Trainingszeiten
+## 🗓️ Trainingszeiten
 
 <div class="grid cards" markdown>
 
