@@ -38,6 +38,10 @@ markdown_extensions:
   - attr_list
   - pymdownx.snippets
   - md_in_html
+  - pymdownx.blocks.admonition   # Oder einfach: admonition
+  - pymdownx.details             # Falls du aufklappbare Boxen (??? tip) nutzt
+  - pymdownx.superfences         # Für korrektes Verschachteln von Blöcken
+  
 
 extra:
   generator: false
