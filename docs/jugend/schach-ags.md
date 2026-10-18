@@ -4,7 +4,7 @@ Schach fördert Konzentration, logisches Denken und macht vor allem gemeinsam Sp
 
 Zurzeit gibt es an drei Schulen aktive Schach-AGs.
 
-## Unsere Schulschach-Standorte
+## 🏫 Unsere Schulschach-Standorte
 
 <div class="grid cards" markdown>
 
@@ -31,8 +31,9 @@ Zurzeit gibt es an drei Schulen aktive Schach-AGs.
     * Highlight: [1. Platz bei der Bezirksmeisterschaft 2026](https://krswelzheim.de/index.php/11433/1-platz-bei-der-schulschachmeisterschaft-2026/)!
 
 </div>
-
-!!! info "Teilnahme an Bezirksmeisterschaft" Alle vier Schulen nehmen regelmäßig an den Schulschach-Bezirksmeisterschaften im Bezirk Ludwigsburg/Rems-Murr teil.
+    
+!!! tip "Teilnahme an Bezirksmeisterschaft"
+    Alle vier Schulen nehmen regelmäßig an den Schulschach-Bezirksmeisterschaften im Bezirk Ludwigsburg/Rems-Murr teil.
 
 ## Mitmachen & Kontakt
 Interesse an der Schach-AG oder Fragen zum Ablauf an den jeweiligen Schulen? Meldet Euch bei [Eberhard Fink](mailto:schach@tsfwelzheim.de) oder [Anke Werner](mailto:Anke.Werner@svw.info).
