@@ -32,6 +32,13 @@ EXCEL_ORDER = [
 ]
 
 
+def clean_markdown_links(text):
+  """Wandelt Markdown-Links '[Text](URL)' im PDF in reine Textform 'Text' um."""
+  if not text:
+    return ""
+  return re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+
+
 def parse_date(date_str):
   match = re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{2,4})", date_str)
   if not match:
@@ -91,7 +98,7 @@ def parse_termine_file(filepath):
         })
         continue
 
-    # Einzeldatum parsen (z. B. "18.10.2026 W1 - Bopfingen 1")
+    # Einzeldatum parsen
     date_obj = parse_date(line_str)
     if date_obj:
       event_text = re.sub(
@@ -233,7 +240,7 @@ def generate_pdf_matrix(
       item = events_by_date.get(d, {}).get(kt)
       if item and "WAM/WJPT/SSGT in Welzheim" in item[0]:
         is_span_event = True
-        span_text = item[0]
+        span_text = clean_markdown_links(item[0])
         break
 
     if is_span_event:
@@ -249,7 +256,7 @@ def generate_pdf_matrix(
       row = [Paragraph(disp_date, date_cell_style)]
       for kt in kat_titles:
         item = events_by_date.get(d, {}).get(kt)
-        val = item[0] if item else ""
+        val = clean_markdown_links(item[0]) if item else ""
         row.append(Paragraph(val, cell_style))
 
     table_data.append(row)
@@ -356,7 +363,7 @@ def build_termine():
     with open(out_filepath, "w", encoding="utf-8") as f:
       f.write(content)
 
-  # 2. Gesamtübersicht (index.md) - Nur anstehende Termine mit gekürzten Kategorienamen
+  # 2. Gesamtübersicht (index.md)
   upcoming_events = [ev for ev in all_events if not ev["is_past"]]
   upcoming_events.sort(key=lambda x: (x["date"], x["category"]))
 
@@ -386,7 +393,7 @@ def build_termine():
   with open(GESAMT_FILE, "w", encoding="utf-8") as f:
     f.write(gesamt_content)
 
-  # 3. Matrix-Ansicht (kalender-matrix.md) - Nur anstehende Termine
+  # 3. Matrix-Ansicht (kalender-matrix.md)
   sorted_upcoming_dates = sorted(list(all_dates))
 
   matrix_content = "# 📊 Anstehende Termine - Matrix-Ansicht\n\n"
@@ -412,7 +419,7 @@ def build_termine():
   with open(MATRIX_FILE, "w", encoding="utf-8") as f:
     f.write(matrix_content)
 
-  # 4. DIN A4 PDF Matrix generieren
+  # 4. DIN A4 PDF Matrix generieren (mit bereinigten Links)
   generate_pdf_matrix(
       sorted_upcoming_dates, kat_titles, events_by_date, date_display_map
   )
@@ -420,4 +427,4 @@ def build_termine():
 
 if __name__ == "__main__":
   build_termine()
-        
+    
