@@ -123,6 +123,20 @@ def sort_kategorien(kategorien):
   return sorted(kategorien, key=get_sort_index)
 
 
+def get_short_category(category_title):
+  """Kürzt Kategorienamen ausschließlich für die Gesamtübersichts-Tabelle ab."""
+  cat_lower = category_title.lower()
+
+  if "welzheim 1" in cat_lower or "welzheim i" in cat_lower:
+    return "Welzheim 1"
+  if "jugend" in cat_lower:
+    return "Jugend"
+  if "spraitbach" in cat_lower:
+    return "Spraitbach/Welzheim 2"
+
+  return category_title
+
+
 def generate_pdf_matrix(
     sorted_upcoming_dates, kat_titles, events_by_date, date_display_map
 ):
@@ -342,7 +356,7 @@ def build_termine():
     with open(out_filepath, "w", encoding="utf-8") as f:
       f.write(content)
 
-  # 2. Gesamtübersicht (index.md) - Nur anstehende Termine
+  # 2. Gesamtübersicht (index.md) - Nur anstehende Termine mit gekürzten Kategorienamen
   upcoming_events = [ev for ev in all_events if not ev["is_past"]]
   upcoming_events.sort(key=lambda x: (x["date"], x["category"]))
 
@@ -364,8 +378,9 @@ def build_termine():
 
     for ev in upcoming_events:
       disp_date = ev["display_date"]
+      short_cat = get_short_category(ev["category"])
       gesamt_content += (
-          f"| **{disp_date}** | `{ev['category']}` | **{ev['text']}** |\n"
+          f"| **{disp_date}** | `{short_cat}` | **{ev['text']}** |\n"
       )
 
   with open(GESAMT_FILE, "w", encoding="utf-8") as f:
@@ -405,4 +420,4 @@ def build_termine():
 
 if __name__ == "__main__":
   build_termine()
-            
+        
