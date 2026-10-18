@@ -8,7 +8,7 @@ Kinder und Jugendliche können in Welzheim sowohl in Schulen als auch im Verein 
 
     Alle Informationen zu unseren wöchentlichen Arbeitsgemeinschaften an den Welzheimer Schulen.
 
-    * Zu den Schach-AGs](./schach-ags/)
+    * [Zu den Schach-AGs](./schach-ags/)
 
 -   __🏆 Jugendtraining & Verein__
 
