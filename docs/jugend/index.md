@@ -37,5 +37,4 @@ In Welzheim bieten wir Kindern und Jugendlichen tolle Möglichkeiten, das Schach
 !!! info "Schnuppertraining jederzeit möglich!"
     Du möchtest Schach einfach mal ausprobieren oder Deine Skills verbessern? Komm gerne spontan bei unserem Jugendtraining vorbei oder schreib uns eine Nachricht. Wir freuen uns auf Dich!
 
-    [📧 Jetzt Kontakt aufnehmen](mailto:jugend@tsfwelzheim.de){: .md-button .md-button--primary }
-    
+    [📧 Jetzt Kontakt aufnehmen](mailto:schach@tsfwelzheim.de,anke.werner@svw.de?subject=Kontakt%20per%20Homepage){: .md-button .md-button--primary }
