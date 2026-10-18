@@ -1,4 +1,4 @@
-# Normal
+# Stadtmeisterschaft
 
 13.11.2026 Runde 1
 11.12.2026 Runde 2
