@@ -32,7 +32,7 @@ Auf der Website finden Interessierte alle wichtigen Informationen rund um das Ve
 
 -   __🏠 Spiellokal__
 
-    Hier wird trainiert und gespielt:
+    Hier wird trainiert und gespielt: 
     👉 [Zum Spiellokal](./spiellokal)
 
 </div>
