@@ -12,7 +12,7 @@ Zurzeit gibt es an drei Schulen aktive Schach-AGs.
 
     * An der Bürgfeld-Gemeinschaftsschule findet wöchentlich eine [Schach-AG](https://buergfeld-gms.de/schach-ag/) statt. Geleitet wird das Angebot von Vereinsvorstand Eberhard Fink und Anke Werner.
     * Highlight: Seit Oktober 2024 ist die Schule offizielle, zertifizierte **[„Deutsche Schachschule“](https://www.deutsche-schachjugend.de/service/auszeichnung-und-foerderung/qualitaetssiegel/deutsche-schachschule-ein-guetesiegel-der-dsj/) (Stufe Bronze)**.
-   * [Schach AG der Bürgfeld-Gemeinschaftsschule](https://buergfeld-gms.de/schach-ag/)
+    * [Schach AG der Bürgfeld-Gemeinschaftsschule](https://buergfeld-gms.de/schach-ag/)
 
 -  __Limes-Gymnasium Welzheim__
 
